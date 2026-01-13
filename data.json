@@ -1,7 +1,7 @@
 {
-    "SIZE_COST_MULTIPLIERS": { "Tiny": 1, "Small": 1, "Medium": 1, "Large": 1, "Huge": 1, "Gargantuan": 2, "Colossal": 5, "Colossal (frigate)": 50, "Colossal (cruiser)": 500, "Colossal (station)": 5000 },
-    "REFLEX_SIZE_MODS": { "Colossal (cruiser)": -10, "Colossal (frigate)": -10, "Colossal": -10, "Gargantuan": -5, "Huge": -2, "Large": -1, "Medium": 0, "Small": 1, "Tiny": 2 },
-    "MAX_SR_BY_SIZE": { "Tiny": 15, "Small": 20, "Medium": 30, "Large": 40, "Huge": 50, "Gargantuan": 60, "Colossal": 55, "Colossal (frigate)": 150, "Colossal (cruiser)": 250 },
+    "SIZE_COST_MULTIPLIERS": { "Huge": 1, "Gargantuan": 2, "Colossal(transport)": 5, "Colossal (frigate)": 50, "Colossal (cruiser)": 500, "Colossal (station)": 5000 },
+    "REFLEX_SIZE_MODS": { "Colossal (cruiser)": -10, "Colossal (frigate)": -10, "Colossal(transport)": -10, "Gargantuan": -5, "Huge": -2},
+    "MAX_SR_BY_SIZE": { "Huge": 15, "Gargantuan": 35, "Colossal": 55, "Colossal (frigate)": 125, "Colossal (cruiser)": 200 },
     "LICENSE_FEES": { "Common": 0, "Licensed": 0.05, "Restricted": 0.10, "Military": 0.20, "Illegal": 0.50 },
     "AVAILABILITY_RANK": ["Common", "Licensed", "Restricted", "Military", "Illegal"],
     "SIZE_RANK": ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal", "Colossal (frigate)", "Colossal (cruiser)", "Colossal (station)"],
