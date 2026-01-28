@@ -3,7 +3,7 @@
     "REFLEX_SIZE_MODS": { "Colossal (cruiser)": -10, "Colossal (frigate)": -10, "Colossal(transport)": -10, "Gargantuan": -5, "Huge": -2},
     "LICENSE_FEES": { "Common": 0, "Licensed": 0.05, "Restricted": 0.10, "Military": 0.20, "Illegal": 0.50 },
     "AVAILABILITY_RANK": ["Common", "Licensed", "Restricted", "Military", "Illegal"],
-    "SIZE_RANK": ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal", "Colossal (frigate)", "Colossal (cruiser)", "Colossal (station)"],
+    "SIZE_RANK": ["Huge", "Gargantuan", "Colossal", "Colossal (frigate)", "Colossal (cruiser)", "Colossal (station)"],
     "STOCK_SHIPS": [
         {
             "id": "light_fighter", "name": "Light Fighter", "name_es": "Caza Ligero", "size": "Huge", "cost": 30000, "baseEp": 2,
@@ -40,6 +40,19 @@
                 "engine_3", "hyperdrive_2", "shield_gen_30", "nav_standard",
                 "laser_med_twin", "ion_cannon", "ion_cannon", "concussion_missile", "tractor_beam",
                 "docking_clamp", "docking_clamp", "escape_pod", "escape_pod", "holo_transceiver"
+            ]
+        },
+        {
+            "id": "gozanti", "name": "Gozanti-class Cruiser", "name_es": "Crucero clase Gozanti", "size": "Colossal", "cost": 150000, "baseEp": 1,
+            "stats": { "str": 42, "dex": 14, "int": 14, "hp": 180, "dr": 15, "armor": 14, "sr": 15 },
+            "logistics": { "crew": 12, "pass": 12, "cargo": "75 tons", "cons": "1 month" },
+            "defaultMods": [
+                "engine_1", "hyperdrive_3", "shield_gen_15", "nav_standard",
+                "laser_light_quad", "laser_light_quad",
+                "laser_medium", "laser_medium", "laser_medium", "laser_medium",
+                "escape_pod", "escape_pod", "escape_pod", "escape_pod",
+                "proton_torp"
+                
             ]
         }
     ],
