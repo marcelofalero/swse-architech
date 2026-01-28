@@ -56,8 +56,7 @@ const SystemList = {
                         <span v-if="getEpDynamic(mod.defId)" class="text-positive">+{{ Math.abs(getEpDynamic(mod.defId)) }} EP</span><span v-else>{{ mod.location }}</span>
                     </q-item-label>
                     <q-item-label v-if="mod.modifications" caption class="text-info">
-                        <span v-if="mod.modifications.payloadCount > 0" class="q-mr-xs">Payload +{{ mod.modifications.payloadCount }}</span>
-                        <span v-if="mod.modifications.fireLinkCount > 1" class="q-mr-xs">Fire-Linked ({{ mod.modifications.fireLinkCount }})</span>
+                        <span v-if="mod.modifications.payloadOption" class="q-mr-xs">Extra Payload</span>
                         <span v-if="mod.modifications.batteryCount > 1">Battery ({{ mod.modifications.batteryCount }})</span>
                     </q-item-label>
                 </q-item-section>
@@ -82,12 +81,7 @@ const SystemList = {
                 <q-card-section><div class="text-h6">Configure System</div></q-card-section>
                 <q-card-section v-if="editingMod">
                     <div v-if="getUpgradeSpecs(editingMod.defId)?.payload" class="q-mb-md">
-                        <div class="text-caption">Payload Upgrade ({{ format(getUpgradeSpecs(editingMod.defId).payload.cost) }} per unit)</div>
-                        <q-input dark type="number" filled v-model.number="editingMod.modifications.payloadCount" label="Extra Payload" min="0" />
-                    </div>
-                    <div v-if="getUpgradeSpecs(editingMod.defId)?.fireLink" class="q-mb-md">
-                         <div class="text-caption">Fire-Link Weapons</div>
-                        <q-select dark filled v-model="editingMod.modifications.fireLinkCount" :options="[{label: 'Single', value: 1}, {label: 'Twin (x2)', value: 2}, {label: 'Quad (x4)', value: 4}]" label="Fire-Linked" map-options emit-value />
+                        <q-checkbox dark v-model="editingMod.modifications.payloadOption" :label="getUpgradeSpecs(editingMod.defId).payload.label + ' (' + format(getUpgradeSpecs(editingMod.defId).payload.cost) + ')'" />
                     </div>
                     <div v-if="getUpgradeSpecs(editingMod.defId)?.battery" class="q-mb-md">
                         <div class="text-caption">Battery Size</div>
