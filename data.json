@@ -797,7 +797,13 @@
             "sizeMult": false,
             "availability": "Restricted",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 16,
+                    "maxAdd": 16,
+                    "costFactor": 0.25,
+                    "unitLabel": "torpedoes"
+                }
             }
         },
         {
@@ -812,7 +818,13 @@
             "sizeMult": false,
             "availability": "Restricted",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 32,
+                    "maxAdd": 32,
+                    "costFactor": 0.25,
+                    "unitLabel": "torpedoes"
+                }
             }
         },
         {
@@ -1079,7 +1091,13 @@
             "sizeMult": false,
             "availability": "Military",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 12,
+                    "maxAdd": 12,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
@@ -1094,7 +1112,13 @@
             "sizeMult": false,
             "availability": "Military",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 24,
+                    "maxAdd": 24,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
@@ -1131,7 +1155,13 @@
             "sizeMult": false,
             "availability": "Military",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 32,
+                    "maxAdd": 32,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
@@ -1146,7 +1176,13 @@
             "sizeMult": false,
             "availability": "Military",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 64,
+                    "maxAdd": 64,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
@@ -1185,7 +1221,13 @@
             "availability": "Military",
             "minShipSize": "Colossal",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 60,
+                    "maxAdd": 60,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
@@ -1201,7 +1243,13 @@
             "availability": "Military",
             "minShipSize": "Colossal",
             "upgradeSpecs": {
-                "battery": true
+                "payload": {
+                    "type": "capacity",
+                    "base": 120,
+                    "maxAdd": 120,
+                    "costFactor": 0.2,
+                    "unitLabel": "missiles"
+                }
             }
         },
         {
