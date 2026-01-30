@@ -344,6 +344,7 @@ export const ShipSheetWrapper = {
             }
             if(id.includes('turbo')) return '7d10x5';
             if(id.includes('proton')) return '9d10x2';
+            if(id.includes('hapan')) return '5d10x5';
             if(id.includes('ion')) return '5d10x2';
             if(id.includes('concussion')) return '8d10x2';
             if(id.includes('tractor')) return '-';
