@@ -443,9 +443,18 @@
                 "hyperdrive_3",
                 "shield_gen_15",
                 "nav_standard",
-                { "id": "laser_light_quad", "batteryCount": 2 },
-                { "id": "laser_med", "batteryCount": 4 },
-                { "id": "escape_pod", "quantity": 6 },
+                {
+                    "id": "laser_light_quad",
+                    "batteryCount": 2
+                },
+                {
+                    "id": "laser_med",
+                    "batteryCount": 4
+                },
+                {
+                    "id": "escape_pod",
+                    "quantity": 6
+                },
                 "proton_torp"
             ]
         }
@@ -1662,7 +1671,7 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 2000,
+            "baseCost": 750,
             "baseEp": 1,
             "sizeMult": true,
             "stats": {
@@ -1678,8 +1687,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 5000,
-            "baseEp": 2,
+            "baseCost": 1000,
+            "baseEp": 1,
             "sizeMult": true,
             "stats": {
                 "sr": 15
@@ -1694,8 +1703,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 10000,
-            "baseEp": 3,
+            "baseCost": 1250,
+            "baseEp": 1,
             "sizeMult": true,
             "stats": {
                 "sr": 20
@@ -1711,8 +1720,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 12000,
-            "baseEp": 4,
+            "baseCost": 1500,
+            "baseEp": 1,
             "sizeMult": true,
             "stats": {
                 "sr": 25
@@ -1728,8 +1737,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 15000,
-            "baseEp": 5,
+            "baseCost": 2000,
+            "baseEp": 2,
             "sizeMult": true,
             "stats": {
                 "sr": 30
@@ -1745,8 +1754,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 20000,
-            "baseEp": 6,
+            "baseCost": 2500,
+            "baseEp": 2,
             "sizeMult": true,
             "stats": {
                 "sr": 35
@@ -1762,8 +1771,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 25000,
-            "baseEp": 7,
+            "baseCost": 3000,
+            "baseEp": 2,
             "sizeMult": true,
             "stats": {
                 "sr": 40
@@ -1779,8 +1788,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 30000,
-            "baseEp": 8,
+            "baseCost": 4000,
+            "baseEp": 2,
             "sizeMult": true,
             "stats": {
                 "sr": 45
@@ -1796,8 +1805,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 40000,
-            "baseEp": 9,
+            "baseCost": 5000,
+            "baseEp": 3,
             "sizeMult": true,
             "stats": {
                 "sr": 50
@@ -1813,8 +1822,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 50000,
-            "baseEp": 10,
+            "baseCost": 6000,
+            "baseEp": 3,
             "sizeMult": true,
             "stats": {
                 "sr": 55
@@ -1830,8 +1839,8 @@
             "category": "Defense Systems",
             "group": "Shield Generators",
             "type": "system",
-            "baseCost": 60000,
-            "baseEp": 11,
+            "baseCost": 8000,
+            "baseEp": 3,
             "sizeMult": true,
             "stats": {
                 "sr": 60
@@ -1842,18 +1851,19 @@
         },
         {
             "id": "bulkheads",
-            "name": "Reinforced Bulkheads (+10% HP)",
-            "name_es": "Mamparos Reforzados (+10% PV)",
+            "name": "Reinforced Bulkheads (+10%)",
+            "name_es": "Mamparos Reforzados (+10%)",
             "category": "Defense Systems",
             "group": "Armor",
             "type": "system",
             "baseCost": 2000,
-            "baseEp": 1,
+            "baseEp": 2,
             "sizeMult": true,
             "stats": {
                 "hp_bonus_pct": 0.1
             },
-            "availability": "Licensed"
+            "availability": "Common",
+            "exclusiveGroup": "bulkheads"
         },
         {
             "id": "jamming",
@@ -1862,10 +1872,10 @@
             "category": "Defense Systems",
             "group": "Electronic Warfare",
             "type": "system",
-            "baseCost": 2000,
+            "baseCost": 5000,
             "baseEp": 1,
-            "sizeMult": false,
-            "availability": "Restricted"
+            "sizeMult": true,
+            "availability": "Common"
         },
         {
             "id": "ecm_suite",
@@ -2333,6 +2343,336 @@
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
+            "availability": "Common"
+        },
+        {
+            "id": "armor_1",
+            "name": "Starship Armor (+1)",
+            "name_es": "Armadura de Nave (+1)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 2000,
+            "baseEp": 2,
+            "sizeMult": true,
+            "stats": {
+                "armor_bonus": 1
+            },
+            "availability": "Licensed",
+            "exclusiveGroup": "armor"
+        },
+        {
+            "id": "armor_2",
+            "name": "Starship Armor (+2)",
+            "name_es": "Armadura de Nave (+2)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 5000,
+            "baseEp": 5,
+            "sizeMult": true,
+            "stats": {
+                "armor_bonus": 2
+            },
+            "minShipSize": "Colossal(transport)",
+            "availability": "Restricted",
+            "exclusiveGroup": "armor"
+        },
+        {
+            "id": "armor_3",
+            "name": "Starship Armor (+3)",
+            "name_es": "Armadura de Nave (+3)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 10000,
+            "baseEp": 10,
+            "sizeMult": true,
+            "stats": {
+                "armor_bonus": 3
+            },
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Military",
+            "exclusiveGroup": "armor"
+        },
+        {
+            "id": "armor_4",
+            "name": "Starship Armor (+4)",
+            "name_es": "Armadura de Nave (+4)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 20000,
+            "baseEp": 20,
+            "sizeMult": true,
+            "stats": {
+                "armor_bonus": 4
+            },
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Military",
+            "exclusiveGroup": "armor"
+        },
+        {
+            "id": "jamming_array",
+            "name": "Jamming Array",
+            "name_es": "Matriz de Interferencias",
+            "category": "Defense Systems",
+            "group": "Electronic Warfare",
+            "type": "system",
+            "baseCost": 20000,
+            "baseEp": 5,
+            "sizeMult": true,
+            "minShipSize": "Colossal(transport)",
+            "availability": "Common"
+        },
+        {
+            "id": "regenerating_shields",
+            "name": "Regenerating Shields",
+            "name_es": "Escudos Regenerativos",
+            "category": "Defense Systems",
+            "group": "Shields",
+            "type": "system",
+            "baseCost": 5000,
+            "baseEp": 2,
+            "sizeMult": true,
+            "availability": "Restricted",
+            "stats": {
+                "regenerating": true
+            },
+            "exclusiveGroup": "shield_mod"
+        },
+        {
+            "id": "bulkheads_20",
+            "name": "Reinforced Bulkheads (+20%)",
+            "name_es": "Mamparos Reforzados (+20%)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 5000,
+            "baseEp": 5,
+            "sizeMult": true,
+            "stats": {
+                "hp_bonus_pct": 0.2
+            },
+            "availability": "Licensed",
+            "exclusiveGroup": "bulkheads"
+        },
+        {
+            "id": "bulkheads_30",
+            "name": "Reinforced Bulkheads (+30%)",
+            "name_es": "Mamparos Reforzados (+30%)",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 10000,
+            "baseEp": 10,
+            "sizeMult": true,
+            "stats": {
+                "hp_bonus_pct": 0.3
+            },
+            "availability": "Restricted",
+            "exclusiveGroup": "bulkheads"
+        },
+        {
+            "id": "shield_gen_70",
+            "name": "Shield Generator (SR 70)",
+            "name_es": "Generador de Escudos (SR 70)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 10000,
+            "baseEp": 3,
+            "sizeMult": true,
+            "stats": {
+                "sr": 70
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_80",
+            "name": "Shield Generator (SR 80)",
+            "name_es": "Generador de Escudos (SR 80)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 12500,
+            "baseEp": 4,
+            "sizeMult": true,
+            "stats": {
+                "sr": 80
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_90",
+            "name": "Shield Generator (SR 90)",
+            "name_es": "Generador de Escudos (SR 90)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 15000,
+            "baseEp": 4,
+            "sizeMult": true,
+            "stats": {
+                "sr": 90
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_100",
+            "name": "Shield Generator (SR 100)",
+            "name_es": "Generador de Escudos (SR 100)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 20000,
+            "baseEp": 5,
+            "sizeMult": true,
+            "stats": {
+                "sr": 100
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_125",
+            "name": "Shield Generator (SR 125)",
+            "name_es": "Generador de Escudos (SR 125)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 25000,
+            "baseEp": 6,
+            "sizeMult": true,
+            "stats": {
+                "sr": 125
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (frigate)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_150",
+            "name": "Shield Generator (SR 150)",
+            "name_es": "Generador de Escudos (SR 150)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 30000,
+            "baseEp": 7,
+            "sizeMult": true,
+            "stats": {
+                "sr": 150
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (cruiser)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_175",
+            "name": "Shield Generator (SR 175)",
+            "name_es": "Generador de Escudos (SR 175)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 40000,
+            "baseEp": 8,
+            "sizeMult": true,
+            "stats": {
+                "sr": 175
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (cruiser)",
+            "availability": "Common"
+        },
+        {
+            "id": "shield_gen_200",
+            "name": "Shield Generator (SR 200)",
+            "name_es": "Generador de Escudos (SR 200)",
+            "category": "Defense Systems",
+            "group": "Shield Generators",
+            "type": "system",
+            "baseCost": 50000,
+            "baseEp": 10,
+            "sizeMult": true,
+            "stats": {
+                "sr": 200
+            },
+            "exclusiveGroup": "shield",
+            "minShipSize": "Colossal (cruiser)",
+            "availability": "Common"
+        },
+        {
+            "id": "anti_boarding",
+            "name": "Anti-Boarding Systems",
+            "name_es": "Sistemas Anti-Abordaje",
+            "category": "Defense Systems",
+            "group": "Security",
+            "type": "system",
+            "baseCost": 20000,
+            "baseEp": 5,
+            "sizeMult": true,
+            "minShipSize": "Colossal(transport)",
+            "availability": "Restricted"
+        },
+        {
+            "id": "com_jammers",
+            "name": "Com Jammers",
+            "name_es": "Interferidores de Comunicaciones",
+            "category": "Defense Systems",
+            "group": "Electronic Warfare",
+            "type": "system",
+            "baseCost": 20000,
+            "baseEp": 1,
+            "sizeMult": false,
+            "availability": "Military"
+        },
+        {
+            "id": "reinforced_keel",
+            "name": "Reinforced Keel",
+            "name_es": "Quilla Reforzada",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 4000,
+            "baseEp": 2,
+            "sizeMult": true,
+            "minShipSize": "Colossal(transport)",
+            "availability": "Military",
+            "exclusiveGroup": "keel"
+        },
+        {
+            "id": "reinforced_keel_boarding",
+            "name": "Reinforced Keel, Boarding",
+            "name_es": "Quilla Reforzada, Abordaje",
+            "category": "Defense Systems",
+            "group": "Armor",
+            "type": "system",
+            "baseCost": 10000,
+            "baseEp": 4,
+            "sizeMult": true,
+            "minShipSize": "Colossal(transport)",
+            "availability": "Military",
+            "exclusiveGroup": "keel"
+        },
+        {
+            "id": "security_bracing",
+            "name": "Security Bracing",
+            "name_es": "Refuerzos de Seguridad",
+            "category": "Defense Systems",
+            "group": "Security",
+            "type": "system",
+            "baseCost": 2000,
+            "baseEp": 2,
+            "sizeMult": true,
+            "minShipSize": "Colossal(transport)",
             "availability": "Common"
         }
     ]
