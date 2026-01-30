@@ -17,7 +17,9 @@ export const messages = {
             ledger: "Ledger", hull_base: "Hull Base", lic_fees: "Licensing Fees", total: "Total",
             template: "Template", none: "None", chassis: "Chassis", market_avail: "Market Availability",
             starship_designer_tip: "Waives Non-standard penalties. Enables custom components.",
-            installed_systems: "Installed Systems", print_btn: "Print to PDF / Paper"
+            installed_systems: "Installed Systems", print_btn: "Print to PDF / Paper",
+            convert_cargo_ep: "Convert Cargo to EP", cargo_to_ep_hint: "{sizeMult} tons = 1 EP",
+            max_cargo: "Max Cargo", cargo_converted: "Cargo Converted"
         },
         stats: {
             str: "STR", dex: "DEX", int: "INT", ref: "Reflex Defense", armor: "Armor",
@@ -49,7 +51,9 @@ export const messages = {
             ledger: "Libro Mayor", hull_base: "Base del Casco", lic_fees: "Tasas de Licencia", total: "Total",
             template: "Plantilla", none: "Ninguno", chassis: "Chasis", market_avail: "Disponibilidad de Mercado",
             starship_designer_tip: "Anula penalizaciones No Estándar. Permite componentes personalizados.",
-            installed_systems: "Sistemas Instalados", print_btn: "Imprimir en PDF / Papel"
+            installed_systems: "Sistemas Instalados", print_btn: "Imprimir en PDF / Papel",
+            convert_cargo_ep: "Convertir Carga a PE", cargo_to_ep_hint: "{sizeMult} tons = 1 PE",
+            max_cargo: "Carga Máx", cargo_converted: "Carga Convertida"
         },
         stats: {
             str: "FUE", dex: "DES", int: "INT", ref: "Defensa de Reflejos", armor: "Armadura",
