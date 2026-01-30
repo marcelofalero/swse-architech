@@ -1053,6 +1053,22 @@
             }
         },
         {
+            "id": "ion_cannon_hapan",
+            "name": "Hapan Triple Ion Cannon (5d10x5)",
+            "name_es": "Ca\u00f1\u00f3n de Iones Triple Hapan (5d10x5)",
+            "category": "Weapon Systems",
+            "group": "Ion Weapons",
+            "type": "weapon",
+            "baseCost": 12000,
+            "baseEp": 3,
+            "sizeMult": false,
+            "availability": "Illegal",
+            "minShipSize": "Colossal (frigate)",
+            "upgradeSpecs": {
+                "battery": true
+            }
+        },
+        {
             "id": "concussion_missile_light",
             "name": "Light Concussion Missile Launcher (7d10x2)",
             "name_es": "Lanzador de Misiles de Concusi\u00f3n Ligero (7d10x2)",
