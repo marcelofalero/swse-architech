@@ -445,12 +445,7 @@
                 "nav_standard",
                 { "id": "laser_light_quad", "batteryCount": 2 },
                 { "id": "laser_med", "batteryCount": 4 },
-                "escape_pod",
-                "escape_pod",
-                "escape_pod",
-                "escape_pod",
-                "escape_pod",
-                "escape_pod",
+                { "id": "escape_pod", "quantity": 6 },
                 "proton_torp"
             ]
         }
@@ -2223,7 +2218,10 @@
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
-            "availability": "Common"
+            "availability": "Common",
+            "upgradeSpecs": {
+                "quantity": true
+            }
         },
         {
             "id": "medical_bed",

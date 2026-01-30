@@ -59,6 +59,7 @@ const SystemList = {
                         <span v-if="getUpgradeSpecs(component.defId)?.payload?.type === 'capacity' && component.modifications.payloadCount > 0" class="q-mr-xs">Payload: {{ getUpgradeSpecs(component.defId).payload.base }} + {{ component.modifications.payloadCount }}</span>
                         <span v-else-if="component.modifications.payloadOption" class="q-mr-xs">Extra Payload</span>
                         <span v-if="component.modifications.batteryCount > 1">Battery ({{ component.modifications.batteryCount }})</span>
+                        <span v-if="component.modifications.quantity > 1"> (x{{ component.modifications.quantity }})</span>
                         <div v-if="component.modifications.weaponUser" class="text-caption text-grey-5">{{ component.modifications.weaponUser }}</div>
                     </q-item-label>
                 </q-item-section>
@@ -96,6 +97,10 @@ const SystemList = {
                     <div v-if="getUpgradeSpecs(editingComponent.defId)?.battery" class="q-mb-md">
                         <div class="text-caption">Battery Size</div>
                         <q-input dark type="number" filled v-model.number="editingComponent.modifications.batteryCount" label="Battery Count" min="1" max="6" />
+                    </div>
+                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.quantity" class="q-mb-md">
+                        <div class="text-caption">Quantity</div>
+                        <q-input dark type="number" filled v-model.number="editingComponent.modifications.quantity" label="Quantity" min="1" />
                     </div>
                     <div v-if="getUpgradeSpecs(editingComponent.defId)?.fireLinkOption" class="q-mb-md">
                         <q-checkbox dark v-model="editingComponent.modifications.fireLinkOption" label="Selective Fire (+1,000 cr)" />

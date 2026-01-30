@@ -33,7 +33,7 @@ export const useShipStore = defineStore('ship', () => {
         return db.STOCK_SHIPS.find(s => s.id === chassisId.value) || db.STOCK_SHIPS[0];
     });
 
-    function calculateEp(defId, batteryCount = 1, isNonStandard = false, miniaturization = 0) {
+    function calculateEp(defId, batteryCount = 1, isNonStandard = false, miniaturization = 0, quantity = 1) {
         const def = db.EQUIPMENT.find(e => e.id === defId);
         if (!def) return 0;
 
@@ -46,6 +46,11 @@ export const useShipStore = defineStore('ship', () => {
         // Modifications (Battery)
         if (batteryCount > 1) {
             epCost *= batteryCount;
+        }
+
+        // Modifications (Quantity)
+        if (quantity > 1) {
+            epCost *= quantity;
         }
 
         // Non-Standard Logic
@@ -63,7 +68,8 @@ export const useShipStore = defineStore('ship', () => {
 
     function getComponentEp(component) {
         const batteryCount = component.modifications?.batteryCount || 1;
-        return calculateEp(component.defId, batteryCount, component.isNonStandard, component.miniaturization);
+        const quantity = component.modifications?.quantity || 1;
+        return calculateEp(component.defId, batteryCount, component.isNonStandard, component.miniaturization, quantity);
     }
 
     function getComponentCost(component) {
@@ -73,7 +79,7 @@ export const useShipStore = defineStore('ship', () => {
         let cost = def.baseCost;
         if (def.sizeMult) cost *= sizeMultVal.value;
 
-        // Modifications (Payload, Battery, Fire-link)
+        // Modifications (Payload, Battery, Fire-link, Quantity)
         if (component.modifications) {
              if (def.upgradeSpecs && def.upgradeSpecs.payload) {
                  if (def.upgradeSpecs.payload.type === 'capacity' && component.modifications.payloadCount > 0) {
@@ -87,6 +93,9 @@ export const useShipStore = defineStore('ship', () => {
              }
              if (component.modifications.batteryCount > 1) {
                  cost *= component.modifications.batteryCount;
+             }
+             if (component.modifications.quantity > 1) {
+                 cost *= component.modifications.quantity;
              }
         }
 
@@ -191,11 +200,13 @@ export const useShipStore = defineStore('ship', () => {
         return chassis.value.defaultMods.reduce((total, modConfig) => {
              let defId = modConfig;
              let batteryCount = 1;
+             let quantity = 1;
              if (typeof modConfig === 'object' && modConfig !== null) {
                  defId = modConfig.id;
                  if (modConfig.batteryCount) batteryCount = modConfig.batteryCount;
+                 if (modConfig.quantity) quantity = modConfig.quantity;
              }
-             return total + calculateEp(defId, batteryCount);
+             return total + calculateEp(defId, batteryCount, false, 0, quantity);
         }, 0);
     });
 
@@ -230,7 +241,7 @@ export const useShipStore = defineStore('ship', () => {
             });
             if (existing) removeComponent(existing.instanceId);
         }
-        const mods = { payloadCount: 0, payloadOption: false, batteryCount: 1, fireLinkOption: false };
+        const mods = { payloadCount: 0, payloadOption: false, batteryCount: 1, quantity: 1, fireLinkOption: false };
         if (def.type === 'weapon') mods.weaponUser = 'Pilot';
         installedComponents.value.push({ instanceId: crypto.randomUUID(), defId, location, miniaturization: 0, isStock: false, isNonStandard, modifications: mods });
     }
@@ -242,16 +253,18 @@ export const useShipStore = defineStore('ship', () => {
         if(ship && ship.defaultMods) ship.defaultMods.forEach(modConfig => {
             let defId = modConfig;
             let batteryCount = 1;
+            let quantity = 1;
 
             if (typeof modConfig === 'object' && modConfig !== null) {
                 defId = modConfig.id;
                 if (modConfig.batteryCount) batteryCount = modConfig.batteryCount;
+                if (modConfig.quantity) quantity = modConfig.quantity;
             }
 
             const def = db.EQUIPMENT.find(e => e.id === defId);
             let loc = 'Installed'; if(def && def.type === 'engine') loc = 'Aft Section';
             if(def) {
-                const mods = { payloadCount: 0, payloadOption: false, batteryCount: batteryCount, fireLinkOption: false };
+                const mods = { payloadCount: 0, payloadOption: false, batteryCount: batteryCount, quantity: quantity, fireLinkOption: false };
                 if (def.type === 'weapon') mods.weaponUser = 'Pilot';
                 installedComponents.value.push({ instanceId: crypto.randomUUID(), defId: def.id, location: loc, miniaturization: 0, isStock: true, isNonStandard: false, modifications: mods });
             }
@@ -263,7 +276,8 @@ export const useShipStore = defineStore('ship', () => {
         else activeTemplate.value = state.configuration.template;
         engineering.hasStarshipDesigner = state.configuration.feats.starshipDesigner;
         installedComponents.value = state.manifest.map(m => {
-            const mods = m.modifications || { payloadCount: 0, payloadOption: false, batteryCount: 1, fireLinkOption: false };
+            const mods = m.modifications || { payloadCount: 0, payloadOption: false, batteryCount: 1, quantity: 1, fireLinkOption: false };
+            if (!mods.quantity) mods.quantity = 1;
             const def = db.EQUIPMENT.find(e => e.id === m.defId);
             if (def && def.type === 'weapon' && !mods.weaponUser) mods.weaponUser = 'Pilot';
             return { instanceId: m.id, defId: m.defId, location: m.location, miniaturization: m.miniaturizationRank, isStock: m.isStock || false, isNonStandard: m.isNonStandard || false, modifications: mods };
