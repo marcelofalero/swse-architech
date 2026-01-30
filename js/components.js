@@ -138,7 +138,17 @@ const ConfigPanel = {
             <div class="row justify-between text-grey-4"><span>{{ $t('ui.lic_fees') }}</span><span>{{ format(store.licensingCost) }}</span></div>
             <q-separator dark class="q-my-xs" />
             <div class="row justify-between text-h6 text-primary"><span>{{ $t('ui.total') }}</span><span>{{ format(store.totalCost) }}</span></div>
-            <div class="q-mt-md"><div class="row justify-between text-h6"><span>{{ $t('ui.free_ep') }}</span><span :class="store.remainingEP < 0 ? 'text-negative' : 'text-amber'">{{ store.remainingEP }}</span></div></div>
+            <div class="q-mt-md">
+                <div class="row justify-between text-h6 items-center">
+                    <span>{{ $t('ui.free_ep') }}</span>
+                    <div class="row items-center">
+                        <span :class="store.remainingEP < 0 ? 'text-negative' : 'text-amber'" class="q-mr-sm">{{ store.remainingEP }}</span>
+                         <q-btn flat round icon="swap_horiz" size="sm" color="accent" @click="showEpDialog = true">
+                            <q-tooltip>{{ $t('ui.convert_cargo_ep') }}</q-tooltip>
+                        </q-btn>
+                    </div>
+                </div>
+            </div>
         </q-card-section>
 
         <q-separator dark />
@@ -148,6 +158,32 @@ const ConfigPanel = {
             <q-select filled dark v-model="store.activeTemplate" :options="templateOptions" :label="$t('ui.template')" emit-value map-options dense options-dense><template v-slot:prepend><q-icon name="layers" /></template></q-select>
         </q-card-section>
     </q-card>
+
+    <q-dialog v-model="showEpDialog">
+        <q-card class="bg-grey-9 text-white" style="min-width: 350px">
+            <q-card-section>
+                <div class="text-h6">{{ $t('ui.convert_cargo_ep') }}</div>
+                <div class="text-caption text-grey">{{ $t('ui.cargo_to_ep_hint', { sizeMult: store.sizeMultVal }) }}</div>
+            </q-card-section>
+
+            <q-card-section>
+                <div class="q-mb-sm">
+                    <div class="row justify-between text-caption">
+                        <span>{{ $t('ui.cargo_converted') }}: {{ store.cargoToEpAmount }} tons</span>
+                        <span>{{ $t('ui.max_cargo') }}: {{ new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(store.maxCargoCapacity) }} tons</span>
+                    </div>
+                </div>
+                <q-slider dark v-model="store.cargoToEpAmount" :min="0" :max="store.maxCargoCapacity" :step="store.sizeMultVal" label color="accent" />
+                <div class="text-center q-mt-md text-positive text-h6">
+                    +{{ Math.floor(store.cargoToEpAmount / store.sizeMultVal) }} EP
+                </div>
+            </q-card-section>
+
+            <q-card-actions align="right">
+                <q-btn flat :label="$t('ui.cancel')" color="primary" v-close-popup />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
     `,
     setup() { return {}; }
 };
@@ -254,6 +290,7 @@ export const ConfigPanelWrapper = {
     setup() {
         const store = useShipStore();
         const { t } = useI18n();
+        const showEpDialog = ref(false);
         const templateOptions = computed(() => {
             if (!store.db.TEMPLATES) return [];
             return [
@@ -262,7 +299,7 @@ export const ConfigPanelWrapper = {
             ];
         });
         const format = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
-        return { store, templateOptions, format };
+        return { store, templateOptions, format, showEpDialog };
     }
 };
 

@@ -21,6 +21,7 @@ export const useShipStore = defineStore('ship', () => {
     const installedComponents = ref([]);
     const engineering = reactive({ hasStarshipDesigner: false });
     const showAddComponentDialog = ref(false);
+    const cargoToEpAmount = ref(0);
 
     // Initialize DB Action
     function initDb(data) {
@@ -179,20 +180,32 @@ export const useShipStore = defineStore('ship', () => {
         const sizeMod = db.REFLEX_SIZE_MODS[chassis.value.size] || 0;
         return 10 + dexMod + armor + sizeMod;
     });
-    const currentCargo = computed(() => {
+    const maxCargoCapacity = computed(() => {
         const baseStr = chassis.value.logistics.cargo;
-        if (!baseStr) return '0 kg';
+        if (!baseStr) return 0;
         const match = baseStr.match(/([\d,]+)\s*(tons|kg)/i);
-        if (!match) return baseStr;
+        if (!match) return 0;
         let val = parseFloat(match[1].replace(/,/g, ''));
-        const unit = match[2];
+        const unit = match[2].toLowerCase();
+        if (unit === 'kg') val /= 1000;
+
         let multiplier = 1.0;
         installedComponents.value.forEach(mod => {
             const def = db.EQUIPMENT.find(e => e.id === mod.defId);
             if (def && def.stats && def.stats.cargo_factor) multiplier = def.stats.cargo_factor;
         });
-        val = val * multiplier;
-        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(val) + ' ' + unit;
+        return val * multiplier;
+    });
+
+    const currentCargo = computed(() => {
+        const used = Math.min(cargoToEpAmount.value, maxCargoCapacity.value);
+        let val = maxCargoCapacity.value - used;
+        if (val < 0) val = 0;
+
+        if (val > 0 && val < 1) {
+             return new Intl.NumberFormat('en-US').format(Math.floor(val * 1000)) + ' kg';
+        }
+        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(val) + ' tons';
     });
 
     const stockConfigurationEp = computed(() => {
@@ -213,6 +226,8 @@ export const useShipStore = defineStore('ship', () => {
     const totalEP = computed(() => {
         let ep = chassis.value.baseEp + stockConfigurationEp.value;
         if(template.value) ep += (template.value.epMod || 0);
+        const cargoEp = Math.min(cargoToEpAmount.value, maxCargoCapacity.value);
+        ep += Math.floor(cargoEp / sizeMultVal.value);
         return ep;
     });
     const usedEP = computed(() => installedComponents.value.reduce((total, mod) => total + getComponentEp(mod), 0));
@@ -246,7 +261,7 @@ export const useShipStore = defineStore('ship', () => {
         installedComponents.value.push({ instanceId: crypto.randomUUID(), defId, location, miniaturization: 0, isStock: false, isNonStandard, modifications: mods });
     }
     function removeComponent(instanceId) { installedComponents.value = installedComponents.value.filter(m => m.instanceId !== instanceId); }
-    function reset() { activeTemplate.value = null; installedComponents.value = []; engineering.hasStarshipDesigner = false; meta.name = ""; }
+    function reset() { activeTemplate.value = null; installedComponents.value = []; engineering.hasStarshipDesigner = false; meta.name = ""; cargoToEpAmount.value = 0; }
     function createNew(newChassisId) {
         reset(); chassisId.value = newChassisId;
         const ship = db.STOCK_SHIPS.find(s => s.id === newChassisId);
@@ -275,6 +290,7 @@ export const useShipStore = defineStore('ship', () => {
         if(Array.isArray(state.configuration.templates)) activeTemplate.value = state.configuration.templates[0] || null;
         else activeTemplate.value = state.configuration.template;
         engineering.hasStarshipDesigner = state.configuration.feats.starshipDesigner;
+        cargoToEpAmount.value = state.configuration.cargoToEpAmount || 0;
         installedComponents.value = state.manifest.map(m => {
             const mods = m.modifications || { payloadCount: 0, payloadOption: false, batteryCount: 1, quantity: 1, fireLinkOption: false };
             if (!mods.quantity) mods.quantity = 1;
@@ -283,11 +299,11 @@ export const useShipStore = defineStore('ship', () => {
             return { instanceId: m.id, defId: m.defId, location: m.location, miniaturization: m.miniaturizationRank, isStock: m.isStock || false, isNonStandard: m.isNonStandard || false, modifications: mods };
         });
     }
-    watch([meta, chassisId, activeTemplate, installedComponents, engineering], () => {
+    watch([meta, chassisId, activeTemplate, installedComponents, engineering, cargoToEpAmount], () => {
         const saveObj = {
             apiVersion: "1.9",
             meta: { name: meta.name, model: chassisId.value, version: "1.0", notes: "" },
-            configuration: { baseChassis: chassisId.value, template: activeTemplate.value, feats: { starshipDesigner: engineering.hasStarshipDesigner } },
+            configuration: { baseChassis: chassisId.value, template: activeTemplate.value, feats: { starshipDesigner: engineering.hasStarshipDesigner }, cargoToEpAmount: cargoToEpAmount.value },
             manifest: installedComponents.value.map(m => ({ id: m.instanceId, defId: m.defId, location: m.location, miniaturizationRank: m.miniaturization, isStock: m.isStock, isNonStandard: m.isNonStandard, modifications: m.modifications }))
         };
         localStorage.setItem('swse_architect_current_build', JSON.stringify(saveObj));
@@ -295,8 +311,8 @@ export const useShipStore = defineStore('ship', () => {
 
     return {
         db, initDb,
-        meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog,
-        chassis, template, currentStats, currentCargo, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal,
+        meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount,
+        chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal,
         addComponent, removeComponent, reset, createNew, loadState, getComponentCost, getComponentEp
     };
 });
