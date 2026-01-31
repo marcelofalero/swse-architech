@@ -108,10 +108,12 @@ const setup = () => {
 
             if (def && !isSizeValid(def)) {
                 $q.dialog({
+                    dark: true,
                     title: 'Warning',
                     message: 'This component is not compatible with the ship\'s size class. Install anyway?',
                     cancel: true,
-                    persistent: true
+                    persistent: true,
+                    color: 'warning'
                 }).onOk(() => {
                     doInstall();
                 });
