@@ -336,28 +336,38 @@ export const ShipSheetWrapper = {
 
         // Enhanced Damage Logic for Variants
         const getDmg = (id) => {
-            if (id.includes('laser_light')) {
-                if (id.includes('quad')) return '5d10x2';
-                if (id.includes('twin')) return '4d10x2';
-                return '3d10x2';
-            }
-            if (id.includes('laser_med')) {
-                if (id.includes('quad')) return '6d10x2';
-                if (id.includes('twin')) return '5d10x2';
-                return '4d10x2';
-            }
-            if (id.includes('laser_hvy')) {
-                if (id.includes('quad')) return '7d10x2';
-                if (id.includes('twin')) return '6d10x2';
-                return '5d10x2';
-            }
-            if(id.includes('turbo')) return '7d10x5';
-            if(id.includes('proton')) return '9d10x2';
-            if(id.includes('hapan')) return '5d10x5';
-            if(id.includes('ion')) return '5d10x2';
-            if(id.includes('concussion')) return '8d10x2';
-            if(id.includes('tractor')) return '-';
-            return '-';
+            let dice = 0;
+            let mult = 0;
+
+            if (id.includes('turbolaser_light')) { dice = 3; mult = 5; }
+            else if (id.includes('turbolaser_med')) { dice = 5; mult = 5; }
+            else if (id.includes('turbolaser_hvy')) { dice = 7; mult = 5; }
+
+            else if (id.includes('laser_light')) { dice = 3; mult = 2; }
+            else if (id.includes('laser_med')) { dice = 4; mult = 2; }
+            else if (id.includes('laser_hvy')) { dice = 5; mult = 2; }
+
+            else if (id.includes('blaster_cannon_light')) { dice = 3; mult = 2; }
+            else if (id.includes('blaster_cannon_med')) { dice = 4; mult = 2; }
+            else if (id.includes('blaster_cannon_hvy')) { dice = 5; mult = 2; }
+
+            else if (id.includes('ion_cannon_light')) { dice = 3; mult = 2; }
+            else if (id.includes('ion_cannon_hvy')) { dice = 3; mult = 5; }
+            else if (id.includes('ion_cannon')) { dice = 5; mult = 2; }
+
+            else if (id.includes('concussion_missile_light')) { dice = 7; mult = 2; }
+            else if (id.includes('concussion_missile_hvy')) { dice = 9; mult = 5; }
+            else if (id.includes('concussion_missile')) { dice = 9; mult = 2; }
+
+            else if (id.includes('proton')) return '9d10x2';
+            else if (id.includes('hapan')) return '5d10x5';
+            else if (id.includes('tractor')) return '-';
+            else return '-';
+
+            if (id.includes('quad') || id.includes('fl4')) dice += 2;
+            else if (id.includes('twin') || id.includes('fl2')) dice += 1;
+
+            return `${dice}d10x${mult}`;
         }
         const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
         const formatCreds = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
