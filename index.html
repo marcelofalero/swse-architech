@@ -124,13 +124,15 @@
                                         <q-badge v-if="scope.opt.availability === 'Military'" color="negative" label="Mil" />
                                         <q-badge v-if="scope.opt.availability === 'Illegal'" color="deep-purple" label="Ill" />
                                         <q-badge v-if="scope.opt.availability === 'Common' || !scope.opt.availability" color="positive" label="Com" />
-                                        <q-badge v-if="!isSizeValid(scope.opt)" color="warning" text-color="black" icon="warning" label="Invalid Size" class="q-ml-xs">
-                                            <q-tooltip>
-                                                <span v-if="scope.opt.maxSize">{{ $t('ui.max_size') }}: {{ scope.opt.maxSize }}</span>
-                                                <span v-if="scope.opt.minShipSize">{{ $t('ui.min_size') }}: {{ scope.opt.minShipSize }}</span>
-                                            </q-tooltip>
-                                        </q-badge>
                                     </q-item-label>
+                                </q-item-section>
+                                <q-item-section side v-if="!isSizeValid(scope.opt)">
+                                    <q-icon name="warning" color="negative">
+                                        <q-tooltip>
+                                            <span v-if="scope.opt.maxSize">{{ $t('ui.max_size') }}: {{ scope.opt.maxSize }}</span>
+                                            <span v-if="scope.opt.minShipSize">{{ $t('ui.min_size') }}: {{ scope.opt.minShipSize }}</span>
+                                        </q-tooltip>
+                                    </q-icon>
                                 </q-item-section>
                             </q-item>
                         </template>
@@ -156,12 +158,12 @@
                                         <q-badge v-if="selectedItemDef.availability === 'Illegal'" color="deep-purple" label="Ill" />
                                         <q-badge v-if="selectedItemDef.availability === 'Common' || !selectedItemDef.availability" color="positive" label="Com" />
                                     </span>
-                                    <q-badge v-if="!isSizeValid(selectedItemDef)" color="warning" text-color="black" icon="warning" label="Invalid Size" class="q-ml-xs">
+                                    <q-icon v-if="!isSizeValid(selectedItemDef)" name="warning" color="negative" class="q-ml-xs">
                                         <q-tooltip>
                                             <span v-if="selectedItemDef.maxSize">{{ $t('ui.max_size') }}: {{ selectedItemDef.maxSize }}</span>
                                             <span v-if="selectedItemDef.minShipSize">{{ $t('ui.min_size') }}: {{ selectedItemDef.minShipSize }}</span>
                                         </q-tooltip>
-                                    </q-badge>
+                                    </q-icon>
                                 </div>
                             </div>
                             <div class="text-right">
