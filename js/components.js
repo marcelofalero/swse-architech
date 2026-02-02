@@ -38,7 +38,7 @@ const StatPanel = {
 
 const SystemList = {
     template: `
-    <div class="q-pa-md full-height column">
+    <div class="q-pa-md col column">
         <div class="row justify-between items-center q-mb-md"><div class="text-h6">{{ $t('ui.installed_systems') }}</div><q-btn round color="positive" icon="add" size="sm" @click="store.showAddComponentDialog = true" /></div>
         <q-scroll-area class="col"><q-list separator dark>
             <q-item v-for="component in store.installedComponents" :key="component.instanceId">

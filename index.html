@@ -61,17 +61,17 @@
             </q-drawer>
 
             <q-page-container>
-                <q-page class="q-pa-md">
+                <q-page :class="$q.screen.gt.sm ? 'q-pa-md fit column no-wrap' : 'q-pa-md'">
                     
                     <!-- DESKTOP LAYOUT -->
-                    <div v-if="$q.screen.gt.sm" class="full-height column">
-                         <q-card class="bg-grey-9 full-height column">
+                    <div v-if="$q.screen.gt.sm" class="col column">
+                         <q-card class="bg-grey-9 col column">
                             <q-tabs v-model="centerTab" dense class="text-grey" active-color="primary" indicator-color="primary" align="justify">
                                 <q-tab name="systems" :label="$t('ui.manifest')"></q-tab>
                             </q-tabs>
                             <q-separator></q-separator>
-                            <q-tab-panels v-model="centerTab" animated class="bg-grey-9 col">
-                                <q-tab-panel name="systems" class="q-pa-none fit"><system-list></system-list></q-tab-panel>
+                            <q-tab-panels v-model="centerTab" animated class="bg-grey-9 col column">
+                                <q-tab-panel name="systems" class="q-pa-none col column"><system-list></system-list></q-tab-panel>
                             </q-tab-panels>
                         </q-card>
                     </div>

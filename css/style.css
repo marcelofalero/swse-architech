@@ -161,3 +161,21 @@
         color: #000;
     }
 }
+
+/* Quasar Flexbox Fixes */
+.q-tab-panels.column > .q-panel {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fix for QScrollArea in Flex Column where parent flex height doesn't propagate to percentage height children */
+.q-scrollarea.col {
+    display: flex;
+    flex-direction: column;
+}
+.q-scrollarea.col .q-scrollarea__container {
+    flex: 1 1 auto;
+    height: auto !important;
+    min-height: 0;
+}
