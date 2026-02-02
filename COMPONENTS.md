@@ -71,18 +71,12 @@ The `exclusiveGroup` property is used to enforce "one-of-a-kind" installation lo
 *   **Armor (`exclusiveGroup: "armor"`)**:
     *   Prevents stacking multiple "Starship Armor" systems.
 
-## 4. Implicit Behaviors (Code Logic)
+## 4. Implicit Behaviors & Logic
 
-Some behaviors are not explicitly defined in `data.json` but are hardcoded in the JavaScript logic based on specific conventions (like ID naming).
+Some component behaviors rely on specific properties or logic conventions.
 
-### Weapon Damage (`js/components.js`)
-The damage code for weapons is calculated dynamically in the `getDmg` function based on substrings in the component's `id`.
-
-*   **Base Damage**: Derived from the weapon type name in the ID (e.g., `laser_light` -> 3d10x2).
-*   **Multipliers**:
-    *   **Twin** (`_twin` or `_fl2`): Adds +1 die to damage (e.g., 3d10 -> 4d10).
-    *   **Quad** (`_quad` or `_fl4`): Adds +2 dice to damage (e.g., 3d10 -> 5d10).
-*   **Note**: The "Fire-linked" variants (`_fl2`, `_fl4`) use the same damage bonuses as Twin and Quad respectively in this logic.
+### Weapon Damage
+Damage is explicitly defined in `data.json` for each weapon via the `damage` property (e.g., `"3d10x2"`). This property is read directly by the UI to display damage values.
 
 ### EP Calculation (`js/store.js`)
 *   **`ep_dynamic_pct`**: If defined in `stats`, the EP cost is calculated as a percentage of the chassis's Base EP.
