@@ -18,6 +18,9 @@ const setup = () => {
     const hangarTab = ref('stock');
     const showHangarDialog = ref(false);
 
+    const leftDrawerOpen = ref(true);
+    const rightDrawerOpen = ref(true);
+
     const newComponentCategory = ref(null);
     const newComponentGroup = ref(null);
     const newComponentSelection = ref(null);
@@ -171,6 +174,7 @@ const setup = () => {
 
     return {
         shipStore, centerTab, mobileTab, hangarTab, showHangarDialog, showSheetDialog,
+        leftDrawerOpen, rightDrawerOpen,
         newComponentCategory, newComponentGroup, newComponentSelection, newComponentNonStandard,
         categoryOptions, groupOptions, itemOptions, selectedItemDef, previewCost, previewEp, resetGroup, isSizeValid,
         fileInput, stockFighters, stockFreighters, stockCapitals, getLocalizedName, toggleLang,
