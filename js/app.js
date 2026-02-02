@@ -200,5 +200,10 @@ fetch('data.json')
         store.initDb(data);
 
         app.mount('#q-app');
+
+        // Remove loading screen
+        const loading = document.getElementById('app-loading');
+        if (loading) loading.remove();
+        document.getElementById('q-app').style.display = 'block';
     })
     .catch(err => console.error("Failed to load data.json", err));
