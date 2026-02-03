@@ -527,7 +527,7 @@
                 "battery": true
             },
             "damage": "4d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_light_quad",
@@ -544,7 +544,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_light_fl2",
@@ -561,7 +561,7 @@
                 "battery": true
             },
             "damage": "4d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "laser_light_fl4",
@@ -578,7 +578,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "laser_med",
@@ -612,7 +612,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_med_quad",
@@ -629,7 +629,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_med_fl2",
@@ -646,7 +646,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "laser_med_fl4",
@@ -663,7 +663,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "laser_hvy",
@@ -697,7 +697,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_hvy_quad",
@@ -714,7 +714,7 @@
                 "battery": true
             },
             "damage": "7d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_hvy_fl2",
@@ -731,7 +731,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "laser_hvy_fl4",
@@ -748,7 +748,7 @@
                 "battery": true
             },
             "damage": "7d10x2",
-            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Laser Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "proton_torp",
@@ -798,7 +798,7 @@
                 }
             },
             "damage": "9d10x2",
-            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "proton_torp_fl4",
@@ -824,7 +824,7 @@
                 }
             },
             "damage": "9d10x2",
-            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "ion_cannon_light",
@@ -858,7 +858,7 @@
                 "battery": true
             },
             "damage": "4d10x2",
-            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "ion_cannon_light_quad",
@@ -875,7 +875,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "ion_cannon_light_fl2",
@@ -892,7 +892,7 @@
                 "battery": true
             },
             "damage": "4d10x2",
-            "description": "Fire-Linked Light Ion Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Light Ion Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "ion_cannon_light_fl4",
@@ -909,7 +909,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Fire-Linked Light Ion Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Light Ion Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "ion_cannon",
@@ -1152,7 +1152,7 @@
                 }
             },
             "damage": "8d10x2",
-            "description": "Base Capacity: 12 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 12 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "concussion_missile_light_fl4",
@@ -1178,7 +1178,7 @@
                 }
             },
             "damage": "9d10x2",
-            "description": "Base Capacity: 24 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 24 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "concussion_missile",
@@ -1228,7 +1228,7 @@
                 }
             },
             "damage": "10d10x2",
-            "description": "Base Capacity: 32 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 32 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "concussion_missile_fl4",
@@ -1254,7 +1254,7 @@
                 }
             },
             "damage": "11d10x2",
-            "description": "Base Capacity: 64 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 64 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "concussion_missile_hvy",
@@ -1306,7 +1306,7 @@
                 }
             },
             "damage": "10d10x5",
-            "description": "Base Capacity: 60 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 60 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "concussion_missile_hvy_fl4",
@@ -1333,7 +1333,7 @@
                 }
             },
             "damage": "11d10x5",
-            "description": "Base Capacity: 120 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
+            "description": "Base Capacity: 120 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Requires the Selective Fire upgrade to deactivate the Fire-Link and conserve ammo."
         },
         {
             "id": "tractor_beam",
@@ -2382,10 +2382,6 @@
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
-            "minShipSize": "Colossal",
-            "baseEp": 1,
-            "sizeMult": true,
-            "availability": "Common",
             "minShipSize": "Colossal (frigate)",
             "description": "Provide life support for up to 50 Medium creatures for 2 months. Includes Class 15 Hyperdrive. Can be installed on ships of Colossal (Frigate) size or larger. 1 Bay includes (Cost Mod)/100 Lifeboats."
         },
@@ -3393,7 +3389,7 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "4d10x5",
-            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "turbolaser_light_quad",
@@ -3411,7 +3407,7 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "5d10x5",
-            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "turbolaser_light_fl2",
@@ -3432,7 +3428,7 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "4d10x5",
-            "description": "Fire-Linked Light Turbolasers can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Light Turbolasers with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "turbolaser_light_fl4",
@@ -3453,7 +3449,7 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "5d10x5",
-            "description": "Fire-Linked Light Turbolasers can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Light Turbolasers with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "turbolaser_med",
@@ -3679,7 +3675,7 @@
                 "battery": true
             },
             "damage": "4d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_light_quad",
@@ -3696,7 +3692,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_light_fl2",
@@ -3716,7 +3712,7 @@
                 }
             },
             "damage": "4d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "blaster_cannon_light_fl4",
@@ -3736,7 +3732,7 @@
                 }
             },
             "damage": "5d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "blaster_cannon_med",
@@ -3770,7 +3766,7 @@
                 "battery": true
             },
             "damage": "5d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_med_quad",
@@ -3787,7 +3783,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_med_fl2",
@@ -3807,7 +3803,7 @@
                 }
             },
             "damage": "5d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "blaster_cannon_med_fl4",
@@ -3827,7 +3823,7 @@
                 }
             },
             "damage": "6d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "blaster_cannon_hvy",
@@ -3861,7 +3857,7 @@
                 "battery": true
             },
             "damage": "6d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_hvy_quad",
@@ -3878,7 +3874,7 @@
                 "battery": true
             },
             "damage": "7d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range. Can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_hvy_fl2",
@@ -3898,7 +3894,7 @@
                 }
             },
             "damage": "6d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "blaster_cannon_hvy_fl4",
@@ -3918,7 +3914,7 @@
                 }
             },
             "damage": "7d10x2",
-            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+            "description": "Fire-Linked Blaster Cannons with the Selective Fire upgrade, can switch between standard Fire-Linked damage and Autofire mode (Swift Action)."
         },
         {
             "id": "harpoon_gun",
@@ -3989,7 +3985,8 @@
             "id": "gravity_well",
             "name": "Gravity Well Projector",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 25000,
             "sizeMult": true,
             "baseEp": 5,
@@ -4000,7 +3997,8 @@
             "id": "ion_bomb_rack",
             "name": "Ion Bomb Rack",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 1500,
             "sizeMult": true,
             "baseEp": 1,
@@ -4013,7 +4011,8 @@
             "id": "shieldbuster_torp",
             "name": "Shieldbuster Torpedo Launcher",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 2000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4026,7 +4025,8 @@
             "id": "space_mine_launcher",
             "name": "Space Mine Launcher",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 500,
             "sizeMult": true,
             "baseEp": 1,
@@ -4039,7 +4039,8 @@
             "id": "discord_missile_launcher",
             "name": "Discord Missile Launcher",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 1000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4052,7 +4053,8 @@
             "id": "composite_beam",
             "name": "Composite Beam Cannon",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 3000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4065,7 +4067,8 @@
             "id": "bomblet_generator",
             "name": "Bomblet Generator",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 5000,
             "sizeMult": true,
             "baseEp": 2,
@@ -4089,7 +4092,8 @@
             "id": "ion_pulse_cannon",
             "name": "Ion Pulse Cannon",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 4000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4102,7 +4106,8 @@
             "id": "mass_driver",
             "name": "Mass-Driver Cannon",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 3500,
             "sizeMult": true,
             "baseEp": 1,
@@ -4115,7 +4120,8 @@
             "id": "pressor_beam",
             "name": "Pressor Beam",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 5000,
             "sizeMult": true,
             "baseEp": 2,
@@ -4126,7 +4132,8 @@
             "id": "proton_grenade_launcher",
             "name": "Proton Grenade Launcher",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 800,
             "sizeMult": true,
             "baseEp": 1,
@@ -4139,7 +4146,8 @@
             "id": "rail_cannon",
             "name": "Rail Cannon",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 4500,
             "sizeMult": true,
             "baseEp": 2,
@@ -4152,7 +4160,8 @@
             "id": "gravity_mine_launcher",
             "name": "Gravity Mine Launcher",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 1500,
             "sizeMult": true,
             "baseEp": 1,
@@ -4165,7 +4174,8 @@
             "id": "flak_pod",
             "name": "Flak Pod",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 2000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4178,7 +4188,8 @@
             "id": "chaff_gun",
             "name": "Chaff Gun",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 1000,
             "sizeMult": true,
             "baseEp": 1,
@@ -4189,7 +4200,8 @@
             "id": "defoliator",
             "name": "Defoliator",
             "type": "weapon",
-            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
             "baseCost": 10000,
             "sizeMult": true,
             "baseEp": 3,
