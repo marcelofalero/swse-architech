@@ -87,6 +87,11 @@ export const useShipStore = defineStore('ship', () => {
         let cost = def.baseCost;
         if (def.sizeMult) cost *= sizeMultVal.value;
 
+        // Dynamic Cost (Percentage of Hull)
+        if (def.stats && def.stats.cost_dynamic_pct) {
+            cost += Math.floor(hullCost.value * def.stats.cost_dynamic_pct);
+        }
+
         // Modifications (Payload, Battery, Fire-link, Quantity)
         if (component.modifications) {
              if (def.upgradeSpecs && def.upgradeSpecs.payload) {

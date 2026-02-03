@@ -2548,6 +2548,57 @@
             "description": "Improves a Starship's consumables by 10% of its original value (rounded down, minimum 1 day) x the number of times installed."
         },
         {
+            "id": "luxury_basic",
+            "name": "Luxury Upgrade (Basic)",
+            "name_es": "Mejora de Lujo (B\u00e1sica)",
+            "category": "Starship Accessories",
+            "group": "Accommodations",
+            "type": "modification",
+            "baseCost": 0,
+            "baseEp": 0,
+            "sizeMult": false,
+            "stats": {
+                "cost_dynamic_pct": 0.1
+            },
+            "exclusiveGroup": "luxury",
+            "availability": "Licensed",
+            "description": "Changes a Starship from a harsh travel vehicle to a comfortable home. Includes comfortable beds, wardrobes, recliners, and music systems. Requires monthly maintenance (1/50 of cost)."
+        },
+        {
+            "id": "luxury_advanced",
+            "name": "Luxury Upgrade (Advanced)",
+            "name_es": "Mejora de Lujo (Avanzada)",
+            "category": "Starship Accessories",
+            "group": "Accommodations",
+            "type": "modification",
+            "baseCost": 0,
+            "baseEp": 0,
+            "sizeMult": false,
+            "stats": {
+                "cost_dynamic_pct": 0.25
+            },
+            "exclusiveGroup": "luxury",
+            "availability": "Licensed",
+            "description": "Makes the ship the equivalent of an upper-scale hotel. Gourmet cooking, quality artwork, and stylish trim. Requires monthly maintenance (1/50 of cost)."
+        },
+        {
+            "id": "luxury_extreme",
+            "name": "Luxury Upgrade (Extreme)",
+            "name_es": "Mejora de Lujo (Extrema)",
+            "category": "Starship Accessories",
+            "group": "Accommodations",
+            "type": "modification",
+            "baseCost": 0,
+            "baseEp": 0,
+            "sizeMult": false,
+            "stats": {
+                "cost_dynamic_pct": 0.5
+            },
+            "exclusiveGroup": "luxury",
+            "availability": "Restricted",
+            "description": "Turns a Starship into a palace in space. Increases Crew Quality by one step (max Expert), though this has no effect on hero statistics. Requires monthly maintenance (1/50 of cost)."
+        },
+        {
             "id": "hangar_bay",
             "name": "Hangar Bay",
             "name_es": "Bah\u00eda de Hangar",
