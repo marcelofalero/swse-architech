@@ -272,11 +272,6 @@
                             </q-select>
                         </div>
                         <div><q-select filled dark v-model="newCustomComponent.type" :options="['weapon', 'system', 'engine', 'modification', 'cargo']" label="Type" /></div>
-                        <div>
-                            <q-select filled dark v-model="newCustomComponent.exclusiveGroup" use-input hide-selected fill-input input-debounce="0" :options="exclusiveOptionsFiltered" @filter="filterExclusiveFn" label="Exclusive Group" hint="Items in the same group replace each other (e.g. shield)">
-                                <template v-slot:no-option><q-item><q-item-section class="text-grey">Type to add new exclusive group</q-item-section></q-item></template>
-                            </q-select>
-                        </div>
                         <div class="row q-col-gutter-sm">
                             <div class="col"><q-input filled dark v-model="newCustomComponent.baseCost" label="Base Cost" type="number" /></div>
                             <div class="col"><q-input filled dark v-model="newCustomComponent.baseEp" label="Base EP" type="number" /></div>
@@ -286,16 +281,36 @@
                         </div>
 
                         <div>
-                            <div class="text-subtitle2 q-mb-sm">Stats</div>
-                            <div class="row q-col-gutter-sm items-center">
-                                <div class="col"><q-select filled dark v-model="customStatToAdd.key" :options="statOptions" label="Stat" dense /></div>
-                                <div class="col"><q-input filled dark v-model="customStatToAdd.value" label="Value" type="number" dense /></div>
-                                <div class="col-auto"><q-btn round flat icon="add" color="primary" @click="addStatToCustomComponent" /></div>
+                            <div class="text-subtitle2 q-mb-sm">Properties & Modifiers</div>
+                            <div class="row q-col-gutter-sm items-center q-mb-md">
+                                <div class="col">
+                                    <q-select filled dark v-model="propertyToAdd" :options="propertyDefinitions" label="Select Property" dense option-label="label" />
+                                </div>
+                                <div class="col-auto">
+                                    <q-btn icon="add" label="Add" color="primary" @click="addPropertyToCustomComponent" :disable="!propertyToAdd" />
+                                </div>
                             </div>
-                            <div class="q-mt-sm">
-                                <q-chip v-for="(val, key) in newCustomComponent.stats" :key="key" removable @remove="removeStatFromCustomComponent(key)" color="primary" text-color="white">
-                                    {{ key }}: {{ val }}
-                                </q-chip>
+
+                            <div class="q-gutter-y-sm">
+                                <div v-for="prop in activeProperties" :key="prop.key" class="row q-col-gutter-sm items-center">
+                                    <div class="col">
+                                        <!-- String/Text Inputs -->
+                                        <q-input v-if="prop.def.type === 'string'" filled dark v-model="prop.value" :label="prop.def.label" dense />
+                                        <q-input v-else-if="prop.def.type === 'text'" filled dark v-model="prop.value" :label="prop.def.label" type="textarea" autogrow dense />
+                                        <q-input v-else-if="prop.def.type === 'number'" filled dark v-model="prop.value" :label="prop.def.label" type="number" dense />
+
+                                        <!-- Exclusive Group Select -->
+                                        <q-select v-else-if="prop.def.type === 'exclusive_select'" filled dark v-model="prop.value" use-input hide-selected fill-input input-debounce="0" :options="exclusiveOptionsFiltered" @filter="filterExclusiveFn" :label="prop.def.label" dense>
+                                            <template v-slot:no-option><q-item><q-item-section class="text-grey">Type to add new exclusive group</q-item-section></q-item></template>
+                                        </q-select>
+
+                                        <!-- Size Select -->
+                                        <q-select v-else-if="prop.def.type === 'size_select'" filled dark v-model="prop.value" :options="shipStore.db.SIZE_RANK" :label="prop.def.label" dense />
+                                    </div>
+                                    <div class="col-auto">
+                                        <q-btn flat round icon="delete" color="negative" size="sm" @click="removePropertyFromCustomComponent(prop.key)" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

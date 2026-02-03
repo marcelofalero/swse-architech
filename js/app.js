@@ -38,11 +38,36 @@ const setup = () => {
         baseCost: 0,
         baseEp: 0,
         sizeMult: false,
-        exclusiveGroup: '',
         stats: {}
+        // Dynamic root properties like exclusiveGroup, damage, etc. are added directly
     });
-    const customStatToAdd = reactive({ key: 'sr', value: 0 });
-    const statOptions = ['sr', 'sr_bonus', 'armor_bonus', 'hp', 'speed', 'hyperdrive', 'dex_bonus', 'str_bonus', 'perception_bonus', 'ep_dynamic_pct', 'cargo_factor'];
+
+    // Property Definitions
+    const propertyDefinitions = [
+        // Root Properties
+        { label: 'Damage', key: 'damage', type: 'string', location: 'root' },
+        { label: 'Damage Type', key: 'damageType', type: 'string', location: 'root' },
+        { label: 'Description', key: 'description', type: 'text', location: 'root' },
+        { label: 'Exclusive Group', key: 'exclusiveGroup', type: 'exclusive_select', location: 'root' },
+        { label: 'Min Ship Size', key: 'minShipSize', type: 'size_select', location: 'root' },
+        { label: 'Max Ship Size', key: 'maxSize', type: 'size_select', location: 'root' },
+
+        // Stats
+        { label: 'Shield Rating (Set)', key: 'sr', type: 'number', location: 'stats' },
+        { label: 'Shield Bonus (Add)', key: 'sr_bonus', type: 'number', location: 'stats' },
+        { label: 'Armor Bonus (Add)', key: 'armor_bonus', type: 'number', location: 'stats' },
+        { label: 'HP (Set)', key: 'hp', type: 'number', location: 'stats' },
+        { label: 'Speed (Set)', key: 'speed', type: 'number', location: 'stats' },
+        { label: 'Hyperdrive Class (Set)', key: 'hyperdrive', type: 'number', location: 'stats' },
+        { label: 'Dex Bonus (Add)', key: 'dex_bonus', type: 'number', location: 'stats' },
+        { label: 'Str Bonus (Add)', key: 'str_bonus', type: 'number', location: 'stats' },
+        { label: 'Perception Bonus (Add)', key: 'perception_bonus', type: 'number', location: 'stats' },
+        { label: 'EP Modifier %', key: 'ep_dynamic_pct', type: 'number', location: 'stats' },
+        { label: 'Cargo Factor', key: 'cargo_factor', type: 'number', location: 'stats' }
+    ];
+
+    const propertyToAdd = ref(null); // Selected property definition
+    const activeProperties = ref([]); // Array of { key, def, value } to manage UI state
 
     const groupOptionsFiltered = ref([]);
     const exclusiveOptionsFiltered = ref([]);
@@ -130,24 +155,47 @@ const setup = () => {
 
     // Watch for Custom Dialog Open/Edit
     watch(() => shipStore.customDialogState.visible, (visible) => {
-        if (visible && shipStore.customDialogState.componentId) {
-             const existing = shipStore.customComponents.find(c => c.id === shipStore.customDialogState.componentId);
-             if (existing) {
-                 Object.assign(newCustomComponent, {
-                     name: existing.name,
-                     category: existing.category,
-                     group: existing.group,
-                     type: existing.type,
-                     baseCost: existing.baseCost,
-                     baseEp: existing.baseEp,
-                     sizeMult: existing.sizeMult,
-                     exclusiveGroup: existing.exclusiveGroup || '',
-                     stats: { ...existing.stats }
-                 });
-             }
-        } else if (!visible) {
-             // Reset on close
-             Object.assign(newCustomComponent, { name: '', category: 'Weapon Systems', group: '', type: 'weapon', baseCost: 0, baseEp: 0, sizeMult: false, exclusiveGroup: '', stats: {} });
+        if (visible) {
+            activeProperties.value = [];
+            if (shipStore.customDialogState.componentId) {
+                const existing = shipStore.customComponents.find(c => c.id === shipStore.customDialogState.componentId);
+                if (existing) {
+                    // Core Fields
+                    Object.assign(newCustomComponent, {
+                        name: existing.name,
+                        category: existing.category,
+                        group: existing.group,
+                        type: existing.type,
+                        baseCost: existing.baseCost,
+                        baseEp: existing.baseEp,
+                        sizeMult: existing.sizeMult,
+                        stats: {} // Will be populated by activeProperties logic
+                    });
+
+                    // Populate Active Properties from Existing Data
+                    propertyDefinitions.forEach(def => {
+                        let val = undefined;
+                        if (def.location === 'root' && existing[def.key] !== undefined && existing[def.key] !== null) {
+                            val = existing[def.key];
+                        } else if (def.location === 'stats' && existing.stats && existing.stats[def.key] !== undefined) {
+                            val = existing.stats[def.key];
+                        }
+
+                        if (val !== undefined) {
+                            activeProperties.value.push({
+                                key: def.key,
+                                def: def,
+                                value: val
+                            });
+                        }
+                    });
+                }
+            } else {
+                // Reset for Create
+                Object.assign(newCustomComponent, { name: '', category: 'Weapon Systems', group: '', type: 'weapon', baseCost: 0, baseEp: 0, sizeMult: false, stats: {} });
+                activeProperties.value = [];
+            }
+        } else {
              shipStore.customDialogState.componentId = null;
         }
     });
@@ -255,26 +303,25 @@ const setup = () => {
             baseCost: Number(newCustomComponent.baseCost),
             baseEp: Number(newCustomComponent.baseEp),
             sizeMult: newCustomComponent.sizeMult,
-            exclusiveGroup: newCustomComponent.exclusiveGroup,
             availability: 'Common',
-            stats: { ...newCustomComponent.stats }
+            stats: {}
         };
+
+        // Hydrate from activeProperties
+        activeProperties.value.forEach(prop => {
+            if (prop.def.location === 'root') {
+                comp[prop.key] = prop.value;
+            } else if (prop.def.location === 'stats') {
+                comp.stats[prop.key] = Number(prop.value);
+            }
+        });
 
         if (isEdit) {
             shipStore.updateCustomComponent(comp);
             shipStore.customDialogState.visible = false;
         } else {
             shipStore.addCustomComponent(comp);
-
-            // Only auto-install if we are NOT in the manager view (i.e. we came from "Install System" dialog via some path, though that path is removed now, but good for future proofing)
-            // Actually, per the plan, the entry point is now the Manager. So we just add it to the library.
-            // If the user wants to install it, they go to "Install System" -> Select Custom category -> Install.
-
-            // However, for better UX, if the manager is NOT open (e.g. we might add a shortcut later), we might want to install.
-            // But currently the only way to open this dialog is via Manager or Edit button.
-
             shipStore.customDialogState.visible = false;
-            // shipStore.showAddComponentDialog = false; // Do not close the add dialog if it was open behind? Actually it's distinct now.
         }
     };
 
@@ -342,14 +389,26 @@ const setup = () => {
         });
     };
 
-    const addStatToCustomComponent = () => {
-        if (customStatToAdd.key && customStatToAdd.value !== '') {
-            newCustomComponent.stats[customStatToAdd.key] = Number(customStatToAdd.value);
-            customStatToAdd.value = 0;
-        }
+    const addPropertyToCustomComponent = () => {
+        if (!propertyToAdd.value) return;
+
+        // Check duplicate
+        if (activeProperties.value.find(p => p.key === propertyToAdd.value.key)) return;
+
+        // Default value based on type
+        let defaultVal = '';
+        if (propertyToAdd.value.type === 'number') defaultVal = 0;
+
+        activeProperties.value.push({
+            key: propertyToAdd.value.key,
+            def: propertyToAdd.value,
+            value: defaultVal
+        });
+        propertyToAdd.value = null;
     };
-    const removeStatFromCustomComponent = (key) => {
-        delete newCustomComponent.stats[key];
+
+    const removePropertyFromCustomComponent = (key) => {
+        activeProperties.value = activeProperties.value.filter(p => p.key !== key);
     };
 
     return {
@@ -359,9 +418,9 @@ const setup = () => {
         categoryOptions, groupOptions, itemOptions, selectedItemDef, previewCost, previewEp, resetGroup, isSizeValid,
         fileInput, libraryInput, stockFighters, stockFreighters, stockCapitals, getLocalizedName, toggleLang,
         installComponent, selectStockShip, handleFileUpload, exportYaml, printSheet, openSheetPreview, triggerPrint, formatCreds,
-        newCustomComponent, customStatToAdd, statOptions, createCustomComponent, addStatToCustomComponent, removeStatFromCustomComponent,
+        newCustomComponent, propertyDefinitions, propertyToAdd, createCustomComponent, addPropertyToCustomComponent, removePropertyFromCustomComponent,
         handleLibraryImport, exportCustomLibrary, deleteCustomComponent,
-        groupOptionsFiltered, exclusiveOptionsFiltered, filterGroupFn, filterExclusiveFn
+        groupOptionsFiltered, exclusiveOptionsFiltered, filterGroupFn, filterExclusiveFn, activeProperties
     };
 };
 
