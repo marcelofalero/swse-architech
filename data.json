@@ -509,7 +509,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "3d10x2"
+            "damage": "3d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_light_twin",
@@ -525,7 +526,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_light_quad",
@@ -541,7 +543,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_light_fl2",
@@ -557,7 +560,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_light_fl4",
@@ -573,7 +577,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_med",
@@ -589,7 +594,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_med_twin",
@@ -605,7 +611,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_med_quad",
@@ -621,7 +628,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_med_fl2",
@@ -637,7 +645,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_med_fl4",
@@ -653,7 +662,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_hvy",
@@ -669,7 +679,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_hvy_twin",
@@ -685,7 +696,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_hvy_quad",
@@ -701,7 +713,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
         },
         {
             "id": "laser_hvy_fl2",
@@ -717,7 +730,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "laser_hvy_fl4",
@@ -733,7 +747,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Fire-Linked Laser Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "proton_torp",
@@ -749,14 +764,15 @@
             "upgradeSpecs": {
                 "payload": {
                     "type": "capacity",
-                    "base": 8,
-                    "maxAdd": 8,
+                    "base": 3,
+                    "maxAdd": 16,
                     "costFactor": 0.25,
                     "unitLabel": "torpedoes"
                 },
                 "battery": true
             },
-            "damage": "9d10x2"
+            "damage": "9d10x2",
+            "description": "Base Capacity: 3 torpedoes. Additional capacity costs +25% per torpedo (max 16)."
         },
         {
             "id": "proton_torp_fl2",
@@ -781,7 +797,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "9d10x2"
+            "damage": "9d10x2",
+            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "proton_torp_fl4",
@@ -806,7 +823,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "9d10x2"
+            "damage": "9d10x2",
+            "description": "Fire-Linked Proton Torpedoes consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "ion_cannon_light",
@@ -822,7 +840,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "3d10x2"
+            "damage": "3d10x2",
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
         },
         {
             "id": "ion_cannon_light_twin",
@@ -838,7 +857,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
         },
         {
             "id": "ion_cannon_light_quad",
@@ -854,7 +874,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
         },
         {
             "id": "ion_cannon_light_fl2",
@@ -870,7 +891,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Fire-Linked Light Ion Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "ion_cannon_light_fl4",
@@ -886,7 +908,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Fire-Linked Light Ion Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "ion_cannon",
@@ -902,7 +925,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_twin",
@@ -918,7 +942,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_quad",
@@ -934,7 +959,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_fl2",
@@ -950,7 +976,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_fl4",
@@ -966,7 +993,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hvy",
@@ -983,7 +1011,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "3d10x5"
+            "damage": "3d10x5",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hvy_twin",
@@ -1000,7 +1029,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x5"
+            "damage": "4d10x5",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hvy_quad",
@@ -1017,7 +1047,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hvy_fl2",
@@ -1034,7 +1065,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x5"
+            "damage": "4d10x5",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hvy_fl4",
@@ -1051,7 +1083,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
         },
         {
             "id": "ion_cannon_hapan",
@@ -1068,7 +1101,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Acts like a Point-Defense Weapon (no penalty for targets smaller than Colossal). Capable of Autofire, but not Starship Scale Area Attacks. Illegal outside Hapan Consortium."
         },
         {
             "id": "concussion_missile_light",
@@ -1311,7 +1345,8 @@
             "baseCost": 10000,
             "baseEp": 1,
             "sizeMult": false,
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Tractor Beams prevent another Vehicle from escaping instead of dealing damage. If the attack hits, make an opposed Grapple check. Smaller targets are immobilized and lose Dex bonus. Larger targets can be pulled closer. Docking Clamps allow boarding."
         },
         {
             "id": "atmos_thrusters",
@@ -2764,7 +2799,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "3d10x5"
+            "damage": "3d10x5",
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
         },
         {
             "id": "turbolaser_light_twin",
@@ -2781,7 +2817,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "4d10x5"
+            "damage": "4d10x5",
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
         },
         {
             "id": "turbolaser_light_quad",
@@ -2798,7 +2835,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
         },
         {
             "id": "turbolaser_light_fl2",
@@ -2818,7 +2856,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "4d10x5"
+            "damage": "4d10x5",
+            "description": "Fire-Linked Light Turbolasers can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "turbolaser_light_fl4",
@@ -2838,7 +2877,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Fire-Linked Light Turbolasers can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "turbolaser_med",
@@ -2855,7 +2895,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "5d10x5"
+            "damage": "5d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_med_twin",
@@ -2872,7 +2913,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "6d10x5"
+            "damage": "6d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_med_quad",
@@ -2889,7 +2931,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "7d10x5"
+            "damage": "7d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_med_fl2",
@@ -2909,7 +2952,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "6d10x5"
+            "damage": "6d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_med_fl4",
@@ -2929,7 +2973,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "7d10x5"
+            "damage": "7d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_hvy",
@@ -2946,7 +2991,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "7d10x5"
+            "damage": "7d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_hvy_twin",
@@ -2963,7 +3009,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "8d10x5"
+            "damage": "8d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_hvy_quad",
@@ -2980,7 +3027,8 @@
                 "battery": true
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "9d10x5"
+            "damage": "9d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_hvy_fl2",
@@ -3000,7 +3048,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "8d10x5"
+            "damage": "8d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "turbolaser_hvy_fl4",
@@ -3020,7 +3069,8 @@
                 }
             },
             "minShipSize": "Colossal (frigate)",
-            "damage": "9d10x5"
+            "damage": "9d10x5",
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
         },
         {
             "id": "blaster_cannon_light",
@@ -3359,6 +3409,228 @@
             "sizeMult": false,
             "availability": "Restricted",
             "description": "Advanced modifications to boost damage output. Substantially more expensive than standard enhancements."
+        },
+        {
+            "id": "gravity_well",
+            "name": "Gravity Well Projector",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 25000,
+            "sizeMult": true,
+            "baseEp": 5,
+            "availability": "Military",
+            "description": "A Gravity Well Projector creates an artificial gravity well that prevents Hyperspace travel. Any Starship within 12 squares of an active Gravity Well Projector cannot activate its Hyperdrive. Additionally, any ship traveling through Hyperspace that passes within 12 squares of the active Gravity Well Projector is immediately pulled out of Hyperspace."
+        },
+        {
+            "id": "ion_bomb_rack",
+            "name": "Ion Bomb Rack",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 1500,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "4d10x2",
+            "damageType": "Ion",
+            "availability": "Military",
+            "description": "Ion Bombs deal 4d10x2 Ion damage in a 2-square burst area. However, they are unguided weapons and take a -5 penalty on attack rolls against moving targets (speed > 0)."
+        },
+        {
+            "id": "shieldbuster_torp",
+            "name": "Shieldbuster Torpedo Launcher",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 2000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "4d10x2",
+            "damageType": "Energy",
+            "availability": "Military",
+            "description": "Shieldbuster Torpedoes deal 4d10x2 Energy damage. If the target has active shields (SR > 0), the torpedo deals double damage to SR (ignoring DR) and reduces the target's SR by 5 for the remainder of the encounter on a hit."
+        },
+        {
+            "id": "space_mine_launcher",
+            "name": "Space Mine Launcher",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 500,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "6d10x2",
+            "damageType": "Energy",
+            "availability": "Restricted",
+            "description": "Space Mines are stationary explosives deployed in space. If a ship enters a square containing a Space Mine, it detonates, dealing 6d10x2 Energy damage to that ship."
+        },
+        {
+            "id": "discord_missile_launcher",
+            "name": "Discord Missile Launcher",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 1000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "2d10/turn",
+            "damageType": "Physical",
+            "availability": "Military",
+            "description": "Deploys a buzz droid swarm on the target ship. The target takes 2d10 damage per turn (ignoring DR and SR) until the droids are removed or destroyed. Requires a successful attack roll to hit."
+        },
+        {
+            "id": "composite_beam",
+            "name": "Composite Beam Cannon",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 3000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "5d10x2",
+            "damageType": "Energy",
+            "availability": "Military",
+            "description": "Fires a concentrated beam of energy. Deals 5d10x2 Energy damage. Ignores 10 points of the target's DR."
+        },
+        {
+            "id": "bomblet_generator",
+            "name": "Bomblet Generator",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 5000,
+            "sizeMult": true,
+            "baseEp": 2,
+            "damage": "3d10x2",
+            "damageType": "Energy",
+            "availability": "Military",
+            "description": "Automatically deploys a field of small explosives in adjacent squares. Any ship entering an adjacent square takes 3d10x2 Energy damage. Has infinite ammunition (energy based)."
+        },
+        {
+            "id": "heavy_ordnance_mod",
+            "name": "Heavy Ordnance Modification",
+            "type": "upgrade",
+            "category": "Weapon Upgrades",
+            "baseCost": 2000,
+            "sizeMult": false,
+            "baseEp": 0,
+            "availability": "Military",
+            "description": "Modifications to standard launchers to fire heavier payloads like Proton Bombs or heavy rockets. Increases damage dice by +1d10 but reduces range by 50%."
+        },
+        {
+            "id": "ion_pulse_cannon",
+            "name": "Ion Pulse Cannon",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 4000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "3d10x2",
+            "damageType": "Ion",
+            "availability": "Military",
+            "description": "Deals 3d10x2 Ion damage. On a critical hit, the target is disabled for 1 round in addition to normal critical effects."
+        },
+        {
+            "id": "mass_driver",
+            "name": "Mass-Driver Cannon",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 3500,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "4d10x2",
+            "damageType": "Physical",
+            "availability": "Military",
+            "description": "Fires a physical projectile accelerated to high speeds. Deals 4d10x2 Physical damage. Ignores Shields (SR) but is subject to DR."
+        },
+        {
+            "id": "pressor_beam",
+            "name": "Pressor Beam",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 5000,
+            "sizeMult": true,
+            "baseEp": 2,
+            "availability": "Restricted",
+            "description": "Reverse Tractor Beam. Pushes a target ship 1 square away on a successful hit. The target must be smaller than the firing ship."
+        },
+        {
+            "id": "proton_grenade_launcher",
+            "name": "Proton Grenade Launcher",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 800,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "3d10x2",
+            "damageType": "Energy",
+            "availability": "Restricted",
+            "description": "Fires a cluster of proton grenades. Deals 3d10x2 Energy damage in a 1-square burst. Short range only."
+        },
+        {
+            "id": "rail_cannon",
+            "name": "Rail Cannon",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 4500,
+            "sizeMult": true,
+            "baseEp": 2,
+            "damage": "5d10x2",
+            "damageType": "Physical",
+            "availability": "Military",
+            "description": "Similar to Mass-Drivers but more powerful. Deals 5d10x2 Physical damage. Ignores SR."
+        },
+        {
+            "id": "gravity_mine_launcher",
+            "name": "Gravity Mine Launcher",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 1500,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "4d10x2",
+            "damageType": "Energy",
+            "availability": "Military",
+            "description": "Detonates when a ship enters the square, creating a temporary gravity well that prevents Hyperspace travel for 1 round and deals 4d10x2 Energy damage."
+        },
+        {
+            "id": "flak_pod",
+            "name": "Flak Pod",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 2000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "damage": "3d10x2",
+            "damageType": "Physical",
+            "availability": "Military",
+            "description": "Anti-fighter defense. Deals 3d10x2 damage to all starfighters in adjacent squares."
+        },
+        {
+            "id": "chaff_gun",
+            "name": "Chaff Gun",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 1000,
+            "sizeMult": true,
+            "baseEp": 1,
+            "availability": "Restricted",
+            "description": "Creates a cloud of interference. Grants total concealment to the ship against sensor checks and missile guidance systems for 1 round."
+        },
+        {
+            "id": "defoliator",
+            "name": "Defoliator",
+            "type": "weapon",
+            "category": "Weapon Systems", "group": "Exotic Weapons",
+            "baseCost": 10000,
+            "sizeMult": true,
+            "baseEp": 3,
+            "availability": "Illegal",
+            "description": "Biological weapon. Deals massive damage to organic crew but no damage to the ship structure. Illegal in all jurisdictions."
+        },
+        {
+            "id": "point_defense_mod",
+            "name": "Point Defense System",
+            "type": "upgrade",
+            "category": "Modifications",
+            "baseCost": 2000,
+            "sizeMult": true,
+            "baseEp": 0,
+            "availability": "Military",
+            "description": "Automated laser system that shoots down incoming missiles. Provides a +5 bonus to Reflex Defense against missile attacks."
         }
     ]
 }
