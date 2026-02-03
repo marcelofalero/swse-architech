@@ -1355,9 +1355,10 @@
             "category": "Movement Systems",
             "group": "Thrusters",
             "type": "system",
-            "baseCost": 200,
-            "baseEp": 0,
+            "baseCost": 2000,
+            "baseEp": 2,
             "sizeMult": true,
+            "maxSize": "Colossal (frigate)",
             "availability": "Common",
             "description": "Atmospheric Thrusters increase a Starship's speed when the ship is flying in the atmosphere of a planet. Standard Atmospheric Thrusters increase a Starship's maximum velocity and fly speed by 10% (rounded down to the nearest square of speed and 10 km/h). Atmospheric Thrusters have no effect on Starship Scale movement."
         },
@@ -1368,10 +1369,11 @@
             "category": "Movement Systems",
             "group": "Thrusters",
             "type": "system",
-            "baseCost": 500,
-            "baseEp": 0,
+            "baseCost": 5000,
+            "baseEp": 5,
             "sizeMult": true,
-            "availability": "Licensed",
+            "maxSize": "Gargantuan",
+            "availability": "Common",
             "description": "Advanced Atmospheric Thrusters increase these by 25% (rounded down to the nearest square of speed and 10 km/h). Atmospheric Thrusters have no effect on Starship Scale movement."
         },
         {
