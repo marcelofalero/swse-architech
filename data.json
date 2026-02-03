@@ -1577,7 +1577,8 @@
             "baseEp": 2,
             "sizeMult": false,
             "maxSize": "Gargantuan",
-            "availability": "Military"
+            "availability": "Military",
+            "description": "A SLAM system provides a +5 bonus on Pilot checks to increase a Vehicle's Speed. This bonus increases to +10 if the Pilot is using All-Out Movement."
         },
         {
             "id": "engine_1",
@@ -1593,7 +1594,8 @@
                 "speed": 1
             },
             "exclusiveGroup": "engine",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
         },
         {
             "id": "engine_2",
@@ -1609,7 +1611,8 @@
                 "speed": 2
             },
             "exclusiveGroup": "engine",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
         },
         {
             "id": "engine_3",
@@ -1626,7 +1629,8 @@
             },
             "exclusiveGroup": "engine",
             "maxSize": "Colossal (cruiser)",
-            "availability": "Licensed"
+            "availability": "Licensed",
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
         },
         {
             "id": "engine_4",
@@ -1643,7 +1647,8 @@
             },
             "exclusiveGroup": "engine",
             "maxSize": "Colossal (cruiser)",
-            "availability": "Restricted"
+            "availability": "Restricted",
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
         },
         {
             "id": "engine_5",
@@ -1660,7 +1665,8 @@
             },
             "exclusiveGroup": "engine",
             "maxSize": "Colossal(transport)",
-            "availability": "Military"
+            "availability": "Military",
+            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace."
         },
         {
             "id": "engine_6",
@@ -1677,7 +1683,8 @@
             },
             "exclusiveGroup": "engine",
             "maxSize": "Gargantuan",
-            "availability": "Military"
+            "availability": "Military",
+            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace."
         },
         {
             "id": "shield_gen_5",
@@ -1693,7 +1700,8 @@
                 "sr": 5
             },
             "exclusiveGroup": "shield",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_10",
@@ -1709,7 +1717,8 @@
                 "sr": 10
             },
             "exclusiveGroup": "shield",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_15",
@@ -1725,7 +1734,8 @@
                 "sr": 15
             },
             "exclusiveGroup": "shield",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_20",
@@ -1742,7 +1752,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_25",
@@ -1759,7 +1770,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_30",
@@ -1776,7 +1788,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_35",
@@ -1793,7 +1806,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_40",
@@ -1810,7 +1824,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_45",
@@ -1827,7 +1842,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_50",
@@ -1844,7 +1860,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_55",
@@ -1861,7 +1878,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "shield_gen_60",
@@ -1878,7 +1896,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
         },
         {
             "id": "bulkheads",
@@ -1894,7 +1913,8 @@
                 "hp_bonus_pct": 0.1
             },
             "availability": "Common",
-            "exclusiveGroup": "bulkheads"
+            "exclusiveGroup": "bulkheads",
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 10% (These improvements don't stack)."
         },
         {
             "id": "jamming",
@@ -1906,7 +1926,8 @@
             "baseCost": 5000,
             "baseEp": 1,
             "sizeMult": true,
-            "availability": "Common"
+            "availability": "Common",
+            "description": "A Jamming Suite targets a single enemy within 6 squares. The target takes penalties on Use Computer checks (-4 for Starfighters, -2 for Space Transports) and enemy fire control systems."
         },
         {
             "id": "ecm_suite",
@@ -2390,7 +2411,8 @@
                 "armor_bonus": 1
             },
             "availability": "Licensed",
-            "exclusiveGroup": "armor"
+            "exclusiveGroup": "armor",
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
         },
         {
             "id": "armor_2",
@@ -2407,7 +2429,8 @@
             },
             "minShipSize": "Colossal(transport)",
             "availability": "Restricted",
-            "exclusiveGroup": "armor"
+            "exclusiveGroup": "armor",
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
         },
         {
             "id": "armor_3",
@@ -2424,7 +2447,8 @@
             },
             "minShipSize": "Colossal (frigate)",
             "availability": "Military",
-            "exclusiveGroup": "armor"
+            "exclusiveGroup": "armor",
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
         },
         {
             "id": "armor_4",
@@ -2441,7 +2465,8 @@
             },
             "minShipSize": "Colossal (frigate)",
             "availability": "Military",
-            "exclusiveGroup": "armor"
+            "exclusiveGroup": "armor",
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
         },
         {
             "id": "jamming_array",
@@ -2454,7 +2479,8 @@
             "baseEp": 5,
             "sizeMult": true,
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "A Jamming Array affects all enemy Starships within 6 squares, regardless of size. The penalty on Use Computer checks is -6 for Starfighters, -4 for Space Transports, and -2 for Capital Ships."
         },
         {
             "id": "regenerating_shields",
@@ -2470,7 +2496,8 @@
             "stats": {
                 "regenerating": true
             },
-            "exclusiveGroup": "shield_mod"
+            "exclusiveGroup": "shield_mod",
+            "description": "If a ship possesses Regenerating Shields, its current Shield Rating increases by 10 (Up to its maximum Shield Rating) when a System Operator uses the Recharge Shields Action."
         },
         {
             "id": "bulkheads_20",
@@ -2486,7 +2513,8 @@
                 "hp_bonus_pct": 0.2
             },
             "availability": "Licensed",
-            "exclusiveGroup": "bulkheads"
+            "exclusiveGroup": "bulkheads",
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 20% (These improvements don't stack)."
         },
         {
             "id": "bulkheads_30",
@@ -2502,7 +2530,8 @@
                 "hp_bonus_pct": 0.3
             },
             "availability": "Restricted",
-            "exclusiveGroup": "bulkheads"
+            "exclusiveGroup": "bulkheads",
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 30% (These improvements don't stack)."
         },
         {
             "id": "shield_gen_70",
@@ -2651,7 +2680,8 @@
             "baseEp": 5,
             "sizeMult": true,
             "minShipSize": "Colossal(transport)",
-            "availability": "Restricted"
+            "availability": "Restricted",
+            "description": "Anti-Boarding Systems include blast doors (DR 10, 250 HP), security cameras, and blaster rifle turrets at vital locations. The system has independent backup power allowing turrets to make up to 50 shots after power loss."
         },
         {
             "id": "com_jammers",
@@ -2663,7 +2693,8 @@
             "baseCost": 20000,
             "baseEp": 1,
             "sizeMult": false,
-            "availability": "Military"
+            "availability": "Military",
+            "description": "A Com Jammer prevents any communication within 6 squares. It takes a DC 30 Use Computer check to send or receive a message within this area. The jamming ship is also affected and is easier to detect (+20 to sensors checks)."
         },
         {
             "id": "reinforced_keel",
@@ -2677,7 +2708,8 @@
             "sizeMult": true,
             "minShipSize": "Colossal(transport)",
             "availability": "Military",
-            "exclusiveGroup": "keel"
+            "exclusiveGroup": "keel",
+            "description": "A Reinforced Keel causes the ship to take only half damage from Collisions. If the ship Rams another, it deals +2 damage per die."
         },
         {
             "id": "reinforced_keel_boarding",
@@ -2691,7 +2723,8 @@
             "sizeMult": true,
             "minShipSize": "Colossal(transport)",
             "availability": "Military",
-            "exclusiveGroup": "keel"
+            "exclusiveGroup": "keel",
+            "description": "Boarding Keels function as Reinforced Keels but can also dock with an enemy ship after a successful ram that moves the target down the Condition Track, allowing boarders to invade."
         },
         {
             "id": "security_bracing",
@@ -2704,7 +2737,8 @@
             "baseEp": 2,
             "sizeMult": true,
             "minShipSize": "Colossal(transport)",
-            "availability": "Common"
+            "availability": "Common",
+            "description": "Security Bracing protects Passenger Conversions and Escape Pods. When the ship is destroyed by massive damage, subtract the ship's DR from damage dealt to anyone in the protected area."
         },
         {
             "id": "turbolaser_light",
