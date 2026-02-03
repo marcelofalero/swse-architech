@@ -150,6 +150,7 @@ export const useShipStore = defineStore('ship', () => {
                 if (def.stats.sr_bonus) bonusSR += def.stats.sr_bonus;
                 if (def.stats.armor_bonus) bonusArmor += def.stats.armor_bonus;
                 if (def.stats.dex_bonus) bonusDex += def.stats.dex_bonus;
+                if (def.stats.int_bonus) s.int += def.stats.int_bonus;
                 if (def.stats.str_bonus) bonusStr += def.stats.str_bonus;
                 if (def.stats.perception_bonus) bonusPer += def.stats.perception_bonus;
                 if (def.stats.speed_factor) speedFactor += def.stats.speed_factor;
