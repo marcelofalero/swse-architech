@@ -315,9 +315,9 @@
                         </div>
                     </div>
                 </q-card-section>
-                <q-card-actions align="right" class="row q-gutter-x-sm">
+                <q-card-actions align="right">
                     <q-btn flat label="Cancel" color="grey" v-close-popup />
-                    <q-btn unelevated :label="shipStore.customDialogState.componentId ? 'Save Changes' : 'Create'" color="positive" @click="createCustomComponent" :disable="!newCustomComponent.name" />
+                    <q-btn unelevated class="q-ml-sm" :label="shipStore.customDialogState.componentId ? 'Save Changes' : 'Create'" color="positive" @click="createCustomComponent" :disable="!newCustomComponent.name" />
                 </q-card-actions>
             </q-card>
         </q-dialog>
