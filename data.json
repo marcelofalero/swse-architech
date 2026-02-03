@@ -1091,7 +1091,8 @@
                 },
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Base Capacity: 6 missiles. Additional capacity costs +20% per missile (max double capacity)."
         },
         {
             "id": "concussion_missile_light_fl2",
@@ -1116,7 +1117,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "8d10x2"
+            "damage": "8d10x2",
+            "description": "Base Capacity: 12 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "concussion_missile_light_fl4",
@@ -1141,7 +1143,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "9d10x2"
+            "damage": "9d10x2",
+            "description": "Base Capacity: 24 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "concussion_missile",
@@ -1164,7 +1167,8 @@
                 },
                 "battery": true
             },
-            "damage": "9d10x2"
+            "damage": "9d10x2",
+            "description": "Base Capacity: 16 missiles. Additional capacity costs +20% per missile (max double capacity)."
         },
         {
             "id": "concussion_missile_fl2",
@@ -1189,7 +1193,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "10d10x2"
+            "damage": "10d10x2",
+            "description": "Base Capacity: 32 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "concussion_missile_fl4",
@@ -1214,7 +1219,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "11d10x2"
+            "damage": "11d10x2",
+            "description": "Base Capacity: 64 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "concussion_missile_hvy",
@@ -1238,7 +1244,8 @@
                 },
                 "battery": true
             },
-            "damage": "9d10x5"
+            "damage": "9d10x5",
+            "description": "Base Capacity: 30 missiles. Additional capacity costs +20% per missile (max double capacity)."
         },
         {
             "id": "concussion_missile_hvy_fl2",
@@ -1264,7 +1271,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "10d10x5"
+            "damage": "10d10x5",
+            "description": "Base Capacity: 60 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "concussion_missile_hvy_fl4",
@@ -1290,7 +1298,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "11d10x5"
+            "damage": "11d10x5",
+            "description": "Base Capacity: 120 missiles. Fire-Linked missiles consume ammunition equal to the number of weapons. Fire-Link can be deactivated to conserve ammo."
         },
         {
             "id": "tractor_beam",
@@ -3027,7 +3036,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "3d10x2"
+            "damage": "3d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_light_twin",
@@ -3043,7 +3053,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_light_quad",
@@ -3059,7 +3070,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_light_fl2",
@@ -3078,7 +3090,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_light_fl4",
@@ -3097,7 +3110,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_med",
@@ -3113,7 +3127,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "4d10x2"
+            "damage": "4d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_med_twin",
@@ -3129,7 +3144,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_med_quad",
@@ -3145,7 +3161,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_med_fl2",
@@ -3164,7 +3181,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_med_fl4",
@@ -3183,7 +3201,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_hvy",
@@ -3199,7 +3218,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "5d10x2"
+            "damage": "5d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_hvy_twin",
@@ -3215,7 +3235,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_hvy_quad",
@@ -3231,7 +3252,8 @@
             "upgradeSpecs": {
                 "battery": true
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
         },
         {
             "id": "blaster_cannon_hvy_fl2",
@@ -3250,7 +3272,8 @@
                     "cost": 1000
                 }
             },
-            "damage": "6d10x2"
+            "damage": "6d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
         },
         {
             "id": "blaster_cannon_hvy_fl4",
@@ -3269,7 +3292,73 @@
                     "cost": 1000
                 }
             },
-            "damage": "7d10x2"
+            "damage": "7d10x2",
+            "description": "Fire-Linked Blaster Cannons can fire normally or in Autofire mode, with a Swift Action required to switch between the two."
+        },
+        {
+            "id": "harpoon_gun",
+            "name": "Harpoon Gun",
+            "name_es": "Ca\u00f1\u00f3n Arp\u00f3n",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
+            "type": "weapon",
+            "baseCost": 2000,
+            "baseEp": 1,
+            "sizeMult": false,
+            "availability": "Common",
+            "description": "A Gunner may use the Harpoon Gun to make a Grapple check against a target Walker. If the Grapple check succeeds, the target Walker cannot move without first making a Pilot check (DC = Harpoon Gun's Grapple check result). If this Pilot check fails, the Walker suffers an automatic Collision, taking twice its Collision damage."
+        },
+        {
+            "id": "docking_gun",
+            "name": "Docking Gun Mount",
+            "name_es": "Montaje de Ca\u00f1\u00f3n de Atraque",
+            "category": "Weapon Systems",
+            "group": "Exotic Weapons",
+            "type": "weapon",
+            "baseCost": 1000,
+            "baseEp": 1,
+            "sizeMult": false,
+            "availability": "Common",
+            "description": "Allows Character Scale Ranged Weapons to be added as a Docking Gun. Counts as Heavy Weapon. Draws power from ship. The cost is for the mount only - the gun itself is bought normally. Docking Guns have no effect on Starship Scale combat."
+        },
+        {
+            "id": "droid_jammer",
+            "name": "Droid Jammer",
+            "name_es": "Interferidor de Droides",
+            "category": "Defense Systems",
+            "group": "Electronic Warfare",
+            "type": "system",
+            "baseCost": 1000,
+            "baseEp": 1,
+            "sizeMult": false,
+            "availability": "Military",
+            "description": "Attacks from the Starship gain a +2 Equipment bonus to hit automated craft (like Droid Starfighters) within a 5-square radius."
+        },
+        {
+            "id": "cannon_enhancements",
+            "name": "Cannon Enhancements",
+            "name_es": "Mejoras de Ca\u00f1\u00f3n",
+            "category": "Modifications",
+            "group": "Weapon Upgrades",
+            "type": "upgrade",
+            "baseCost": 3000,
+            "baseEp": 0,
+            "sizeMult": false,
+            "availability": "Restricted",
+            "description": "Boosts damage output of Blaster, Laser, or Ion Cannons via multistage modifications (enhanced power cyclers, etc.)."
+        },
+        {
+            "id": "cannon_enhancements_adv",
+            "name": "Cannon Enhancements (Advanced)",
+            "name_es": "Mejoras de Ca\u00f1\u00f3n (Avanzadas)",
+            "category": "Modifications",
+            "group": "Weapon Upgrades",
+            "type": "upgrade",
+            "baseCost": 6000,
+            "baseEp": 0,
+            "sizeMult": false,
+            "availability": "Restricted",
+            "description": "Advanced modifications to boost damage output. Substantially more expensive than standard enhancements."
         }
     ]
 }
