@@ -458,6 +458,11 @@ export const ShipSheetWrapper = {
                 if (fireLink === 4) diceCount += 2;
             }
 
+            // Global Bonuses (Template)
+            if (store.currentStats.weapon_damage_dice) {
+                diceCount += store.currentStats.weapon_damage_dice;
+            }
+
             return `${diceCount}d${dieType}${multiplier}`;
         }
         const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
