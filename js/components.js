@@ -62,6 +62,9 @@ const SystemList = {
                         <span v-else>{{ component.location }}</span>
                     </q-item-label>
                     <q-item-label v-if="component.modifications" caption class="text-info">
+                        <span v-if="component.modifications.mount && component.modifications.mount !== 'single'" class="q-mr-xs text-uppercase">{{ component.modifications.mount }}</span>
+                        <span v-if="component.modifications.fireLink > 1" class="q-mr-xs">Fire-Linked ({{ component.modifications.fireLink }})</span>
+                        <span v-if="component.modifications.enhancement && component.modifications.enhancement !== 'normal'" class="q-mr-xs text-capitalize">{{ component.modifications.enhancement }}</span>
                         <span v-if="getUpgradeSpecs(component.defId)?.payload?.type === 'capacity' && component.modifications.payloadCount > 0" class="q-mr-xs">Payload: {{ getUpgradeSpecs(component.defId).payload.base }} + {{ component.modifications.payloadCount }}</span>
                         <span v-else-if="component.modifications.payloadOption" class="q-mr-xs">Extra Payload</span>
                         <span v-if="component.modifications.batteryCount > 1">Battery ({{ component.modifications.batteryCount }})</span>
@@ -93,6 +96,19 @@ const SystemList = {
                         <div class="text-caption">Weapon User</div>
                         <q-btn-toggle spread dark v-model="editingComponent.modifications.weaponUser" toggle-color="primary" :options="[{label: 'Pilot', value: 'Pilot'}, {label: 'Copilot', value: 'Copilot'}, {label: 'Gunner', value: 'Gunner'}]" />
                     </div>
+                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.weaponVariants" class="q-mb-md">
+                        <div class="row q-col-gutter-sm">
+                            <div class="col-12 col-sm-4">
+                                <q-select dark filled v-model="editingComponent.modifications.mount" :options="[{label:'Single', value:'single'}, {label:'Twin', value:'twin'}, {label:'Quad', value:'quad'}]" label="Mount" emit-value map-options dense />
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <q-select dark filled v-model="editingComponent.modifications.fireLink" :options="[{label:'None', value:1}, {label:'Fire-Link (2)', value:2}, {label:'Fire-Link (4)', value:4}]" label="Fire Link" emit-value map-options dense @update:model-value="val => { if(val > 1) editingComponent.modifications.batteryCount = 1; }" />
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <q-select dark filled v-model="editingComponent.modifications.enhancement" :options="[{label:'Standard', value:'normal'}, {label:'Enhanced', value:'enhanced'}, {label:'Advanced', value:'advanced'}]" label="Enhancement" emit-value map-options dense />
+                            </div>
+                        </div>
+                    </div>
                     <div v-if="getUpgradeSpecs(editingComponent.defId)?.payload" class="q-mb-md">
                         <div v-if="getUpgradeSpecs(editingComponent.defId).payload.type === 'capacity'">
                             <div class="text-caption">Additional {{ getUpgradeSpecs(editingComponent.defId).payload.unitLabel }} ({{ format(store.allEquipment.find(e => e.id === editingComponent.defId).baseCost * getUpgradeSpecs(editingComponent.defId).payload.costFactor) }} each)</div>
@@ -100,7 +116,7 @@ const SystemList = {
                         </div>
                         <q-checkbox v-else dark v-model="editingComponent.modifications.payloadOption" :label="getUpgradeSpecs(editingComponent.defId).payload.label + ' (' + format(getUpgradeSpecs(editingComponent.defId).payload.cost) + ')'" />
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.battery" class="q-mb-md">
+                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.battery && (!editingComponent.modifications.fireLink || editingComponent.modifications.fireLink === 1)" class="q-mb-md">
                         <div class="text-caption">Battery Size</div>
                         <q-input dark type="number" filled v-model.number="editingComponent.modifications.batteryCount" label="Battery Count" min="1" max="6" />
                     </div>
@@ -209,7 +225,7 @@ const ShipSheet = {
 
             <div class="section-title">Offense</div>
             <div><span class="bold">Speed</span> fly {{ store.currentStats.speed }} squares (starship scale)</div>
-            <div v-for="w in weapons" :key="w.instanceId" class="weapon-line"><span class="bold">Ranged</span> {{ getName(w.defId) }} +5 ({{ getDmg(w.defId) }})</div>
+            <div v-for="w in weapons" :key="w.instanceId" class="weapon-line"><span class="bold">Ranged</span> {{ getName(w) }} +5 ({{ getDmg(w) }})</div>
 
             <div class="section-title">Statistics</div>
             <div class="stat-grid">
@@ -349,9 +365,19 @@ export const ShipSheetWrapper = {
     ...ShipSheet,
     setup() {
         const store = useShipStore();
-        const getName = (id) => {
+        const getName = (component) => {
+            const id = component.defId || component;
             const def = store.allEquipment.find(e => e.id === id);
-            return getLocalizedName(def);
+            let name = getLocalizedName(def);
+
+            if (component.modifications) {
+                const parts = [];
+                if (component.modifications.fireLink > 1) parts.push(`Fire-Linked (${component.modifications.fireLink})`);
+                if (component.modifications.enhancement && component.modifications.enhancement !== 'normal') parts.push(component.modifications.enhancement.charAt(0).toUpperCase() + component.modifications.enhancement.slice(1));
+                if (component.modifications.mount && component.modifications.mount !== 'single') parts.push(component.modifications.mount.charAt(0).toUpperCase() + component.modifications.mount.slice(1));
+                if (parts.length > 0) name = `${parts.join(' ')} ${name}`;
+            }
+            return name;
         };
         const getMod = (score) => Math.floor((score - 10) / 2);
         const weapons = computed(() => store.installedComponents.filter(c => {
@@ -368,9 +394,34 @@ export const ShipSheetWrapper = {
         });
 
         // Enhanced Damage Logic for Variants
-        const getDmg = (id) => {
+        const getDmg = (component) => {
+            const id = component.defId || component;
             const def = store.allEquipment.find(e => e.id === id);
-            return def && def.damage ? def.damage : '-';
+            if (!def || !def.damage) return '-';
+
+            const match = def.damage.match(/(\d+)d(\d+)(x\d+)?/);
+            if (!match) return def.damage;
+
+            let diceCount = parseInt(match[1]);
+            const dieType = parseInt(match[2]);
+            const multiplier = match[3] || '';
+
+            if (component.modifications) {
+                const mount = component.modifications.mount || 'single';
+                const fireLink = component.modifications.fireLink || 1;
+                const enhancement = component.modifications.enhancement || 'normal';
+
+                if (mount === 'twin') diceCount += 1;
+                if (mount === 'quad') diceCount += 2;
+
+                if (fireLink === 2) diceCount += 1;
+                if (fireLink === 4) diceCount += 2;
+
+                if (enhancement === 'enhanced') diceCount += 1;
+                if (enhancement === 'advanced') diceCount += 2;
+            }
+
+            return `${diceCount}d${dieType}${multiplier}`;
         }
         const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
         const formatCreds = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
