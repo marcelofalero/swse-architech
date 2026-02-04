@@ -445,14 +445,17 @@ export const ShipSheetWrapper = {
                 const fireLink = component.modifications.fireLink || 1;
                 const enhancement = component.modifications.enhancement || 'normal';
 
+                // 1. Enhancement
+                if (enhancement === 'enhanced') diceCount += 1;
+                if (enhancement === 'advanced') diceCount += 2;
+
+                // 2. Mount
                 if (mount === 'twin') diceCount += 1;
                 if (mount === 'quad') diceCount += 2;
 
+                // 3. Fire-Link
                 if (fireLink === 2) diceCount += 1;
                 if (fireLink === 4) diceCount += 2;
-
-                if (enhancement === 'enhanced') diceCount += 1;
-                if (enhancement === 'advanced') diceCount += 2;
             }
 
             return `${diceCount}d${dieType}${multiplier}`;

@@ -109,16 +109,18 @@ export const useShipStore = defineStore('ship', () => {
              const fireLink = component.modifications.fireLink || 1;
              const enhancement = component.modifications.enhancement || 'normal';
 
+             // 1. Enhancement (Base Multiplier)
+             if (enhancement === 'enhanced') cost *= 2;
+             if (enhancement === 'advanced') cost *= 5;
+
+             // 2. Mount (Multiplier)
              let mountMult = 1;
-             if (mount === 'twin') mountMult = 3;
-             if (mount === 'quad') mountMult = 5;
+             if (mount === 'twin') mountMult = 2; // Typically Twin is 2 weapons
+             if (mount === 'quad') mountMult = 4; // Quad is 4 weapons
              cost *= mountMult;
 
+             // 3. Fire-Link (Multiplier)
              if (fireLink > 1) cost *= fireLink;
-
-             // Enhancement Cost (applied to the full weapon cost so far)
-             if (enhancement === 'enhanced') cost *= 3;
-             if (enhancement === 'advanced') cost *= 6;
 
              if (def.upgradeSpecs && def.upgradeSpecs.payload) {
                  if (def.upgradeSpecs.payload.type === 'capacity' && component.modifications.payloadCount > 0) {
