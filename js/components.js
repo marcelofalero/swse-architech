@@ -97,15 +97,18 @@ const SystemList = {
                         <q-btn-toggle spread dark v-model="editingComponent.modifications.weaponUser" toggle-color="primary" :options="[{label: 'Pilot', value: 'Pilot'}, {label: 'Copilot', value: 'Copilot'}, {label: 'Gunner', value: 'Gunner'}]" />
                     </div>
                     <div v-if="getUpgradeSpecs(editingComponent.defId)?.weaponVariants" class="q-mb-md">
-                        <div class="row q-col-gutter-sm">
-                            <div class="col-12 col-sm-4">
-                                <q-select dark filled v-model="editingComponent.modifications.mount" :options="[{label:'Single', value:'single'}, {label:'Twin', value:'twin'}, {label:'Quad', value:'quad'}]" label="Mount" emit-value map-options dense />
+                        <div class="q-gutter-y-md">
+                            <div>
+                                <div class="text-caption q-mb-xs">Mount: <span class="text-white">{{ configModel.mountLabel }}</span></div>
+                                <q-slider dark v-model="configModel.mountIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div class="col-12 col-sm-4">
-                                <q-select dark filled v-model="editingComponent.modifications.fireLink" :options="[{label:'None', value:1}, {label:'Fire-Link (2)', value:2}, {label:'Fire-Link (4)', value:4}]" label="Fire Link" emit-value map-options dense @update:model-value="val => { if(val > 1) editingComponent.modifications.batteryCount = 1; }" />
+                            <div>
+                                <div class="text-caption q-mb-xs">Fire Link: <span class="text-white">{{ configModel.fireLinkLabel }}</span></div>
+                                <q-slider dark v-model="configModel.fireLinkIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div class="col-12 col-sm-4">
-                                <q-select dark filled v-model="editingComponent.modifications.enhancement" :options="[{label:'Standard', value:'normal'}, {label:'Enhanced', value:'enhanced'}, {label:'Advanced', value:'advanced'}]" label="Enhancement" emit-value map-options dense />
+                            <div>
+                                <div class="text-caption q-mb-xs">Enhancement: <span class="text-white">{{ configModel.enhancementLabel }}</span></div>
+                                <q-slider dark v-model="configModel.enhancementIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
                         </div>
                     </div>
@@ -339,7 +342,38 @@ export const SystemListWrapper = {
             return true;
         };
 
-        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isCustom, format, showConfigDialog, editingComponent, hasUpgrades, getUpgradeSpecs, openConfig, checkValidity };
+        const configModel = computed(() => {
+            if (!editingComponent.value || !editingComponent.value.modifications) return {};
+            const mods = editingComponent.value.modifications;
+
+            const mountMap = ['single', 'twin', 'quad'];
+            const fireLinkMap = [1, 2, 4];
+            const enhancementMap = ['normal', 'enhanced', 'advanced'];
+
+            const mountLabels = ['Single', 'Twin', 'Quad'];
+            const fireLinkLabels = ['None', 'Fire-Link (2)', 'Fire-Link (4)'];
+            const enhancementLabels = ['Standard', 'Enhanced', 'Advanced'];
+
+            return {
+                get mountIndex() { return mountMap.indexOf(mods.mount || 'single'); },
+                set mountIndex(idx) { mods.mount = mountMap[idx]; },
+                get mountLabel() { return mountLabels[this.mountIndex]; },
+
+                get fireLinkIndex() { return fireLinkMap.indexOf(mods.fireLink || 1); },
+                set fireLinkIndex(idx) {
+                    const val = fireLinkMap[idx];
+                    mods.fireLink = val;
+                    if (val > 1) mods.batteryCount = 1;
+                },
+                get fireLinkLabel() { return fireLinkLabels[this.fireLinkIndex]; },
+
+                get enhancementIndex() { return enhancementMap.indexOf(mods.enhancement || 'normal'); },
+                set enhancementIndex(idx) { mods.enhancement = enhancementMap[idx]; },
+                get enhancementLabel() { return enhancementLabels[this.enhancementIndex]; }
+            };
+        });
+
+        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isCustom, format, showConfigDialog, editingComponent, hasUpgrades, getUpgradeSpecs, openConfig, checkValidity, configModel };
     }
 };
 
