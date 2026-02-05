@@ -790,7 +790,9 @@
             "baseEp": 0,
             "sizeMult": true,
             "availability": "Military",
-            "description": "Often used by smugglers, bounty hunters, and blockade runners. A ship with Combat Thrusters is treated as one size category smaller than its actual size category for the purpose of being targeted by Capital Ship weapons. Additionally, the Space Transport is treated as a Starfighter for the purpose of Dogfighting and Starship Maneuvers. This Starship Modification does not change the ship's size modifier to Reflex Defense."
+            "description": "Often used by smugglers, bounty hunters, and blockade runners. A ship with Combat Thrusters is treated as one size category smaller than its actual size category for the purpose of being targeted by Capital Ship weapons. Additionally, the Space Transport is treated as a Starfighter for the purpose of Dogfighting and Starship Maneuvers. This Starship Modification does not change the ship's size modifier to Reflex Defense.",
+            "minShipSize": "Colossal(transport)",
+            "maxSize": "Colossal (station)"
         },
         {
             "id": "maneuvering_jets",
@@ -959,6 +961,38 @@
             },
             "availability": "Common",
             "description": "A Hyperdrive of Class 4 to Class 6 is normally either old technology or an aftermarket retrofit crammed into a vessel not designed to support a Hyperdrive."
+        },
+        {
+            "id": "hyperdrive_8",
+            "name": "Hyperdrive Class 8",
+            "name_es": "Hiperimpulsor Clase 8",
+            "category": "Movement Systems",
+            "group": "Hyperdrives",
+            "type": "system",
+            "baseCost": 300,
+            "baseEp": 1,
+            "sizeMult": true,
+            "stats": {
+                "hyperdrive": 8
+            },
+            "availability": "Common",
+            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries."
+        },
+        {
+            "id": "hyperdrive_10",
+            "name": "Hyperdrive Class 10",
+            "name_es": "Hiperimpulsor Clase 10",
+            "category": "Movement Systems",
+            "group": "Hyperdrives",
+            "type": "system",
+            "baseCost": 200,
+            "baseEp": 1,
+            "sizeMult": true,
+            "stats": {
+                "hyperdrive": 10
+            },
+            "availability": "Common",
+            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries."
         },
         {
             "id": "hyperdrive_15_slow",
