@@ -1,60 +1,35 @@
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/http/server.py", line 1314, in <module>
-    test(
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/http/server.py", line 1261, in test
-    with ServerClass(addr, HandlerClass) as httpd:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/socketserver.py", line 457, in __init__
-    self.server_bind()
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/http/server.py", line 1308, in server_bind
-    return super().server_bind()
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/http/server.py", line 136, in server_bind
-    socketserver.TCPServer.server_bind(self)
-  File "/home/jules/.pyenv/versions/3.12.12/lib/python3.12/socketserver.py", line 478, in server_bind
-    self.socket.bind(self.server_address)
-OSError: [Errno 98] Address already in use
-127.0.0.1 - - [05/Feb/2026 02:26:14] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:14] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:14] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:15] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:15] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:15] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:26:15] "GET /data.json HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:27:46] "GET /data.json HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:28:43] "GET /data.json HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:29:38] "GET /data.json HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:48] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:48] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:48] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:49] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:49] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:49] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:30:49] "GET /data.json HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:41] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:41] "GET /css/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:41] "GET /js/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:42] "GET /js/store.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:42] "GET /js/i18n.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:42] "GET /js/components.js HTTP/1.1" 200 -
-127.0.0.1 - - [05/Feb/2026 02:31:42] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:10] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:10] "GET /js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:11] "GET /js/store.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:11] "GET /js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:11] "GET /js/i18n.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:09:11] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /js/i18n.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /js/store.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:10:14] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /js/store.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /js/i18n.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:11:43] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /js/i18n.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /js/store.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:13:06] "GET /data.json HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:22] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:22] "GET /js/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:23] "GET /js/components.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:23] "GET /js/store.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:23] "GET /js/i18n.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Feb/2026 03:14:23] "GET /data.json HTTP/1.1" 200 -
