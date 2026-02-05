@@ -364,28 +364,28 @@ export const SystemListWrapper = {
         const canMount = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
-            if (specs.componentOptions && specs.componentOptions.includes('mounts')) return true;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.multibarrel')) return true;
             if (specs.mounts !== undefined) return specs.mounts;
             return specs.weaponVariants && !isLauncher(defId);
         };
         const canFireLink = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
-            if (specs.componentOptions && specs.componentOptions.includes('fireLink')) return true;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.fireLink')) return true;
             if (specs.fireLink !== undefined) return specs.fireLink;
             return specs.weaponVariants;
         };
         const canEnhance = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
-            if (specs.componentOptions && specs.componentOptions.includes('enhancement')) return true;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.enhancement')) return true;
             if (specs.enhancement !== undefined) return specs.enhancement;
             return specs.weaponVariants && !isLauncher(defId);
         };
         const canBattery = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
-            if (specs.componentOptions && specs.componentOptions.includes('battery')) return true;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.battery')) return true;
             return specs.battery;
         };
 
@@ -393,12 +393,12 @@ export const SystemListWrapper = {
             const specs = getUpgradeSpecs(defId);
             if (!specs || !specs.componentOptions) return [];
             // Filter out options that are handled by specific UI controls
-            const handled = ['mounts', 'fireLink', 'enhancement', 'battery', 'ordnance'];
+            const handled = ['weapon.multibarrel', 'weapon.fireLink', 'weapon.enhancement', 'weapon.battery', 'ordnance'];
             // We need labels for these. Ideally these should be localized or defined in store/app.
             // For now, mapping known ones.
             const labels = {
-                'autofire': 'Autofire Capability',
-                'recall': 'Recall Circuit Functionality',
+                'weapon.autofire': 'Autofire Capability',
+                'slaveCircuits.recall': 'Recall Circuit Functionality',
                 'slave': 'Slave Circuit'
             };
             return specs.componentOptions

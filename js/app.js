@@ -59,12 +59,12 @@ const setup = () => {
             type: 'multiselect',
             location: 'upgradeSpecs',
             options: [
-                { label: 'Multi-Barrel (Twin/Quad)', value: 'mounts' },
-                { label: 'Fire-Link', value: 'fireLink' },
-                { label: 'Enhancement', value: 'enhancement' },
-                { label: 'Battery', value: 'battery' },
-                { label: 'Autofire', value: 'autofire' },
-                { label: 'Recall Circuit', value: 'recall' }
+                { label: 'Multi-Barrel (Twin/Quad)', value: 'weapon.multibarrel' },
+                { label: 'Fire-Link', value: 'weapon.fireLink' },
+                { label: 'Enhancement', value: 'weapon.enhancement' },
+                { label: 'Battery', value: 'weapon.battery' },
+                { label: 'Autofire', value: 'weapon.autofire' },
+                { label: 'Recall Circuit', value: 'slaveCircuits.recall' }
             ]
         },
 
