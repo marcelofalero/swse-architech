@@ -95,6 +95,43 @@ export const useShipStore = defineStore('ship', () => {
         return calculateEp(component.defId, batteryCount, component.isNonStandard, component.miniaturization, quantity, mount, fireLink, enhancement);
     }
 
+    function getComponentDamage(component) {
+        const def = allEquipment.value.find(e => e.id === component.defId);
+        if (!def || !def.damage) return null;
+
+        const match = def.damage.match(/(\d+)d(\d+)(x\d+)?/);
+        if (!match) return def.damage;
+
+        let diceCount = parseInt(match[1]);
+        const dieType = parseInt(match[2]);
+        const multiplier = match[3] || '';
+
+        if (component.modifications) {
+            const mount = component.modifications.mount || 'single';
+            const fireLink = component.modifications.fireLink || 1;
+            const enhancement = component.modifications.enhancement || 'normal';
+
+            // 1. Enhancement
+            if (enhancement === 'enhanced') diceCount += 1;
+            if (enhancement === 'advanced') diceCount += 2;
+
+            // 2. Mount
+            if (mount === 'twin') diceCount += 1;
+            if (mount === 'quad') diceCount += 2;
+
+            // 3. Fire-Link
+            if (fireLink === 2) diceCount += 1;
+            if (fireLink === 4) diceCount += 2;
+        }
+
+        // Global Bonuses (Template)
+        if (currentStats.value.weapon_damage_dice) {
+            diceCount += currentStats.value.weapon_damage_dice;
+        }
+
+        return `${diceCount}d${dieType}${multiplier}`;
+    }
+
     function getComponentCost(component) {
         const def = allEquipment.value.find(e => e.id === component.defId);
         if (!def || component.isStock) return 0;
@@ -393,6 +430,6 @@ export const useShipStore = defineStore('ship', () => {
         db, initDb,
         meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount, customComponents, allEquipment, customDialogState, showCustomManager,
         chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal,
-        addComponent, addCustomComponent, updateCustomComponent, openCustomDialog, removeComponent, removeCustomComponent, isCustomComponentInstalled, reset, createNew, loadState, getComponentCost, getComponentEp
+        addComponent, addCustomComponent, updateCustomComponent, openCustomDialog, removeComponent, removeCustomComponent, isCustomComponentInstalled, reset, createNew, loadState, getComponentCost, getComponentEp, getComponentDamage
     };
 });

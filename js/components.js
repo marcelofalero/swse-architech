@@ -45,7 +45,7 @@ const SystemList = {
                 <q-item-section avatar><q-icon :name="getIcon(component.defId)" color="primary" /></q-item-section>
                 <q-item-section>
                     <q-item-label>
-                        {{ getName(component.defId) }}
+                        {{ getName(component) }}
                         <q-badge v-if="isCustom(component.defId)" color="purple" label="Custom" class="q-ml-xs" />
                         <q-badge v-if="getAvailability(component) === 'Illegal'" color="deep-purple" label="Ill" class="q-ml-xs" />
                         <q-badge v-if="getAvailability(component) === 'Military'" color="negative" label="Mil" class="q-ml-xs" />
@@ -281,9 +281,18 @@ export const SystemListWrapper = {
         const showConfigDialog = ref(false);
         const editingComponent = ref(null);
 
-        const getName = (id) => {
+        const getName = (component) => {
+            const id = component.defId || component;
             const def = store.allEquipment.find(e => e.id === id);
-            return getLocalizedName(def);
+            let name = getLocalizedName(def);
+
+            if (component && component.defId) {
+                const calcDmg = store.getComponentDamage(component);
+                if (calcDmg) {
+                    name = name.replace(/\(\d+d\d+(x\d+)?\)/, `(${calcDmg})`);
+                }
+            }
+            return name;
         };
         const getAvailability = (idOrComp) => {
             const id = idOrComp.defId || idOrComp;
@@ -457,41 +466,7 @@ export const ShipSheetWrapper = {
 
         // Enhanced Damage Logic for Variants
         const getDmg = (component) => {
-            const id = component.defId || component;
-            const def = store.allEquipment.find(e => e.id === id);
-            if (!def || !def.damage) return '-';
-
-            const match = def.damage.match(/(\d+)d(\d+)(x\d+)?/);
-            if (!match) return def.damage;
-
-            let diceCount = parseInt(match[1]);
-            const dieType = parseInt(match[2]);
-            const multiplier = match[3] || '';
-
-            if (component.modifications) {
-                const mount = component.modifications.mount || 'single';
-                const fireLink = component.modifications.fireLink || 1;
-                const enhancement = component.modifications.enhancement || 'normal';
-
-                // 1. Enhancement
-                if (enhancement === 'enhanced') diceCount += 1;
-                if (enhancement === 'advanced') diceCount += 2;
-
-                // 2. Mount
-                if (mount === 'twin') diceCount += 1;
-                if (mount === 'quad') diceCount += 2;
-
-                // 3. Fire-Link
-                if (fireLink === 2) diceCount += 1;
-                if (fireLink === 4) diceCount += 2;
-            }
-
-            // Global Bonuses (Template)
-            if (store.currentStats.weapon_damage_dice) {
-                diceCount += store.currentStats.weapon_damage_dice;
-            }
-
-            return `${diceCount}d${dieType}${multiplier}`;
+            return store.getComponentDamage(component) || '-';
         }
         const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
         const formatCreds = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
