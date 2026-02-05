@@ -2217,7 +2217,10 @@
                     "slaveCircuits.recall"
                 ],
                 "optionCosts": {
-                    "slaveCircuits.recall": 6000
+                    "slaveCircuits.recall": {
+                        "cost": 6000,
+                        "sizeMult": true
+                    }
                 }
             }
         },

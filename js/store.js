@@ -179,7 +179,14 @@ export const useShipStore = defineStore('ship', () => {
              if (def.upgradeSpecs && def.upgradeSpecs.optionCosts) {
                  for (const [key, val] of Object.entries(component.modifications)) {
                      if (val === true && def.upgradeSpecs.optionCosts[key]) {
-                         cost += def.upgradeSpecs.optionCosts[key];
+                         const optCostDef = def.upgradeSpecs.optionCosts[key];
+                         if (typeof optCostDef === 'object' && optCostDef !== null) {
+                             let optCost = optCostDef.cost || 0;
+                             if (optCostDef.sizeMult) optCost *= sizeMultVal.value;
+                             cost += optCost;
+                         } else {
+                             cost += optCostDef;
+                         }
                      }
                  }
              }
