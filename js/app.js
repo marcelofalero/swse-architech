@@ -53,10 +53,20 @@ const setup = () => {
         { label: 'Max Ship Size', key: 'maxSize', type: 'size_select', location: 'root' },
 
         // Upgrade Specs (Weapons/Systems)
-        { label: 'Enable Multi-Barrel (Twin/Quad)', key: 'mounts', type: 'boolean', location: 'upgradeSpecs' },
-        { label: 'Enable Fire-Link', key: 'fireLink', type: 'boolean', location: 'upgradeSpecs' },
-        { label: 'Enable Enhancement', key: 'enhancement', type: 'boolean', location: 'upgradeSpecs' },
-        { label: 'Enable Battery Configuration', key: 'battery', type: 'boolean', location: 'upgradeSpecs' },
+        {
+            label: 'Modification Options',
+            key: 'componentOptions',
+            type: 'multiselect',
+            location: 'upgradeSpecs',
+            options: [
+                { label: 'Multi-Barrel (Twin/Quad)', value: 'mounts' },
+                { label: 'Fire-Link', value: 'fireLink' },
+                { label: 'Enhancement', value: 'enhancement' },
+                { label: 'Battery', value: 'battery' },
+                { label: 'Autofire', value: 'autofire' },
+                { label: 'Recall Circuit', value: 'recall' }
+            ]
+        },
 
         // Stats
         { label: 'Shield Rating (Set)', key: 'sr', type: 'number', location: 'stats' },
@@ -410,6 +420,7 @@ const setup = () => {
         let defaultVal = '';
         if (propertyToAdd.value.type === 'number') defaultVal = 0;
         if (propertyToAdd.value.type === 'boolean') defaultVal = true;
+        if (propertyToAdd.value.type === 'multiselect') defaultVal = [];
 
         activeProperties.value.push({
             key: propertyToAdd.value.key,

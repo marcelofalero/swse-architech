@@ -309,6 +309,9 @@
 
                                         <!-- Boolean Checkbox -->
                                         <q-checkbox v-else-if="prop.def.type === 'boolean'" dark v-model="prop.value" :label="prop.def.label" dense></q-checkbox>
+
+                                        <!-- Multiselect -->
+                                        <q-select v-else-if="prop.def.type === 'multiselect'" filled dark v-model="prop.value" :options="prop.def.options" :label="prop.def.label" multiple emit-value map-options dense></q-select>
                                     </div>
                                     <div class="col-auto">
                                         <q-btn flat round icon="delete" color="negative" size="sm" @click="removePropertyFromCustomComponent(prop.key)"></q-btn>
