@@ -52,6 +52,22 @@ const setup = () => {
         { label: 'Min Ship Size', key: 'minShipSize', type: 'size_select', location: 'root' },
         { label: 'Max Ship Size', key: 'maxSize', type: 'size_select', location: 'root' },
 
+        // Upgrade Specs (Weapons/Systems)
+        {
+            label: 'Modification Options',
+            key: 'componentOptions',
+            type: 'multiselect',
+            location: 'upgradeSpecs',
+            options: [
+                { label: 'Multi-Barrel (Twin/Quad)', value: 'weapon.multibarrel' },
+                { label: 'Fire-Link', value: 'weapon.fireLink' },
+                { label: 'Enhancement', value: 'weapon.enhancement' },
+                { label: 'Battery', value: 'weapon.battery' },
+                { label: 'Autofire', value: 'weapon.autofire' },
+                { label: 'Recall Circuit', value: 'slaveCircuits.recall' }
+            ]
+        },
+
         // Stats
         { label: 'Shield Rating (Set)', key: 'sr', type: 'number', location: 'stats' },
         { label: 'Shield Bonus (Add)', key: 'sr_bonus', type: 'number', location: 'stats' },
@@ -179,6 +195,8 @@ const setup = () => {
                             val = existing[def.key];
                         } else if (def.location === 'stats' && existing.stats && existing.stats[def.key] !== undefined) {
                             val = existing.stats[def.key];
+                        } else if (def.location === 'upgradeSpecs' && existing.upgradeSpecs && existing.upgradeSpecs[def.key] !== undefined) {
+                            val = existing.upgradeSpecs[def.key];
                         }
 
                         if (val !== undefined) {
@@ -313,6 +331,9 @@ const setup = () => {
                 comp[prop.key] = prop.value;
             } else if (prop.def.location === 'stats') {
                 comp.stats[prop.key] = Number(prop.value);
+            } else if (prop.def.location === 'upgradeSpecs') {
+                if (!comp.upgradeSpecs) comp.upgradeSpecs = {};
+                comp.upgradeSpecs[prop.key] = prop.value;
             }
         });
 
@@ -398,6 +419,8 @@ const setup = () => {
         // Default value based on type
         let defaultVal = '';
         if (propertyToAdd.value.type === 'number') defaultVal = 0;
+        if (propertyToAdd.value.type === 'boolean') defaultVal = true;
+        if (propertyToAdd.value.type === 'multiselect') defaultVal = [];
 
         activeProperties.value.push({
             key: propertyToAdd.value.key,

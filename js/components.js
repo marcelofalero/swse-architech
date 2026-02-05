@@ -96,17 +96,17 @@ const SystemList = {
                         <div class="text-caption">Weapon User</div>
                         <q-btn-toggle spread dark v-model="editingComponent.modifications.weaponUser" toggle-color="primary" :options="[{label: 'Pilot', value: 'Pilot'}, {label: 'Copilot', value: 'Copilot'}, {label: 'Gunner', value: 'Gunner'}]" />
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.weaponVariants" class="q-mb-md">
+                    <div v-if="hasUpgrades(editingComponent.defId)" class="q-mb-md">
                         <div class="q-gutter-y-md">
-                            <div v-if="!isLauncher(editingComponent.defId)">
+                            <div v-if="canMount(editingComponent.defId)">
                                 <div class="text-caption q-mb-xs">Mount: <span class="text-white">{{ configModel.mountLabel }}</span></div>
                                 <q-slider dark v-model="configModel.mountIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div>
+                            <div v-if="canFireLink(editingComponent.defId)">
                                 <div class="text-caption q-mb-xs">Fire Link: <span class="text-white">{{ configModel.fireLinkLabel }}</span></div>
                                 <q-slider dark v-model="configModel.fireLinkIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div v-if="!isLauncher(editingComponent.defId)">
+                            <div v-if="canEnhance(editingComponent.defId)">
                                 <div class="text-caption q-mb-xs">Enhancement: <span class="text-white">{{ configModel.enhancementLabel }}</span></div>
                                 <q-slider dark v-model="configModel.enhancementIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
@@ -119,7 +119,7 @@ const SystemList = {
                         </div>
                         <q-checkbox v-else dark v-model="editingComponent.modifications.payloadOption" :label="getUpgradeSpecs(editingComponent.defId).payload.label + ' (' + format(getUpgradeSpecs(editingComponent.defId).payload.cost) + ')'" />
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.battery && (!editingComponent.modifications.fireLink || editingComponent.modifications.fireLink === 1)" class="q-mb-md">
+                    <div v-if="canBattery(editingComponent.defId) && (!editingComponent.modifications.fireLink || editingComponent.modifications.fireLink === 1)" class="q-mb-md">
                         <div class="text-caption">Battery Size ({{ editingComponent.modifications.batteryCount }})</div>
                         <q-slider dark v-model="editingComponent.modifications.batteryCount" :min="1" :max="6" :step="1" snap markers label />
                     </div>
@@ -129,6 +129,10 @@ const SystemList = {
                     </div>
                     <div v-if="getUpgradeSpecs(editingComponent.defId)?.fireLinkOption && (editingComponent.modifications.fireLink || 1) > 1" class="q-mb-md">
                         <q-checkbox dark v-model="editingComponent.modifications.fireLinkOption" :label="'Selective Fire (+' + format(getUpgradeSpecs(editingComponent.defId).fireLinkOption.cost) + ')'" />
+                    </div>
+                    <!-- Generic Options from componentOptions -->
+                    <div v-for="opt in getGenericOptions(editingComponent.defId)" :key="opt.value" class="q-mb-md">
+                         <q-checkbox dark v-model="editingComponent.modifications[opt.value]" :label="opt.label" />
                     </div>
                 </q-card-section>
                 <q-card-actions align="right">
@@ -356,6 +360,52 @@ export const SystemListWrapper = {
 
         const hasUpgrades = (defId) => isWeapon(defId) || !!store.allEquipment.find(e => e.id === defId)?.upgradeSpecs;
         const getUpgradeSpecs = (defId) => store.allEquipment.find(e => e.id === defId)?.upgradeSpecs;
+
+        const canMount = (defId) => {
+            const specs = getUpgradeSpecs(defId);
+            if (!specs) return false;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.multibarrel')) return true;
+            if (specs.mounts !== undefined) return specs.mounts;
+            return specs.weaponVariants && !isLauncher(defId);
+        };
+        const canFireLink = (defId) => {
+            const specs = getUpgradeSpecs(defId);
+            if (!specs) return false;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.fireLink')) return true;
+            if (specs.fireLink !== undefined) return specs.fireLink;
+            return specs.weaponVariants;
+        };
+        const canEnhance = (defId) => {
+            const specs = getUpgradeSpecs(defId);
+            if (!specs) return false;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.enhancement')) return true;
+            if (specs.enhancement !== undefined) return specs.enhancement;
+            return specs.weaponVariants && !isLauncher(defId);
+        };
+        const canBattery = (defId) => {
+            const specs = getUpgradeSpecs(defId);
+            if (!specs) return false;
+            if (specs.componentOptions && specs.componentOptions.includes('weapon.battery')) return true;
+            return specs.battery;
+        };
+
+        const getGenericOptions = (defId) => {
+            const specs = getUpgradeSpecs(defId);
+            if (!specs || !specs.componentOptions) return [];
+            // Filter out options that are handled by specific UI controls
+            const handled = ['weapon.multibarrel', 'weapon.fireLink', 'weapon.enhancement', 'weapon.battery', 'ordnance'];
+            // We need labels for these. Ideally these should be localized or defined in store/app.
+            // For now, mapping known ones.
+            const labels = {
+                'weapon.autofire': 'Autofire Capability',
+                'slaveCircuits.recall': 'Recall Circuit Functionality',
+                'slave': 'Slave Circuit'
+            };
+            return specs.componentOptions
+                .filter(opt => !handled.includes(opt))
+                .map(opt => ({ value: opt, label: labels[opt] || opt }));
+        };
+
         const openConfig = (component) => { editingComponent.value = component; showConfigDialog.value = true; };
 
         const checkValidity = (component) => {
@@ -411,7 +461,7 @@ export const SystemListWrapper = {
             };
         });
 
-        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingComponent, hasUpgrades, getUpgradeSpecs, openConfig, checkValidity, configModel };
+        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingComponent, hasUpgrades, getUpgradeSpecs, canMount, canFireLink, canEnhance, canBattery, getGenericOptions, openConfig, checkValidity, configModel };
     }
 };
 
