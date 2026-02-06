@@ -1493,7 +1493,7 @@
             "stats": {
                 "sr_bonus": 10
             },
-            "exclusiveGroup": "tech_spec",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
             "variableCost": true
         },
@@ -1510,7 +1510,7 @@
             "stats": {
                 "armor_bonus": 2
             },
-            "exclusiveGroup": "tech_spec",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
             "variableCost": true
         },
@@ -1526,7 +1526,7 @@
             "stats": {
                 "dex_bonus": 2
             },
-            "exclusiveGroup": "tech_spec",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
             "variableCost": true
         },
@@ -1542,7 +1542,7 @@
             "stats": {
                 "speed_factor": 0.25
             },
-            "exclusiveGroup": "tech_spec",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
             "variableCost": true
         },
@@ -1558,7 +1558,7 @@
             "stats": {
                 "sr_bonus": 20
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
@@ -1574,7 +1574,7 @@
             "stats": {
                 "armor_bonus": 2
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
@@ -1590,7 +1590,7 @@
             "stats": {
                 "dex_bonus": 4
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
@@ -1606,7 +1606,7 @@
             "stats": {
                 "str_bonus": 2
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
@@ -1622,7 +1622,7 @@
             "stats": {
                 "perception_bonus": 2
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
@@ -1638,7 +1638,7 @@
             "stats": {
                 "speed_factor": 0.333
             },
-            "exclusiveGroup": "superior_tech",
+            "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
             "variableCost": true
         },
