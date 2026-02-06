@@ -20,7 +20,7 @@ export const messages = {
             installed_systems: "Installed Systems", print_btn: "Print to PDF / Paper",
             convert_cargo_ep: "Convert Cargo to EP", cargo_to_ep_hint: "{sizeMult} tons = 1 EP",
             max_cargo: "Max Cargo", cargo_converted: "Cargo Converted", close: "Close",
-            ship_name: "Ship Name", import: "Load Ship"
+            ship_name: "Ship Name", import: "Load Ship", search_component: "Search Component"
         },
         stats: {
             str: "STR", dex: "DEX", int: "INT", ref: "Reflex Defense", armor: "Armor",
@@ -55,7 +55,7 @@ export const messages = {
             installed_systems: "Sistemas Instalados", print_btn: "Imprimir en PDF / Papel",
             convert_cargo_ep: "Convertir Carga a PE", cargo_to_ep_hint: "{sizeMult} tons = 1 PE",
             max_cargo: "Carga Máx", cargo_converted: "Carga Convertida", close: "Cerrar",
-            ship_name: "Nombre de Nave", import: "Importar"
+            ship_name: "Nombre de Nave", import: "Importar", search_component: "Buscar Componente"
         },
         stats: {
             str: "FUE", dex: "DES", int: "INT", ref: "Defensa de Reflejos", armor: "Armadura",

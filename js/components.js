@@ -358,6 +358,35 @@ export const AddModDialog = {
             </q-card-section>
 
             <q-card-section class="q-pt-none q-gutter-md">
+                <!-- Search Bar -->
+                <div class="q-mb-md">
+                    <q-select
+                        filled dark
+                        v-model="searchSelection"
+                        use-input
+                        input-debounce="300"
+                        :label="$t('ui.search_component')"
+                        :options="searchOptions"
+                        option-label="label"
+                        option-value="id"
+                        @filter="filterSearch"
+                        @update:model-value="onSearchSelect"
+                        clearable
+                        dense
+                    >
+                        <template v-slot:prepend><q-icon name="search" /></template>
+                        <template v-slot:option="scope">
+                            <q-item v-bind="scope.itemProps">
+                                <q-item-section>
+                                    <q-item-label>{{ scope.opt.label }}</q-item-label>
+                                    <q-item-label caption class="text-grey-5">{{ scope.opt.category }} - {{ scope.opt.group }}</q-item-label>
+                                </q-item-section>
+                            </q-item>
+                        </template>
+                    </q-select>
+                </div>
+                <q-separator dark class="q-mb-md" />
+
                 <!-- Form Elements -->
                 <q-select filled dark v-model="newComponentCategory" :options="categoryOptions" :label="$t('ui.category')" emit-value map-options @update:model-value="resetGroup">
                     <template v-slot:prepend><q-icon name="folder" /></template>
@@ -447,15 +476,40 @@ export const AddModDialog = {
         const newComponentSelection = ref(null);
         const newComponentNonStandard = ref(false);
 
+        // Search State
+        const searchSelection = ref(null);
+        const searchOptions = ref([]);
+
+        const filterSearch = (val, update) => {
+            if (val === '') {
+                update(() => { searchOptions.value = [] });
+                return;
+            }
+            update(() => {
+                const needle = val.toLowerCase();
+                searchOptions.value = store.allEquipment
+                    .filter(e => getLocalizedName(e).toLowerCase().includes(needle))
+                    .map(e => ({ ...e, label: getLocalizedName(e) }));
+            });
+        };
+
+        const onSearchSelect = (item) => {
+            if (!item) return;
+            newComponentCategory.value = item.category;
+            newComponentGroup.value = item.group;
+            newComponentSelection.value = item.id;
+            searchSelection.value = null; // Reset search
+        };
+
         const categoryOptions = computed(() => {
             const cats = [...new Set(store.allEquipment.map(e => e.category))];
-            return cats.map(c => ({ label: t('cat.' + (c === 'Weapon Systems' ? 'weapons' : c === 'Movement Systems' ? 'movement' : c === 'Defense Systems' ? 'defense' : c === 'Modifications' ? 'components' : 'accessories')), value: c }));
+            return cats.map(c => ({ label: t('cat.' + (c === 'Weapon Systems' ? 'weapons' : c === 'Movement Systems' ? 'movement' : c === 'Defense Systems' ? 'defense' : c === 'Modifications' ? 'components' : 'accessories')), value: c })).sort((a, b) => a.label.localeCompare(b.label));
         });
 
         const groupOptions = computed(() => {
             if (!newComponentCategory.value) return [];
             const groups = [...new Set(store.allEquipment.filter(e => e.category === newComponentCategory.value).map(e => e.group))];
-            return groups.map(g => ({ label: g, value: g }));
+            return groups.map(g => ({ label: g, value: g })).sort((a, b) => a.label.localeCompare(b.label));
         });
 
         const itemOptions = computed(() => {
@@ -463,7 +517,7 @@ export const AddModDialog = {
             return store.allEquipment.filter(e => e.group === newComponentGroup.value).map(e => ({
                 ...e,
                 label: getLocalizedName(e)
-            }));
+            })).sort((a, b) => a.label.localeCompare(b.label));
         });
 
         const selectedItemDef = computed(() => {
@@ -531,7 +585,7 @@ export const AddModDialog = {
             }
         };
 
-        return { store, newComponentCategory, newComponentGroup, newComponentSelection, newComponentNonStandard, categoryOptions, groupOptions, itemOptions, selectedItemDef, isSizeValid, previewCost, previewEp, resetGroup, formatCreds, installComponent, getLocalizedName };
+        return { store, newComponentCategory, newComponentGroup, newComponentSelection, newComponentNonStandard, categoryOptions, groupOptions, itemOptions, selectedItemDef, isSizeValid, previewCost, previewEp, resetGroup, formatCreds, installComponent, getLocalizedName, searchSelection, searchOptions, filterSearch, onSearchSelect };
     }
 };
 
