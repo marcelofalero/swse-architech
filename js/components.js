@@ -42,48 +42,48 @@ const SystemList = {
     <div class="q-pa-md col column">
         <div class="row justify-between items-center q-mb-md"><div class="text-h6">{{ $t('ui.installed_systems') }}</div><q-btn round color="positive" icon="add" size="sm" @click="store.showAddComponentDialog = true" /></div>
         <q-scroll-area class="col"><q-list separator dark>
-            <q-item v-for="component in store.installedComponents" :key="component.instanceId">
-                <q-item-section avatar><q-icon :name="getIcon(component.defId)" color="primary" /></q-item-section>
+            <q-item v-for="instance in store.installedComponents" :key="instance.instanceId">
+                <q-item-section avatar><q-icon :name="getIcon(instance.defId)" color="primary" /></q-item-section>
                 <q-item-section>
                     <q-item-label>
-                        {{ getName(component) }}
-                        <q-badge v-if="isCustom(component.defId)" color="purple" label="Custom" class="q-ml-xs" />
-                        <q-badge v-if="getAvailability(component) === 'Illegal'" color="deep-purple" label="Ill" class="q-ml-xs" />
-                        <q-badge v-if="getAvailability(component) === 'Military'" color="negative" label="Mil" class="q-ml-xs" />
-                        <q-badge v-if="getAvailability(component) === 'Restricted'" color="warning" text-color="black" label="Res" class="q-ml-xs" />
-                        <q-badge v-if="getAvailability(component) === 'Licensed'" color="info" label="Lic" class="q-ml-xs" />
-                        <q-badge v-if="getAvailability(component) === 'Common' && !isCustom(component.defId)" color="positive" label="Com" class="q-ml-xs" />
-                        <q-badge v-if="component.isStock" color="grey-7" label="Stock" class="q-ml-xs" />
-                        <q-badge v-if="component.isNonStandard" color="warning" text-color="black" :label="$t('ui.ns_tag')" class="q-ml-xs" />
-                        <q-icon v-if="!checkValidity(component)" name="warning" color="negative" class="q-ml-sm"><q-tooltip>Invalid for Ship Size</q-tooltip></q-icon>
+                        {{ getName(instance) }}
+                        <q-badge v-if="isCustom(instance.defId)" color="purple" label="Custom" class="q-ml-xs" />
+                        <q-badge v-if="getAvailability(instance) === 'Illegal'" color="deep-purple" label="Ill" class="q-ml-xs" />
+                        <q-badge v-if="getAvailability(instance) === 'Military'" color="negative" label="Mil" class="q-ml-xs" />
+                        <q-badge v-if="getAvailability(instance) === 'Restricted'" color="warning" text-color="black" label="Res" class="q-ml-xs" />
+                        <q-badge v-if="getAvailability(instance) === 'Licensed'" color="info" label="Lic" class="q-ml-xs" />
+                        <q-badge v-if="getAvailability(instance) === 'Common' && !isCustom(instance.defId)" color="positive" label="Com" class="q-ml-xs" />
+                        <q-badge v-if="instance.isStock" color="grey-7" label="Stock" class="q-ml-xs" />
+                        <q-badge v-if="instance.isNonStandard" color="warning" text-color="black" :label="$t('ui.ns_tag')" class="q-ml-xs" />
+                        <q-icon v-if="!checkValidity(instance)" name="warning" color="negative" class="q-ml-sm"><q-tooltip>Invalid for Ship Size</q-tooltip></q-icon>
                     </q-item-label>
                     <q-item-label caption class="text-grey-5">
-                        <span v-if="getEpDynamic(component.defId)" class="text-positive">+{{ Math.abs(getEpDynamic(component.defId)) }} EP</span>
-                        <span v-else-if="store.getComponentEp(component) !== 0">{{ store.getComponentEp(component) }} EP <span class="text-grey-7">| {{ component.location }}</span></span>
-                        <span v-else>{{ component.location }}</span>
+                        <span v-if="getEpDynamic(instance.defId)" class="text-positive">+{{ Math.abs(getEpDynamic(instance.defId)) }} EP</span>
+                        <span v-else-if="store.getComponentEp(instance) !== 0">{{ store.getComponentEp(instance) }} EP <span class="text-grey-7">| {{ instance.location }}</span></span>
+                        <span v-else>{{ instance.location }}</span>
                     </q-item-label>
-                    <q-item-label v-if="component.modifications" caption class="text-info">
-                        <span v-if="component.modifications.mount && component.modifications.mount !== 'single'" class="q-mr-xs text-uppercase">{{ component.modifications.mount }}</span>
-                        <span v-if="component.modifications.fireLink > 1" class="q-mr-xs">Fire-Linked ({{ component.modifications.fireLink }})</span>
-                        <span v-if="component.modifications.enhancement && component.modifications.enhancement !== 'normal'" class="q-mr-xs text-capitalize">{{ component.modifications.enhancement }}</span>
-                        <span v-if="getUpgradeSpecs(component.defId)?.payload?.type === 'capacity' && component.modifications.payloadCount > 0" class="q-mr-xs">Payload: {{ getUpgradeSpecs(component.defId).payload.base }} + {{ component.modifications.payloadCount }}</span>
-                        <span v-else-if="component.modifications.payloadOption" class="q-mr-xs">Extra Payload</span>
-                        <span v-if="component.modifications.batteryCount > 1">Battery ({{ component.modifications.batteryCount }})</span>
-                        <span v-if="component.modifications.quantity > 1"> (x{{ component.modifications.quantity }})</span>
-                        <div v-if="component.modifications.weaponUser" class="text-caption text-grey-5">{{ component.modifications.weaponUser }}</div>
+                    <q-item-label v-if="instance.modifications" caption class="text-info">
+                        <span v-if="instance.modifications.mount && instance.modifications.mount !== 'single'" class="q-mr-xs text-uppercase">{{ instance.modifications.mount }}</span>
+                        <span v-if="instance.modifications.fireLink > 1" class="q-mr-xs">Fire-Linked ({{ instance.modifications.fireLink }})</span>
+                        <span v-if="instance.modifications.enhancement && instance.modifications.enhancement !== 'normal'" class="q-mr-xs text-capitalize">{{ instance.modifications.enhancement }}</span>
+                        <span v-if="getUpgradeSpecs(instance.defId)?.payload?.type === 'capacity' && instance.modifications.payloadCount > 0" class="q-mr-xs">Payload: {{ getUpgradeSpecs(instance.defId).payload.base }} + {{ instance.modifications.payloadCount }}</span>
+                        <span v-else-if="instance.modifications.payloadOption" class="q-mr-xs">Extra Payload</span>
+                        <span v-if="instance.modifications.batteryCount > 1">Battery ({{ instance.modifications.batteryCount }})</span>
+                        <span v-if="instance.modifications.quantity > 1"> (x{{ instance.modifications.quantity }})</span>
+                        <div v-if="instance.modifications.weaponUser" class="text-caption text-grey-5">{{ instance.modifications.weaponUser }}</div>
                     </q-item-label>
                 </q-item-section>
                 <q-item-section side>
                     <div class="text-right q-mr-sm">
                         <div class="text-caption text-amber">
-                            <span v-if="isVariableCost(component.defId)" class="text-italic">{{ $t('ui.variable') }}</span>
-                            <span v-else>{{ format(store.getComponentCost(component)) }}</span>
+                            <span v-if="isVariableCost(instance.defId)" class="text-italic">{{ $t('ui.variable') }}</span>
+                            <span v-else>{{ format(store.getComponentCost(instance)) }}</span>
                         </div>
                     </div>
                     <div class="row items-center">
-                        <q-badge v-if="component.miniaturization > 0" color="orange" label="Mini" class="q-mr-xs" />
-                        <q-btn v-if="hasUpgrades(component.defId)" flat round icon="settings" color="accent" size="sm" @click="openConfig(component)" />
-                        <q-btn flat round icon="delete" color="negative" size="sm" @click="store.removeComponent(component.instanceId)" />
+                        <q-badge v-if="instance.miniaturization > 0" color="orange" label="Mini" class="q-mr-xs" />
+                        <q-btn v-if="hasUpgrades(instance.defId)" flat round icon="settings" color="accent" size="sm" @click="openConfig(instance)" />
+                        <q-btn flat round icon="delete" color="negative" size="sm" @click="store.removeComponent(instance.instanceId)" />
                     </div>
                 </q-item-section>
             </q-item>
@@ -92,48 +92,48 @@ const SystemList = {
         <q-dialog v-model="showConfigDialog">
             <q-card class="bg-grey-9 text-white" style="min-width: 350px">
                 <q-card-section><div class="text-h6">Configure System</div></q-card-section>
-                <q-card-section v-if="editingComponent">
-                    <div v-if="isWeapon(editingComponent.defId)" class="q-mb-md">
+                <q-card-section v-if="editingInstance">
+                    <div v-if="isWeapon(editingInstance.defId)" class="q-mb-md">
                         <div class="text-caption">Weapon User</div>
-                        <q-btn-toggle spread dark v-model="editingComponent.modifications.weaponUser" toggle-color="primary" :options="[{label: 'Pilot', value: 'Pilot'}, {label: 'Copilot', value: 'Copilot'}, {label: 'Gunner', value: 'Gunner'}]" />
+                        <q-btn-toggle spread dark v-model="editingInstance.modifications.weaponUser" toggle-color="primary" :options="[{label: 'Pilot', value: 'Pilot'}, {label: 'Copilot', value: 'Copilot'}, {label: 'Gunner', value: 'Gunner'}]" />
                     </div>
-                    <div v-if="hasUpgrades(editingComponent.defId)" class="q-mb-md">
+                    <div v-if="hasUpgrades(editingInstance.defId)" class="q-mb-md">
                         <div class="q-gutter-y-md">
-                            <div v-if="canMount(editingComponent.defId)">
+                            <div v-if="canMount(editingInstance.defId)">
                                 <div class="text-caption q-mb-xs">Mount: <span class="text-white">{{ configModel.mountLabel }}</span></div>
                                 <q-slider dark v-model="configModel.mountIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div v-if="canFireLink(editingComponent.defId)">
+                            <div v-if="canFireLink(editingInstance.defId)">
                                 <div class="text-caption q-mb-xs">Fire Link: <span class="text-white">{{ configModel.fireLinkLabel }}</span></div>
                                 <q-slider dark v-model="configModel.fireLinkIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
-                            <div v-if="canEnhance(editingComponent.defId)">
+                            <div v-if="canEnhance(editingInstance.defId)">
                                 <div class="text-caption q-mb-xs">Enhancement: <span class="text-white">{{ configModel.enhancementLabel }}</span></div>
                                 <q-slider dark v-model="configModel.enhancementIndex" :min="0" :max="2" :step="1" snap markers label />
                             </div>
                         </div>
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.payload" class="q-mb-md">
-                        <div v-if="getUpgradeSpecs(editingComponent.defId).payload.type === 'capacity'">
-                            <div class="text-caption">Additional {{ getUpgradeSpecs(editingComponent.defId).payload.unitLabel }} ({{ format(store.allEquipment.find(e => e.id === editingComponent.defId).baseCost * getUpgradeSpecs(editingComponent.defId).payload.costFactor) }} each)</div>
-                            <q-input dark type="number" filled v-model.number="editingComponent.modifications.payloadCount" label="Additional Capacity" min="0" :max="(getUpgradeSpecs(editingComponent.defId).payload.max * (editingComponent.modifications.fireLink || 1)) - (getUpgradeSpecs(editingComponent.defId).payload.base * (editingComponent.modifications.fireLink || 1))" :hint="'Base: ' + (getUpgradeSpecs(editingComponent.defId).payload.base * (editingComponent.modifications.fireLink || 1)) + ' | Max Total: ' + (getUpgradeSpecs(editingComponent.defId).payload.max * (editingComponent.modifications.fireLink || 1))" />
+                    <div v-if="getUpgradeSpecs(editingInstance.defId)?.payload" class="q-mb-md">
+                        <div v-if="getUpgradeSpecs(editingInstance.defId).payload.type === 'capacity'">
+                            <div class="text-caption">Additional {{ getUpgradeSpecs(editingInstance.defId).payload.unitLabel }} ({{ format(store.allEquipment.find(e => e.id === editingInstance.defId).baseCost * getUpgradeSpecs(editingInstance.defId).payload.costFactor) }} each)</div>
+                            <q-input dark type="number" filled v-model.number="editingInstance.modifications.payloadCount" label="Additional Capacity" min="0" :max="(getUpgradeSpecs(editingInstance.defId).payload.max * (editingInstance.modifications.fireLink || 1)) - (getUpgradeSpecs(editingInstance.defId).payload.base * (editingInstance.modifications.fireLink || 1))" :hint="'Base: ' + (getUpgradeSpecs(editingInstance.defId).payload.base * (editingInstance.modifications.fireLink || 1)) + ' | Max Total: ' + (getUpgradeSpecs(editingInstance.defId).payload.max * (editingInstance.modifications.fireLink || 1))" />
                         </div>
-                        <q-checkbox v-else dark v-model="editingComponent.modifications.payloadOption" :label="getUpgradeSpecs(editingComponent.defId).payload.label + ' (' + format(getUpgradeSpecs(editingComponent.defId).payload.cost) + ')'" />
+                        <q-checkbox v-else dark v-model="editingInstance.modifications.payloadOption" :label="getUpgradeSpecs(editingInstance.defId).payload.label + ' (' + format(getUpgradeSpecs(editingInstance.defId).payload.cost) + ')'" />
                     </div>
-                    <div v-if="canBattery(editingComponent.defId) && (!editingComponent.modifications.fireLink || editingComponent.modifications.fireLink === 1)" class="q-mb-md">
-                        <div class="text-caption">Battery Size ({{ editingComponent.modifications.batteryCount }})</div>
-                        <q-slider dark v-model="editingComponent.modifications.batteryCount" :min="1" :max="6" :step="1" snap markers label />
+                    <div v-if="canBattery(editingInstance.defId) && (!editingInstance.modifications.fireLink || editingInstance.modifications.fireLink === 1)" class="q-mb-md">
+                        <div class="text-caption">Battery Size ({{ editingInstance.modifications.batteryCount }})</div>
+                        <q-slider dark v-model="editingInstance.modifications.batteryCount" :min="1" :max="6" :step="1" snap markers label />
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.quantity" class="q-mb-md">
+                    <div v-if="getUpgradeSpecs(editingInstance.defId)?.quantity" class="q-mb-md">
                         <div class="text-caption">Quantity</div>
-                        <q-input dark type="number" filled v-model.number="editingComponent.modifications.quantity" label="Quantity" min="1" />
+                        <q-input dark type="number" filled v-model.number="editingInstance.modifications.quantity" label="Quantity" min="1" />
                     </div>
-                    <div v-if="getUpgradeSpecs(editingComponent.defId)?.fireLinkOption && (editingComponent.modifications.fireLink || 1) > 1" class="q-mb-md">
-                        <q-checkbox dark v-model="editingComponent.modifications.fireLinkOption" :label="'Selective Fire (+' + format(getUpgradeSpecs(editingComponent.defId).fireLinkOption.cost) + ')'" />
+                    <div v-if="getUpgradeSpecs(editingInstance.defId)?.fireLinkOption && (editingInstance.modifications.fireLink || 1) > 1" class="q-mb-md">
+                        <q-checkbox dark v-model="editingInstance.modifications.fireLinkOption" :label="'Selective Fire (+' + format(getUpgradeSpecs(editingInstance.defId).fireLinkOption.cost) + ')'" />
                     </div>
                     <!-- Generic Options from componentOptions -->
-                    <div v-for="opt in getGenericOptions(editingComponent.defId)" :key="opt.value" class="q-mb-md">
-                         <q-checkbox dark v-model="editingComponent.modifications[opt.value]" :label="opt.label" />
+                    <div v-for="opt in getGenericOptions(editingInstance.defId)" :key="opt.value" class="q-mb-md">
+                         <q-checkbox dark v-model="editingInstance.modifications[opt.value]" :label="opt.label" />
                     </div>
                 </q-card-section>
                 <q-card-actions align="right">
@@ -1041,32 +1041,32 @@ export const SystemListWrapper = {
     setup() {
         const store = useShipStore();
         const showConfigDialog = ref(false);
-        const editingComponent = ref(null);
+        const editingInstance = ref(null);
 
-        const getName = (component) => {
-            const id = component.defId || component;
+        const getName = (instance) => {
+            const id = instance.defId || instance;
             const def = store.allEquipment.find(e => e.id === id);
             let name = getLocalizedName(def);
 
-            if (component && component.defId) {
-                const calcDmg = store.getComponentDamage(component);
+            if (instance && instance.defId) {
+                const calcDmg = store.getComponentDamage(instance);
                 if (calcDmg) {
                     name = name.replace(/\(\d+d\d+(x\d+)?\)/, `(${calcDmg})`);
                 }
             }
             return name;
         };
-        const getAvailability = (idOrComp) => {
-            const id = idOrComp.defId || idOrComp;
+        const getAvailability = (idOrInstance) => {
+            const id = idOrInstance.defId || idOrInstance;
             const def = store.allEquipment.find(e => e.id === id);
             let avail = def && def.availability ? def.availability : 'Common';
 
             // If a full component object is passed, check modifications
-            if (idOrComp.modifications) {
+            if (idOrInstance.modifications) {
                  const levels = { 'Common': 0, 'Licensed': 1, 'Restricted': 2, 'Military': 3, 'Illegal': 4 };
                  const reverse = ['Common', 'Licensed', 'Restricted', 'Military', 'Illegal'];
                  let currentLevel = levels[avail] || 0;
-                 const mods = idOrComp.modifications;
+                 const mods = idOrInstance.modifications;
 
                  // Mod Availabilities (Best Effort based on context)
                  if (mods.mount === 'quad') currentLevel = Math.max(currentLevel, 2); // Restricted
@@ -1163,10 +1163,10 @@ export const SystemListWrapper = {
                 .map(opt => ({ value: opt, label: labels[opt] || opt }));
         };
 
-        const openConfig = (component) => { editingComponent.value = component; showConfigDialog.value = true; };
+        const openConfig = (instance) => { editingInstance.value = instance; showConfigDialog.value = true; };
 
-        const checkValidity = (component) => {
-            const def = store.allEquipment.find(e => e.id === component.defId);
+        const checkValidity = (instance) => {
+            const def = store.allEquipment.find(e => e.id === instance.defId);
             if (!def) return true;
 
             const shipIndex = store.db.SIZE_RANK.indexOf(store.chassis.size);
@@ -1182,8 +1182,8 @@ export const SystemListWrapper = {
         };
 
         const configModel = computed(() => {
-            if (!editingComponent.value || !editingComponent.value.modifications) return {};
-            const mods = editingComponent.value.modifications;
+            if (!editingInstance.value || !editingInstance.value.modifications) return {};
+            const mods = editingInstance.value.modifications;
 
             const mountMap = ['single', 'twin', 'quad'];
             const fireLinkMap = [1, 2, 4];
@@ -1204,7 +1204,7 @@ export const SystemListWrapper = {
                     mods.fireLink = val;
                     if (val > 1) {
                          mods.batteryCount = 1;
-                         const def = store.allEquipment.find(e => e.id === editingComponent.value.defId);
+                         const def = store.allEquipment.find(e => e.id === editingInstance.value.defId);
                          if (def && def.upgradeSpecs && def.upgradeSpecs.payload && def.upgradeSpecs.payload.type === 'capacity') {
                              mods.fireLinkOption = true;
                          }
@@ -1218,7 +1218,7 @@ export const SystemListWrapper = {
             };
         });
 
-        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingComponent, hasUpgrades, getUpgradeSpecs, canMount, canFireLink, canEnhance, canBattery, getGenericOptions, openConfig, checkValidity, configModel };
+        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingInstance, hasUpgrades, getUpgradeSpecs, canMount, canFireLink, canEnhance, canBattery, getGenericOptions, openConfig, checkValidity, configModel };
     }
 };
 
@@ -1244,37 +1244,37 @@ export const ShipSheetWrapper = {
     ...ShipSheet,
     setup() {
         const store = useShipStore();
-        const getName = (component) => {
-            const id = component.defId || component;
+        const getName = (instance) => {
+            const id = instance.defId || instance;
             const def = store.allEquipment.find(e => e.id === id);
             let name = getLocalizedName(def);
 
-            if (component.modifications) {
+            if (instance.modifications) {
                 const parts = [];
-                if (component.modifications.fireLink > 1) parts.push(`Fire-Linked (${component.modifications.fireLink})`);
-                if (component.modifications.enhancement && component.modifications.enhancement !== 'normal') parts.push(component.modifications.enhancement.charAt(0).toUpperCase() + component.modifications.enhancement.slice(1));
-                if (component.modifications.mount && component.modifications.mount !== 'single') parts.push(component.modifications.mount.charAt(0).toUpperCase() + component.modifications.mount.slice(1));
+                if (instance.modifications.fireLink > 1) parts.push(`Fire-Linked (${instance.modifications.fireLink})`);
+                if (instance.modifications.enhancement && instance.modifications.enhancement !== 'normal') parts.push(instance.modifications.enhancement.charAt(0).toUpperCase() + instance.modifications.enhancement.slice(1));
+                if (instance.modifications.mount && instance.modifications.mount !== 'single') parts.push(instance.modifications.mount.charAt(0).toUpperCase() + instance.modifications.mount.slice(1));
                 if (parts.length > 0) name = `${parts.join(' ')} ${name}`;
             }
             return name;
         };
         const getMod = (score) => Math.floor((score - 10) / 2);
-        const weapons = computed(() => store.installedComponents.filter(c => {
-            const def = store.allEquipment.find(e => e.id === c.defId);
+        const weapons = computed(() => store.installedComponents.filter(instance => {
+            const def = store.allEquipment.find(e => e.id === instance.defId);
             return def && store.isWeapon(def.id);
         }));
         const systemNames = computed(() => {
-            const nonWeapons = store.installedComponents.filter(c => {
-                const def = store.allEquipment.find(e => e.id === c.defId);
+            const nonWeapons = store.installedComponents.filter(instance => {
+                const def = store.allEquipment.find(e => e.id === instance.defId);
                 return def && !store.isWeapon(def.id) && !store.isEngine(def.id);
             });
             if (nonWeapons.length === 0) return i18n.global.t('ui.installed_systems');
-            return nonWeapons.map(c => getName(c.defId)).join(', ');
+            return nonWeapons.map(instance => getName(instance.defId)).join(', ');
         });
 
         // Enhanced Damage Logic for Variants
-        const getDmg = (component) => {
-            return store.getComponentDamage(component) || '-';
+        const getDmg = (instance) => {
+            return store.getComponentDamage(instance) || '-';
         }
         const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
         const formatCreds = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
@@ -1282,11 +1282,11 @@ export const ShipSheetWrapper = {
         const componentsWithDescriptions = computed(() => {
             const seen = new Set();
             const unique = [];
-            store.installedComponents.forEach(c => {
-                const def = store.allEquipment.find(e => e.id === c.defId);
-                if (def && def.description && !seen.has(c.defId)) {
-                    unique.push(c);
-                    seen.add(c.defId);
+            store.installedComponents.forEach(instance => {
+                const def = store.allEquipment.find(e => e.id === instance.defId);
+                if (def && def.description && !seen.has(instance.defId)) {
+                    unique.push(instance);
+                    seen.add(instance.defId);
                 }
             });
             return unique;
