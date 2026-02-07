@@ -20,7 +20,16 @@ export const messages = {
             installed_systems: "Installed Systems", print_btn: "Print to PDF / Paper",
             convert_cargo_ep: "Convert Cargo to EP", cargo_to_ep_hint: "{sizeMult} tons = 1 EP",
             max_cargo: "Max Cargo", cargo_converted: "Cargo Converted", close: "Close",
-            ship_name: "Ship Name", import: "Load Ship", search_component: "Search Component"
+            ship_name: "Ship Name", import: "Load Ship", search_component: "Search Component",
+            type_weapon_help: "Installed on Hardpoints. Used for offensive capabilities.",
+            type_system_help: "Installed in Internal Bays. Provides utility, defense, or support.",
+            type_engine_help: "Installed in Aft Section. Determines speed and maneuverability.",
+            type_modification_help: "Applies to Hull. Alters base stats or structural properties.",
+            type_cargo_help: "Takes up Cargo Space. Used for storage or passenger capacity.",
+            type_help_default: "Determines where the component is installed and its primary function.",
+            properties_help: "Define mechanical effects, stat bonuses, and special rules for this component.",
+            search_help: "Search for any component by name across all categories.",
+            template_help: "Apply a base template to modify the ship's stats (e.g. Refitted, Cheater)."
         },
         stats: {
             str: "STR", dex: "DEX", int: "INT", ref: "Reflex Defense", armor: "Armor",
@@ -57,7 +66,16 @@ export const messages = {
             installed_systems: "Sistemas Instalados", print_btn: "Imprimir en PDF / Papel",
             convert_cargo_ep: "Convertir Carga a PE", cargo_to_ep_hint: "{sizeMult} tons = 1 PE",
             max_cargo: "Carga Máx", cargo_converted: "Carga Convertida", close: "Cerrar",
-            ship_name: "Nombre de Nave", import: "Importar", search_component: "Buscar Componente"
+            ship_name: "Nombre de Nave", import: "Importar", search_component: "Buscar Componente",
+            type_weapon_help: "Instalado en Puntos de Anclaje. Usado para capacidades ofensivas.",
+            type_system_help: "Instalado en Bahías Internas. Provee utilidad, defensa o soporte.",
+            type_engine_help: "Instalado en Sección de Popa. Determina velocidad y maniobrabilidad.",
+            type_modification_help: "Aplica al Casco. Altera estadísticas base o propiedades estructurales.",
+            type_cargo_help: "Ocupa Espacio de Carga. Usado para almacenamiento o capacidad de pasajeros.",
+            type_help_default: "Determina dónde se instala el componente y su función primaria.",
+            properties_help: "Define efectos mecánicos, bonos de estadísticas y reglas especiales.",
+            search_help: "Busca cualquier componente por nombre en todas las categorías.",
+            template_help: "Aplica una plantilla base para modificar estadísticas de la nave (ej. Reacondicionado)."
         },
         stats: {
             str: "FUE", dex: "DES", int: "INT", ref: "Defensa de Reflejos", armor: "Armadura",

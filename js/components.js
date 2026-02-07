@@ -185,7 +185,12 @@ const ConfigPanel = {
         <q-separator dark />
 
         <q-card-section class="col-auto">
-            <div class="text-h6 q-mb-sm">{{ $t('ui.template') }}</div>
+            <div class="row items-center q-mb-sm">
+                <div class="text-h6">{{ $t('ui.template') }}</div>
+                <q-btn flat round dense icon="info" size="xs" color="grey-5" class="q-ml-xs">
+                    <q-tooltip>{{ $t('ui.template_help') }}</q-tooltip>
+                </q-btn>
+            </div>
             <q-select filled dark v-model="store.activeTemplate" :options="templateOptions" :label="$t('ui.template')" emit-value map-options dense options-dense><template v-slot:prepend><q-icon name="layers" /></template></q-select>
         </q-card-section>
 
@@ -367,31 +372,38 @@ export const AddModDialog = {
 
             <q-card-section class="q-pt-none q-gutter-md">
                 <!-- Search Bar -->
-                <div class="q-mb-md">
-                    <q-select
-                        filled dark
-                        v-model="searchSelection"
-                        use-input
-                        input-debounce="300"
-                        :label="$t('ui.search_component')"
-                        :options="searchOptions"
-                        option-label="label"
-                        option-value="id"
-                        @filter="filterSearch"
-                        @update:model-value="onSearchSelect"
-                        clearable
-                        dense
-                    >
-                        <template v-slot:prepend><q-icon name="search" /></template>
-                        <template v-slot:option="scope">
-                            <q-item v-bind="scope.itemProps">
-                                <q-item-section>
-                                    <q-item-label>{{ scope.opt.label }}</q-item-label>
-                                    <q-item-label caption class="text-grey-5">{{ scope.opt.category }} - {{ scope.opt.group }}</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                        </template>
-                    </q-select>
+                <div class="q-mb-md row items-center">
+                    <div class="col-grow">
+                        <q-select
+                            filled dark
+                            v-model="searchSelection"
+                            use-input
+                            input-debounce="300"
+                            :label="$t('ui.search_component')"
+                            :options="searchOptions"
+                            option-label="label"
+                            option-value="id"
+                            @filter="filterSearch"
+                            @update:model-value="onSearchSelect"
+                            clearable
+                            dense
+                        >
+                            <template v-slot:prepend><q-icon name="search" /></template>
+                            <template v-slot:option="scope">
+                                <q-item v-bind="scope.itemProps">
+                                    <q-item-section>
+                                        <q-item-label>{{ scope.opt.label }}</q-item-label>
+                                        <q-item-label caption class="text-grey-5">{{ scope.opt.category }} - {{ scope.opt.group }}</q-item-label>
+                                    </q-item-section>
+                                </q-item>
+                            </template>
+                        </q-select>
+                    </div>
+                    <div class="col-auto q-ml-sm">
+                        <q-btn flat round dense icon="info" size="sm" color="grey-5">
+                            <q-tooltip>{{ $t('ui.search_help') }}</q-tooltip>
+                        </q-btn>
+                    </div>
                 </div>
                 <q-separator dark class="q-mb-md" />
 
@@ -814,7 +826,14 @@ export const CustomComponentDialog = {
                             <template v-slot:no-option><q-item><q-item-section class="text-grey">Type to add new group</q-item-section></q-item></template>
                         </q-select>
                     </div>
-                    <div><q-select filled dark v-model="newCustomComponent.type" :options="['weapon', 'system', 'engine', 'modification', 'cargo']" label="Type"></q-select></div>
+                    <div class="row items-center q-col-gutter-xs">
+                        <div class="col-grow"><q-select filled dark v-model="newCustomComponent.type" :options="['weapon', 'system', 'engine', 'modification', 'cargo']" label="Type"></q-select></div>
+                        <div class="col-auto">
+                            <q-btn flat round dense icon="info" size="sm" color="grey-5">
+                                <q-tooltip>{{ getTypeHelp(newCustomComponent.type) }}</q-tooltip>
+                            </q-btn>
+                        </div>
+                    </div>
                     <div class="row q-col-gutter-sm">
                         <div class="col"><q-input filled dark v-model="newCustomComponent.baseCost" label="Base Cost" type="number"></q-input></div>
                         <div class="col"><q-input filled dark v-model="newCustomComponent.baseEp" label="Base EP" type="number"></q-input></div>
@@ -824,7 +843,12 @@ export const CustomComponentDialog = {
                     </div>
 
                     <div>
-                        <div class="text-subtitle2 q-mb-sm">Properties & Modifiers</div>
+                        <div class="text-subtitle2 q-mb-sm">
+                            Properties & Modifiers
+                            <q-icon name="info" color="grey-5" size="xs" class="q-ml-xs">
+                                <q-tooltip>{{ $t('ui.properties_help') }}</q-tooltip>
+                            </q-icon>
+                        </div>
                         <div class="row q-col-gutter-sm items-center q-mb-md">
                             <div class="col">
                                 <q-select filled dark v-model="propertyToAdd" :options="propertyDefinitions" label="Select Property" dense option-label="label"></q-select>
@@ -870,6 +894,11 @@ export const CustomComponentDialog = {
         const propertyToAdd = ref(null);
         const groupOptionsFiltered = ref([]);
         const exclusiveOptionsFiltered = ref([]);
+
+        const getTypeHelp = (type) => {
+            if (!type) return t('ui.type_help_default');
+            return t('ui.type_' + type + '_help');
+        };
 
         // Property Definitions (Moved from app.js)
         const propertyDefinitions = [
@@ -1008,7 +1037,7 @@ export const CustomComponentDialog = {
             }
         });
 
-        return { store, newCustomComponent, activeProperties, propertyToAdd, propertyDefinitions, groupOptionsFiltered, exclusiveOptionsFiltered, categoryOptions, filterGroupFn, filterExclusiveFn, addPropertyToCustomComponent, removePropertyFromCustomComponent, createCustomComponent };
+        return { store, newCustomComponent, activeProperties, propertyToAdd, propertyDefinitions, groupOptionsFiltered, exclusiveOptionsFiltered, categoryOptions, filterGroupFn, filterExclusiveFn, addPropertyToCustomComponent, removePropertyFromCustomComponent, createCustomComponent, getTypeHelp };
     }
 };
 
