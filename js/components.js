@@ -618,7 +618,10 @@ export const AddModDialog = {
         const jsonContent = ref('');
 
         const openWiki = () => {
-            if (selectedItemDef.value) {
+            if (selectedItemDef.value && selectedItemDef.value.wiki) {
+                window.open(selectedItemDef.value.wiki, '_blank');
+            } else if (selectedItemDef.value) {
+                // Fallback for items that might miss the wiki property
                 const name = selectedItemDef.value.name.replace(/ /g, '_');
                 window.open(`https://swse.fandom.com/wiki/${name}`, '_blank');
             }
