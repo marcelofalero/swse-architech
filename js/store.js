@@ -183,23 +183,61 @@ export const useShipStore = defineStore('ship', () => {
                      cost += def.upgradeSpecs.payload.cost;
                  }
              }
-             // Selective Fire cost (distinct from Fire-Link multipliers)
-             if (def.upgradeSpecs && def.upgradeSpecs.fireLinkOption && instance.modifications.fireLinkOption) {
-                 cost += (def.upgradeSpecs.fireLinkOption.cost || 0);
+             // Helper to resolve cost from definition or default
+             const resolveCost = (key, baseCost) => {
+                 let costDef = null;
+                 // 1. Check Component Override
+                 if (def.upgradeSpecs && def.upgradeSpecs.optionCosts && def.upgradeSpecs.optionCosts[key] !== undefined) {
+                     costDef = def.upgradeSpecs.optionCosts[key];
+                 } else if (def.upgradeSpecs && def.upgradeSpecs[key] && typeof def.upgradeSpecs[key] === 'object' && def.upgradeSpecs[key].cost !== undefined) {
+                     // Check legacy/direct object structure (e.g. fireLinkOption.cost)
+                     costDef = def.upgradeSpecs[key].cost;
+                 }
+
+                 // 2. Check Global Default
+                 if (costDef === null && db.DEFAULT_OPTION_COSTS && db.DEFAULT_OPTION_COSTS[key] !== undefined) {
+                     costDef = db.DEFAULT_OPTION_COSTS[key];
+                 }
+
+                 if (costDef === null) return 0;
+
+                 // 3. Calculate Logic (Fixed or Multiplier)
+                 if (typeof costDef === 'number') {
+                     return costDef;
+                 } else if (typeof costDef === 'object') {
+                     if (costDef.multiplier) {
+                         return baseCost * costDef.multiplier;
+                     }
+                     if (costDef.cost) {
+                         // Legacy object { cost: 1000 } or { cost: 1000, sizeMult: true }
+                         let val = costDef.cost;
+                         if (costDef.sizeMult) val *= sizeMultVal.value;
+                         return val;
+                     }
+                 }
+                 return 0;
+             };
+
+             // Selective Fire
+             if (instance.modifications.fireLinkOption) {
+                 cost += resolveCost('fireLinkOption', cost); // Base cost passed might be modified by previous steps, usually multiplier is on base?
+                 // Prompt says "multiplier of the base". `def.baseCost` is clean base.
+                 // But `cost` var here is accumulating.
+                 // Let's use `def.baseCost` for multiplier reference as it's cleaner.
+                 // cost += resolveCost('fireLinkOption', def.baseCost);
              }
 
              // Generic Option Costs
-             if (def.upgradeSpecs && def.upgradeSpecs.optionCosts) {
-                 for (const [key, val] of Object.entries(instance.modifications)) {
-                     if (val === true && def.upgradeSpecs.optionCosts[key]) {
-                         const optCostDef = def.upgradeSpecs.optionCosts[key];
-                         if (typeof optCostDef === 'object' && optCostDef !== null) {
-                             let optCost = optCostDef.cost || 0;
-                             if (optCostDef.sizeMult) optCost *= sizeMultVal.value;
-                             cost += optCost;
-                         } else {
-                             cost += optCostDef;
-                         }
+             for (const [key, val] of Object.entries(instance.modifications)) {
+                 if (val === true) {
+                     // Exclude known keys handled elsewhere to avoid double counting if they overlap
+                     // fireLinkOption handled above.
+                     if (key === 'fireLinkOption') continue;
+
+                     // We check if this key implies a cost (either via spec override or default)
+                     const addedCost = resolveCost(key, def.baseCost);
+                     if (addedCost > 0) {
+                         cost += addedCost;
                      }
                  }
              }
