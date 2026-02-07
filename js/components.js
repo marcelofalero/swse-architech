@@ -1152,21 +1152,21 @@ export const SystemListWrapper = {
             if (!specs) return false;
             if (specs.componentOptions && specs.componentOptions.includes('weapon.multibarrel')) return true;
             if (specs.mounts !== undefined) return specs.mounts;
-            return specs.weaponVariants && !isLauncher(defId);
+            return false;
         };
         const canFireLink = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
             if (specs.componentOptions && specs.componentOptions.includes('weapon.fireLink')) return true;
             if (specs.fireLink !== undefined) return specs.fireLink;
-            return specs.weaponVariants;
+            return false;
         };
         const canEnhance = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
             if (specs.componentOptions && specs.componentOptions.includes('weapon.enhancement')) return true;
             if (specs.enhancement !== undefined) return specs.enhancement;
-            return specs.weaponVariants && !isLauncher(defId);
+            return false;
         };
         const checkConstraints = (specValue) => {
             if (specValue === true) return true;
@@ -1196,9 +1196,13 @@ export const SystemListWrapper = {
 
         const canPointBlank = (defId) => {
             const specs = getUpgradeSpecs(defId);
-            if (!specs || !specs.pointBlank) return false;
+            if (!specs) return false;
+            if (!specs.componentOptions || !specs.componentOptions.includes('weapon.pointBlank')) return false;
 
-            return checkConstraints(specs.pointBlank);
+            // Check specs.pointBlank constraint if available
+            if (specs.pointBlank) return checkConstraints(specs.pointBlank);
+
+            return true;
         };
 
         const getGenericOptions = (defId) => {

@@ -546,10 +546,16 @@
             "availability": "Licensed",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "3d10x2",
             "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
@@ -568,10 +574,16 @@
             "availability": "Restricted",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "4d10x2",
             "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
@@ -590,10 +602,16 @@
             "availability": "Military",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "5d10x2",
             "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
@@ -619,8 +637,13 @@
                     "unitLabel": "torpedoes"
                 },
                 "battery": true,
-                "weaponVariants": true,
-                "fireLinkOption": {}
+                "fireLinkOption": {},
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "9d10x2",
             "description": "Base Capacity: 3 torpedoes. Additional capacity costs +25% per torpedo (max 16).",
@@ -639,10 +662,16 @@
             "availability": "Licensed",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "3d10x2",
             "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament.",
@@ -661,7 +690,12 @@
             "availability": "Restricted",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "5d10x2",
             "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire.",
@@ -681,7 +715,12 @@
             "minShipSize": "Colossal (frigate)",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "3d10x5",
             "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire.",
@@ -726,8 +765,13 @@
                     "unitLabel": "missiles"
                 },
                 "battery": true,
-                "weaponVariants": true,
-                "fireLinkOption": {}
+                "fireLinkOption": {},
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "7d10x2",
             "description": "Base Capacity: 6 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -753,8 +797,13 @@
                     "unitLabel": "missiles"
                 },
                 "battery": true,
-                "weaponVariants": true,
-                "fireLinkOption": {}
+                "fireLinkOption": {},
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "9d10x2",
             "description": "Base Capacity: 16 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -781,8 +830,13 @@
                     "unitLabel": "missiles"
                 },
                 "battery": true,
-                "weaponVariants": true,
-                "fireLinkOption": {}
+                "fireLinkOption": {},
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "damage": "9d10x5",
             "description": "Base Capacity: 30 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -2850,7 +2904,12 @@
             "availability": "Military",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "3d10x5",
@@ -2870,7 +2929,12 @@
             "availability": "Military",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "5d10x5",
@@ -2890,7 +2954,12 @@
             "availability": "Military",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "7d10x5",
@@ -2910,10 +2979,16 @@
             "availability": "Licensed",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "3d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
@@ -2932,10 +3007,16 @@
             "availability": "Restricted",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "4d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
@@ -2954,10 +3035,16 @@
             "availability": "Military",
             "upgradeSpecs": {
                 "battery": true,
-                "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                }
+                },
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel",
+                    "weapon.pointBlank"
+                ]
             },
             "damage": "5d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
@@ -3439,8 +3526,13 @@
             "description": "Launches heavy ordnance payloads.",
             "minShipSize": "Colossal (transport)",
             "upgradeSpecs": {
-                "weaponVariants": true,
-                "fireLinkOption": {}
+                "fireLinkOption": {},
+                "componentOptions": [
+                    "weapon.battery",
+                    "weapon.enhancement",
+                    "weapon.fireLink",
+                    "weapon.multibarrel"
+                ]
             },
             "location": "Hardpoint",
             "wiki": "https://swse.fandom.com/wiki/Heavy_Ordnance_Launcher"
