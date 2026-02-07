@@ -171,7 +171,11 @@
             },
             "defaultMods": [
                 "engine_3",
-                "shield_gen_20"
+                "shield_gen_20",
+                {
+                    "id": "escape_pod",
+                    "quantity": 1
+                }
             ]
         },
         {
@@ -200,7 +204,11 @@
                 "engine_3",
                 "hyperdrive_1",
                 "shield_gen_20",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 2
+                }
             ]
         },
         {
@@ -229,7 +237,11 @@
                 "engine_2",
                 "hyperdrive_2",
                 "shield_gen_15",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 1
+                }
             ]
         },
         {
@@ -258,7 +270,11 @@
                 "engine_1",
                 "hyperdrive_2",
                 "shield_gen_20",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 3
+                }
             ]
         },
         {
@@ -287,7 +303,11 @@
                 "engine_3",
                 "hyperdrive_2",
                 "shield_gen_30",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 32
+                }
             ]
         },
         {
@@ -316,7 +336,11 @@
                 "engine_2",
                 "hyperdrive_2",
                 "shield_gen_30",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 150
+                }
             ]
         },
         {
@@ -345,7 +369,11 @@
                 "engine_2",
                 "hyperdrive_2",
                 "shield_gen_40",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 750
+                }
             ]
         },
         {
@@ -374,7 +402,11 @@
                 "engine_2",
                 "hyperdrive_1",
                 "shield_gen_60",
-                "nav_standard"
+                "nav_standard",
+                {
+                    "id": "escape_pod",
+                    "quantity": 3125
+                }
             ]
         },
         {
