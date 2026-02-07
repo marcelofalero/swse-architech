@@ -549,9 +549,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "3d10x2",
@@ -574,9 +571,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "4d10x2",
@@ -599,9 +593,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "5d10x2",
@@ -629,9 +620,7 @@
                 },
                 "battery": true,
                 "weaponVariants": true,
-                "fireLinkOption": {
-                    "cost": 1000
-                }
+                "fireLinkOption": {}
             },
             "damage": "9d10x2",
             "description": "Base Capacity: 3 torpedoes. Additional capacity costs +25% per torpedo (max 16).",
@@ -653,9 +642,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "3d10x2",
@@ -741,9 +727,7 @@
                 },
                 "battery": true,
                 "weaponVariants": true,
-                "fireLinkOption": {
-                    "cost": 1000
-                }
+                "fireLinkOption": {}
             },
             "damage": "7d10x2",
             "description": "Base Capacity: 6 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -770,9 +754,7 @@
                 },
                 "battery": true,
                 "weaponVariants": true,
-                "fireLinkOption": {
-                    "cost": 1000
-                }
+                "fireLinkOption": {}
             },
             "damage": "9d10x2",
             "description": "Base Capacity: 16 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -800,9 +782,7 @@
                 },
                 "battery": true,
                 "weaponVariants": true,
-                "fireLinkOption": {
-                    "cost": 1000
-                }
+                "fireLinkOption": {}
             },
             "damage": "9d10x5",
             "description": "Base Capacity: 30 missiles. Additional capacity costs +20% per missile (max double capacity).",
@@ -2933,9 +2913,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "3d10x2",
@@ -2958,9 +2935,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "4d10x2",
@@ -2983,9 +2957,6 @@
                 "weaponVariants": true,
                 "pointBlank": {
                     "minShipSize": "Colossal (frigate)"
-                },
-                "optionCosts": {
-                    "pointBlank": 4000
                 }
             },
             "damage": "5d10x2",
@@ -3469,9 +3440,7 @@
             "minShipSize": "Colossal (transport)",
             "upgradeSpecs": {
                 "weaponVariants": true,
-                "fireLinkOption": {
-                    "cost": 1000
-                }
+                "fireLinkOption": {}
             },
             "location": "Hardpoint",
             "wiki": "https://swse.fandom.com/wiki/Heavy_Ordnance_Launcher"
@@ -3491,5 +3460,9 @@
             "location": "Internal Bay",
             "wiki": "https://swse.fandom.com/wiki/Lifeboat,_Large"
         }
-    ]
+    ],
+    "DEFAULT_OPTION_COSTS": {
+        "pointBlank": 4000,
+        "fireLinkOption": 1000
+    }
 }
