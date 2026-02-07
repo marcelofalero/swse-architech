@@ -540,7 +540,6 @@
             "name_es": "Cañón Láser Ligero (3d10x2)",
             "category": "Weapon Systems",
             "group": "Laser Cannons",
-            "type": "weapon",
             "baseCost": 1500,
             "baseEp": 1,
             "sizeMult": false,
@@ -550,7 +549,8 @@
                 "weaponVariants": true
             },
             "damage": "3d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
+            "location": "Hardpoint"
         },
         {
             "id": "laser_med",
@@ -558,7 +558,6 @@
             "name_es": "Cañón Láser Mediano (4d10x2)",
             "category": "Weapon Systems",
             "group": "Laser Cannons",
-            "type": "weapon",
             "baseCost": 4000,
             "baseEp": 1,
             "sizeMult": false,
@@ -568,7 +567,8 @@
                 "weaponVariants": true
             },
             "damage": "4d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
+            "location": "Hardpoint"
         },
         {
             "id": "laser_hvy",
@@ -576,7 +576,6 @@
             "name_es": "Cañón Láser Pesado (5d10x2)",
             "category": "Weapon Systems",
             "group": "Laser Cannons",
-            "type": "weapon",
             "baseCost": 6000,
             "baseEp": 2,
             "sizeMult": false,
@@ -586,7 +585,8 @@
                 "weaponVariants": true
             },
             "damage": "5d10x2",
-            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive."
+            "description": "Laser Cannons are the most common Starship weapons. They generally have better Range than Blaster Cannons but are somewhat more expensive.",
+            "location": "Hardpoint"
         },
         {
             "id": "proton_torp",
@@ -594,7 +594,6 @@
             "name_es": "Lanzador de Torpedos de Protones",
             "category": "Weapon Systems",
             "group": "Launchers",
-            "type": "weapon",
             "baseCost": 2500,
             "baseEp": 1,
             "sizeMult": false,
@@ -614,7 +613,8 @@
                 }
             },
             "damage": "9d10x2",
-            "description": "Base Capacity: 3 torpedoes. Additional capacity costs +25% per torpedo (max 16)."
+            "description": "Base Capacity: 3 torpedoes. Additional capacity costs +25% per torpedo (max 16).",
+            "location": "Hardpoint"
         },
         {
             "id": "ion_cannon_light",
@@ -622,7 +622,6 @@
             "name_es": "Cañón de Iones Ligero (3d10x2)",
             "category": "Weapon Systems",
             "group": "Ion Weapons",
-            "type": "weapon",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
@@ -632,7 +631,8 @@
                 "weaponVariants": true
             },
             "damage": "3d10x2",
-            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament."
+            "description": "Ion Cannons deal Ion damage. Starship-mounted Ion Cannons are generally defense armament.",
+            "location": "Hardpoint"
         },
         {
             "id": "ion_cannon",
@@ -640,7 +640,6 @@
             "name_es": "Cañón de Iones Mediano (5d10x2)",
             "category": "Weapon Systems",
             "group": "Ion Weapons",
-            "type": "weapon",
             "baseCost": 3000,
             "baseEp": 2,
             "sizeMult": false,
@@ -650,7 +649,8 @@
                 "weaponVariants": true
             },
             "damage": "5d10x2",
-            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire.",
+            "location": "Hardpoint"
         },
         {
             "id": "ion_cannon_hvy",
@@ -658,7 +658,6 @@
             "name_es": "Cañón de Iones Pesado (3d10x5)",
             "category": "Weapon Systems",
             "group": "Ion Weapons",
-            "type": "weapon",
             "baseCost": 6000,
             "baseEp": 5,
             "sizeMult": false,
@@ -669,7 +668,8 @@
                 "weaponVariants": true
             },
             "damage": "3d10x5",
-            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire."
+            "description": "Ion Cannons deal Ion damage. Most Starship-mounted Ion Cannons do not have a high enough rate of fire for Autofire.",
+            "location": "Hardpoint"
         },
         {
             "id": "ion_cannon_hapan",
@@ -677,7 +677,6 @@
             "name_es": "Cañón de Iones Triple Hapan (5d10x5)",
             "category": "Weapon Systems",
             "group": "Ion Weapons",
-            "type": "weapon",
             "baseCost": 12000,
             "baseEp": 3,
             "sizeMult": false,
@@ -687,7 +686,8 @@
                 "battery": true
             },
             "damage": "5d10x5",
-            "description": "Acts like a Point-Defense Weapon (no penalty for targets smaller than Colossal). Capable of Autofire, but not Starship Scale Area Attacks. Illegal outside Hapan Consortium."
+            "description": "Acts like a Point-Defense Weapon (no penalty for targets smaller than Colossal). Capable of Autofire, but not Starship Scale Area Attacks. Illegal outside Hapan Consortium.",
+            "location": "Hardpoint"
         },
         {
             "id": "concussion_missile_light",
@@ -695,7 +695,6 @@
             "name_es": "Lanzador de Misiles de Concusión Ligero (7d10x2)",
             "category": "Weapon Systems",
             "group": "Launchers",
-            "type": "weapon",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": false,
@@ -715,7 +714,8 @@
                 }
             },
             "damage": "7d10x2",
-            "description": "Base Capacity: 6 missiles. Additional capacity costs +20% per missile (max double capacity)."
+            "description": "Base Capacity: 6 missiles. Additional capacity costs +20% per missile (max double capacity).",
+            "location": "Hardpoint"
         },
         {
             "id": "concussion_missile",
@@ -723,7 +723,6 @@
             "name_es": "Lanzador de Misiles de Concusión Mediano (9d10x2)",
             "category": "Weapon Systems",
             "group": "Launchers",
-            "type": "weapon",
             "baseCost": 3500,
             "baseEp": 5,
             "sizeMult": false,
@@ -743,7 +742,8 @@
                 }
             },
             "damage": "9d10x2",
-            "description": "Base Capacity: 16 missiles. Additional capacity costs +20% per missile (max double capacity)."
+            "description": "Base Capacity: 16 missiles. Additional capacity costs +20% per missile (max double capacity).",
+            "location": "Hardpoint"
         },
         {
             "id": "concussion_missile_hvy",
@@ -751,7 +751,6 @@
             "name_es": "Lanzador de Misiles de Concusión Pesado (9d10x5)",
             "category": "Weapon Systems",
             "group": "Launchers",
-            "type": "weapon",
             "baseCost": 30000,
             "baseEp": 20,
             "sizeMult": false,
@@ -772,7 +771,8 @@
                 }
             },
             "damage": "9d10x5",
-            "description": "Base Capacity: 30 missiles. Additional capacity costs +20% per missile (max double capacity)."
+            "description": "Base Capacity: 30 missiles. Additional capacity costs +20% per missile (max double capacity).",
+            "location": "Hardpoint"
         },
         {
             "id": "tractor_beam",
@@ -780,12 +780,12 @@
             "name_es": "Rayo Tractor",
             "category": "Weapon Systems",
             "group": "Tactical",
-            "type": "weapon",
             "baseCost": 10000,
             "baseEp": 10,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Tractor Beams prevent another Vehicle from escaping instead of dealing damage. If the attack hits, make an opposed Grapple check. Smaller targets are immobilized and lose Dex bonus. Larger targets can be pulled closer. Docking Clamps allow boarding."
+            "description": "Tractor Beams prevent another Vehicle from escaping instead of dealing damage. If the attack hits, make an opposed Grapple check. Smaller targets are immobilized and lose Dex bonus. Larger targets can be pulled closer. Docking Clamps allow boarding.",
+            "location": "Hardpoint"
         },
         {
             "id": "atmos_thrusters",
@@ -793,14 +793,14 @@
             "name_es": "Propulsores Atmosféricos",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": true,
             "maxSize": "Colossal (frigate)",
             "availability": "Common",
             "description": "Atmospheric Thrusters increase a Starship's speed when the ship is flying in the atmosphere of a planet. Standard Atmospheric Thrusters increase a Starship's maximum velocity and fly speed by 10% (rounded down to the nearest square of speed and 10 km/h). Atmospheric Thrusters have no effect on Starship Scale movement.",
-            "exclusiveGroup": "atmos_thrusters"
+            "exclusiveGroup": "atmos_thrusters",
+            "location": "Internal Bay"
         },
         {
             "id": "atmos_thrusters_adv",
@@ -808,14 +808,14 @@
             "name_es": "Propulsores Atmosféricos (Avanzados)",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 5,
             "sizeMult": true,
             "maxSize": "Gargantuan",
             "availability": "Common",
             "description": "Advanced Atmospheric Thrusters increase these by 25% (rounded down to the nearest square of speed and 10 km/h). Atmospheric Thrusters have no effect on Starship Scale movement.",
-            "exclusiveGroup": "atmos_thrusters"
+            "exclusiveGroup": "atmos_thrusters",
+            "location": "Internal Bay"
         },
         {
             "id": "combat_thrusters",
@@ -823,14 +823,14 @@
             "name_es": "Propulsores de Combate",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "modification",
             "baseCost": 1000,
             "baseEp": 0,
             "sizeMult": true,
             "availability": "Military",
             "description": "Often used by smugglers, bounty hunters, and blockade runners. A ship with Combat Thrusters is treated as one size category smaller than its actual size category for the purpose of being targeted by Capital Ship weapons. Additionally, the Space Transport is treated as a Starfighter for the purpose of Dogfighting and Starship Maneuvers. This Starship Modification does not change the ship's size modifier to Reflex Defense.",
             "minShipSize": "Colossal (transport)",
-            "maxSize": "Colossal (station)"
+            "maxSize": "Colossal (station)",
+            "location": "Internal Bay"
         },
         {
             "id": "maneuvering_jets",
@@ -838,7 +838,6 @@
             "name_es": "Jets de Maniobra (+2)",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "modification",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": true,
@@ -847,7 +846,8 @@
             "stats": {
                 "dex_bonus": 2
             },
-            "exclusiveGroup": "maneuvering_jets"
+            "exclusiveGroup": "maneuvering_jets",
+            "location": "Internal Bay"
         },
         {
             "id": "maneuvering_jets_4",
@@ -855,7 +855,6 @@
             "name_es": "Jets de Maniobra (+4)",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "modification",
             "baseCost": 5000,
             "baseEp": 3,
             "sizeMult": true,
@@ -865,7 +864,8 @@
                 "dex_bonus": 4
             },
             "maxSize": "Colossal (transport)",
-            "exclusiveGroup": "maneuvering_jets"
+            "exclusiveGroup": "maneuvering_jets",
+            "location": "Internal Bay"
         },
         {
             "id": "maneuvering_jets_6",
@@ -873,7 +873,6 @@
             "name_es": "Jets de Maniobra (+6)",
             "category": "Movement Systems",
             "group": "Thrusters",
-            "type": "modification",
             "baseCost": 10000,
             "baseEp": 4,
             "sizeMult": true,
@@ -883,7 +882,8 @@
                 "dex_bonus": 6
             },
             "maxSize": "Gargantuan",
-            "exclusiveGroup": "maneuvering_jets"
+            "exclusiveGroup": "maneuvering_jets",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_075",
@@ -891,7 +891,6 @@
             "name_es": "Hiperimpulsor Clase .75",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 4,
             "sizeMult": true,
@@ -900,7 +899,8 @@
             },
             "maxSize": "Colossal (cruiser)",
             "availability": "Military",
-            "description": "The best Hyperdrive ever created is the Class .5 (which can be created by modifying a Class .75 Hyperdrive using the Starship Designer Feat). Class .5 drives are Illegal, require heavy maintenance (8h/month, DC 20 Mechanics), and impose penalties if neglected."
+            "description": "The best Hyperdrive ever created is the Class .5 (which can be created by modifying a Class .75 Hyperdrive using the Starship Designer Feat). Class .5 drives are Illegal, require heavy maintenance (8h/month, DC 20 Mechanics), and impose penalties if neglected.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_1",
@@ -908,7 +908,6 @@
             "name_es": "Hiperimpulsor Clase 1",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 3000,
             "baseEp": 3,
             "sizeMult": true,
@@ -917,7 +916,8 @@
             },
             "maxSize": "Colossal (cruiser)",
             "availability": "Licensed",
-            "description": "The Class 1 Hyperdrive is considered the pinnacle of stable Hyperdrive technology from the Clone Wars forward. It is the favored technology of military vessels, but its high cost often results in designers settling for a Class 2 or Class 3 drive."
+            "description": "The Class 1 Hyperdrive is considered the pinnacle of stable Hyperdrive technology from the Clone Wars forward. It is the favored technology of military vessels, but its high cost often results in designers settling for a Class 2 or Class 3 drive.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_15",
@@ -925,7 +925,6 @@
             "name_es": "Hiperimpulsor Clase 1.5",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 2500,
             "baseEp": 3,
             "sizeMult": true,
@@ -934,7 +933,8 @@
             },
             "maxSize": "Colossal (cruiser)",
             "availability": "Licensed",
-            "description": "Class 1.5 is a standard performance hyperdrive."
+            "description": "Class 1.5 is a standard performance hyperdrive.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_2",
@@ -942,7 +942,6 @@
             "name_es": "Hiperimpulsor Clase 2",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 3,
             "sizeMult": true,
@@ -950,7 +949,8 @@
                 "hyperdrive": 2
             },
             "availability": "Common",
-            "description": "Class 2 was state of the art during most of the Rise of the Empire era."
+            "description": "Class 2 was state of the art during most of the Rise of the Empire era.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_3",
@@ -958,7 +958,6 @@
             "name_es": "Hiperimpulsor Clase 3",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 1500,
             "baseEp": 2,
             "sizeMult": true,
@@ -966,7 +965,8 @@
                 "hyperdrive": 3
             },
             "availability": "Common",
-            "description": "Class 3 was state of the art during most of the Rise of the Empire era."
+            "description": "Class 3 was state of the art during most of the Rise of the Empire era.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_4",
@@ -974,7 +974,6 @@
             "name_es": "Hiperimpulsor Clase 4",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 2,
             "sizeMult": true,
@@ -982,7 +981,8 @@
                 "hyperdrive": 4
             },
             "availability": "Common",
-            "description": "A Hyperdrive of Class 4 to Class 6 is normally either old technology or an aftermarket retrofit crammed into a vessel not designed to support a Hyperdrive."
+            "description": "A Hyperdrive of Class 4 to Class 6 is normally either old technology or an aftermarket retrofit crammed into a vessel not designed to support a Hyperdrive.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_6",
@@ -990,7 +990,6 @@
             "name_es": "Hiperimpulsor Clase 6",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 400,
             "baseEp": 2,
             "sizeMult": true,
@@ -998,7 +997,8 @@
                 "hyperdrive": 6
             },
             "availability": "Common",
-            "description": "A Hyperdrive of Class 4 to Class 6 is normally either old technology or an aftermarket retrofit crammed into a vessel not designed to support a Hyperdrive."
+            "description": "A Hyperdrive of Class 4 to Class 6 is normally either old technology or an aftermarket retrofit crammed into a vessel not designed to support a Hyperdrive.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_8",
@@ -1006,7 +1006,6 @@
             "name_es": "Hiperimpulsor Clase 8",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 300,
             "baseEp": 1,
             "sizeMult": true,
@@ -1014,7 +1013,8 @@
                 "hyperdrive": 8
             },
             "availability": "Common",
-            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries."
+            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_10",
@@ -1022,7 +1022,6 @@
             "name_es": "Hiperimpulsor Clase 10",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 200,
             "baseEp": 1,
             "sizeMult": true,
@@ -1030,7 +1029,8 @@
                 "hyperdrive": 10
             },
             "availability": "Common",
-            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries."
+            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries.",
+            "location": "Internal Bay"
         },
         {
             "id": "hyperdrive_15_slow",
@@ -1038,7 +1038,6 @@
             "name_es": "Hiperimpulsor Clase 15",
             "category": "Movement Systems",
             "group": "Hyperdrives",
-            "type": "system",
             "baseCost": 100,
             "baseEp": 1,
             "sizeMult": true,
@@ -1046,7 +1045,8 @@
                 "hyperdrive": 15
             },
             "availability": "Common",
-            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries."
+            "description": "Backup Hyperdrives, usually ranging from Class 8 to Class 15, are often used as emergency systems. Though no one wants to wait a month to arrive someplace when using a Class 10 Backup Hyperdrive, often the alternative is to drift aimlessly in space for centuries.",
+            "location": "Internal Bay"
         },
         {
             "id": "nav_standard",
@@ -1054,12 +1054,12 @@
             "name_es": "Navicomputadora",
             "category": "Movement Systems",
             "group": "Navigation",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Licensed",
-            "description": "A Navicomputer is an astrogation calculator designed to make all the calculations necessary to travel through Hyperspace. Most Starships have Navicomputers, but those that lack Hyperdrives and some fighters that depend on Astromech Droids do not."
+            "description": "A Navicomputer is an astrogation calculator designed to make all the calculations necessary to travel through Hyperspace. Most Starships have Navicomputers, but those that lack Hyperdrives and some fighters that depend on Astromech Droids do not.",
+            "location": "Internal Bay"
         },
         {
             "id": "nav_limited",
@@ -1067,12 +1067,12 @@
             "name_es": "Navicomputadora (Limitada)",
             "category": "Movement Systems",
             "group": "Navigation",
-            "type": "system",
             "baseCost": 500,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Most Navicomputers are Nonstandard Modifications for Starfighters - these ships simply don't have the room for the memory core. Starfighters often have Limited Navicomputers that store only two jumps' worth of information, enough to get to a destination and return."
+            "description": "Most Navicomputers are Nonstandard Modifications for Starfighters - these ships simply don't have the room for the memory core. Starfighters often have Limited Navicomputers that store only two jumps' worth of information, enough to get to a destination and return.",
+            "location": "Internal Bay"
         },
         {
             "id": "nav_advanced",
@@ -1080,12 +1080,12 @@
             "name_es": "Navicomputadora (Avanzada)",
             "category": "Movement Systems",
             "group": "Navigation",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 2,
             "sizeMult": false,
             "availability": "Licensed",
-            "description": "Advanced Navicomputers grant a +10 bonus on Use Computer checks made for Astrogation, rather than a typical Navicomputer's +5 bonus. Additionally, a character aboard a ship that has a Navicomputer need not be Trained in the Use Computer Skill to make use of the Astrogation aspect of the Skill."
+            "description": "Advanced Navicomputers grant a +10 bonus on Use Computer checks made for Astrogation, rather than a typical Navicomputer's +5 bonus. Additionally, a character aboard a ship that has a Navicomputer need not be Trained in the Use Computer Skill to make use of the Astrogation aspect of the Skill.",
+            "location": "Internal Bay"
         },
         {
             "id": "slam",
@@ -1093,13 +1093,13 @@
             "name_es": "Motor Acelerador Subluz",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "system",
             "baseCost": 25000,
             "baseEp": 2,
             "sizeMult": false,
             "maxSize": "Gargantuan",
             "availability": "Military",
-            "description": "A SLAM system provides a +5 bonus on Pilot checks to increase a Vehicle's Speed. This bonus increases to +10 if the Pilot is using All-Out Movement."
+            "description": "A SLAM system provides a +5 bonus on Pilot checks to increase a Vehicle's Speed. This bonus increases to +10 if the Pilot is using All-Out Movement.",
+            "location": "Internal Bay"
         },
         {
             "id": "engine_1",
@@ -1107,7 +1107,6 @@
             "name_es": "Motor Subluz (Velocidad 1)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 1000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1116,7 +1115,8 @@
             },
             "exclusiveGroup": "engine",
             "availability": "Common",
-            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives.",
+            "location": "Aft Section"
         },
         {
             "id": "engine_2",
@@ -1124,7 +1124,6 @@
             "name_es": "Motor Subluz (Velocidad 2)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 2000,
             "baseEp": 3,
             "sizeMult": true,
@@ -1133,7 +1132,8 @@
             },
             "exclusiveGroup": "engine",
             "availability": "Common",
-            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives.",
+            "location": "Aft Section"
         },
         {
             "id": "engine_3",
@@ -1141,7 +1141,6 @@
             "name_es": "Motor Subluz (Velocidad 3)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 5000,
             "baseEp": 4,
             "sizeMult": true,
@@ -1151,7 +1150,8 @@
             "exclusiveGroup": "engine",
             "maxSize": "Colossal (cruiser)",
             "availability": "Licensed",
-            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives.",
+            "location": "Aft Section"
         },
         {
             "id": "engine_4",
@@ -1159,7 +1159,6 @@
             "name_es": "Motor Subluz (Velocidad 4)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 10000,
             "baseEp": 5,
             "sizeMult": true,
@@ -1169,7 +1168,8 @@
             "exclusiveGroup": "engine",
             "maxSize": "Colossal (cruiser)",
             "availability": "Restricted",
-            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives."
+            "description": "A Sublight Drive determines a ship's Speed when moving through Realspace. Replacing a ship's Sublight Drive can be expensive, and many ships cannot reach high speeds due to the bulk of their Sublight Drives.",
+            "location": "Aft Section"
         },
         {
             "id": "engine_5",
@@ -1177,7 +1177,6 @@
             "name_es": "Motor Subluz (Velocidad 5)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 20000,
             "baseEp": 6,
             "sizeMult": true,
@@ -1187,7 +1186,8 @@
             "exclusiveGroup": "engine",
             "maxSize": "Colossal (transport)",
             "availability": "Military",
-            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace."
+            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace.",
+            "location": "Aft Section"
         },
         {
             "id": "engine_6",
@@ -1195,7 +1195,6 @@
             "name_es": "Motor Subluz (Velocidad 6)",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "engine",
             "baseCost": 100000,
             "baseEp": 7,
             "sizeMult": true,
@@ -1205,7 +1204,8 @@
             "exclusiveGroup": "engine",
             "maxSize": "Gargantuan",
             "availability": "Military",
-            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace."
+            "description": "Only military vessels are permitted to use incredibly fast ion drives. A Sublight Drive determines a ship's Speed when moving through Realspace.",
+            "location": "Aft Section"
         },
         {
             "id": "shield_gen_5",
@@ -1213,7 +1213,6 @@
             "name_es": "Generador de Escudos (SR 5)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 500,
             "baseEp": 1,
             "sizeMult": true,
@@ -1222,7 +1221,8 @@
             },
             "exclusiveGroup": "shield",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_10",
@@ -1230,7 +1230,6 @@
             "name_es": "Generador de Escudos (SR 10)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 750,
             "baseEp": 1,
             "sizeMult": true,
@@ -1239,7 +1238,8 @@
             },
             "exclusiveGroup": "shield",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_15",
@@ -1247,7 +1247,6 @@
             "name_es": "Generador de Escudos (SR 15)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": true,
@@ -1256,7 +1255,8 @@
             },
             "exclusiveGroup": "shield",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_20",
@@ -1264,7 +1264,6 @@
             "name_es": "Generador de Escudos (SR 20)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 1250,
             "baseEp": 1,
             "sizeMult": true,
@@ -1274,7 +1273,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_25",
@@ -1282,7 +1282,6 @@
             "name_es": "Generador de Escudos (SR 25)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 1500,
             "baseEp": 1,
             "sizeMult": true,
@@ -1292,7 +1291,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_30",
@@ -1300,7 +1300,6 @@
             "name_es": "Generador de Escudos (SR 30)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1310,7 +1309,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_35",
@@ -1318,7 +1318,6 @@
             "name_es": "Generador de Escudos (SR 35)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 2500,
             "baseEp": 2,
             "sizeMult": true,
@@ -1328,7 +1327,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Gargantuan",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_40",
@@ -1336,7 +1336,6 @@
             "name_es": "Generador de Escudos (SR 40)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 3000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1346,7 +1345,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_45",
@@ -1354,7 +1354,6 @@
             "name_es": "Generador de Escudos (SR 45)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 4000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1364,7 +1363,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_50",
@@ -1372,7 +1372,6 @@
             "name_es": "Generador de Escudos (SR 50)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 3,
             "sizeMult": true,
@@ -1382,7 +1381,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_55",
@@ -1390,7 +1390,6 @@
             "name_es": "Generador de Escudos (SR 55)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 6000,
             "baseEp": 3,
             "sizeMult": true,
@@ -1400,7 +1399,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_60",
@@ -1408,7 +1408,6 @@
             "name_es": "Generador de Escudos (SR 60)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 8000,
             "baseEp": 3,
             "sizeMult": true,
@@ -1418,7 +1417,8 @@
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
             "availability": "Common",
-            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected."
+            "description": "Not all Starships have deflector shields, and they are an extremely popular addition for those that lack them. However, the energy and space cost of Starship Shields is extremely high, and it grows with the size of the craft to be protected.",
+            "location": "Internal Bay"
         },
         {
             "id": "bulkheads",
@@ -1426,7 +1426,6 @@
             "name_es": "Mamparos Reforzados (+10%)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1435,7 +1434,8 @@
             },
             "availability": "Common",
             "exclusiveGroup": "bulkheads",
-            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 10% (These improvements don't stack)."
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 10% (These improvements don't stack).",
+            "location": "Internal Bay"
         },
         {
             "id": "jamming",
@@ -1443,12 +1443,12 @@
             "name_es": "Suite de Interferencias",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
-            "description": "A Jamming Suite targets a single enemy within 6 squares. The target takes penalties on Use Computer checks (-4 for Starfighters, -2 for Space Transports) and enemy fire control systems."
+            "description": "A Jamming Suite targets a single enemy within 6 squares. The target takes penalties on Use Computer checks (-4 for Starfighters, -2 for Space Transports) and enemy fire control systems.",
+            "location": "Internal Bay"
         },
         {
             "id": "cloaking_hibridium",
@@ -1456,7 +1456,6 @@
             "name_es": "Dispositivo de Camuflaje (Hibridio)",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 50000,
             "baseEp": 3,
             "sizeMult": true,
@@ -1464,7 +1463,8 @@
             "description": "Grants Total Concealment. Produces 'Double-Blind' effect: occupants cannot see out while active. Treats all other targets as having Total Concealment.",
             "minShipSize": "Colossal (transport)",
             "maxSize": "Colossal (station)",
-            "exclusiveGroup": "cloaking_device"
+            "exclusiveGroup": "cloaking_device",
+            "location": "Internal Bay"
         },
         {
             "id": "cloaking_stygium",
@@ -1472,14 +1472,14 @@
             "name_es": "Dispositivo de Camuflaje (Stygium)",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 100000000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Military",
             "description": "Ancient and rare technology using Stygium crystals. Grants Total Concealment without the 'Double-Blind' penalty. Extremely expensive and hard to find.",
             "minShipSize": "Huge",
-            "exclusiveGroup": "cloaking_device"
+            "exclusiveGroup": "cloaking_device",
+            "location": "Internal Bay"
         },
         {
             "id": "anti_concussion",
@@ -1487,11 +1487,11 @@
             "name_es": "Campo Anticoncusión",
             "category": "Defense Systems",
             "group": "Shields",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 5,
             "sizeMult": true,
-            "availability": "Military"
+            "availability": "Military",
+            "location": "Internal Bay"
         },
         {
             "id": "backup_battery",
@@ -1499,12 +1499,12 @@
             "name_es": "Batería de Respaldo",
             "category": "Starship Accessories",
             "group": "Power",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Allows ship to operate for 1 hour after power failure. Can reverse ionization damage (DC 25 Mechanics) but drains battery."
+            "description": "Allows ship to operate for 1 hour after power failure. Can reverse ionization damage (DC 25 Mechanics) but drains battery.",
+            "location": "Internal Bay"
         },
         {
             "id": "backup_shield",
@@ -1512,11 +1512,11 @@
             "name_es": "Generador de Escudos de Respaldo",
             "category": "Defense Systems",
             "group": "Shields",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": true,
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "tech_spec_sh",
@@ -1524,7 +1524,6 @@
             "name_es": "Esp. Tec: Escudos (+10 SR)",
             "category": "Modifications",
             "group": "Tech Specialist",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1533,7 +1532,8 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "tech_spec_ar",
@@ -1541,7 +1541,6 @@
             "name_es": "Esp. Tec: Armadura (+2)",
             "category": "Modifications",
             "group": "Tech Specialist",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1550,14 +1549,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "ts_dex",
             "name": "Enhanced Dexterity (+2 Dex)",
             "category": "Modifications",
             "group": "Tech Specialist",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1566,14 +1565,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "ts_speed",
             "name": "Improved Speed (+25%)",
             "category": "Modifications",
             "group": "Tech Specialist",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1582,14 +1581,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "sup_tech_sh",
             "name": "Shields (+20 SR)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1598,14 +1597,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "sup_tech_ar",
             "name": "Armor (+2 Armor)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1614,14 +1613,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "st_dex",
             "name": "Superior Dex (+4 Dex)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1630,14 +1629,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "st_str",
             "name": "Superior Str (+2 Str)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1646,14 +1645,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "st_sensors",
             "name": "Superior Sensors (+2 Per)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1662,14 +1661,14 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "st_speed",
             "name": "Superior Speed (+33%)",
             "category": "Modifications",
             "group": "Superior Tech",
-            "type": "upgrade",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
@@ -1678,7 +1677,8 @@
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Rare",
-            "variableCost": true
+            "variableCost": true,
+            "location": "Installed"
         },
         {
             "id": "holo_transceiver",
@@ -1686,12 +1686,12 @@
             "name_es": "Transceptor HoloNet",
             "category": "Starship Accessories",
             "group": "Communications",
-            "type": "system",
             "baseCost": 50000,
             "baseEp": 4,
             "sizeMult": false,
             "availability": "Military",
-            "description": "Extremely rare and expensive systems that allow for real-time audio, visual, and holographic communication over an unlimited range via the HoloNet. Grants a +5 Equipment bonus to Use Computer checks made to gain information. During the Empire, availability is Military (normally Restricted/Rare)."
+            "description": "Extremely rare and expensive systems that allow for real-time audio, visual, and holographic communication over an unlimited range via the HoloNet. Grants a +5 Equipment bonus to Use Computer checks made to gain information. During the Empire, availability is Military (normally Restricted/Rare).",
+            "location": "Internal Bay"
         },
         {
             "id": "hypertransceiver",
@@ -1699,12 +1699,12 @@
             "name_es": "Hipertransceptor",
             "category": "Starship Accessories",
             "group": "Communications",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Hypertransceivers effectively have an unlimited range, allowing ships at opposite ends of the galaxy to communicate (with time lag). Allows access to information on The HoloNet."
+            "description": "Hypertransceivers effectively have an unlimited range, allowing ships at opposite ends of the galaxy to communicate (with time lag). Allows access to information on The HoloNet.",
+            "location": "Internal Bay"
         },
         {
             "id": "escape_pod",
@@ -1712,7 +1712,6 @@
             "name_es": "Cápsula de Escape (8 seres)",
             "category": "Starship Accessories",
             "group": "Safety",
-            "type": "system",
             "baseCost": 1200,
             "baseEp": 1,
             "sizeMult": false,
@@ -1720,7 +1719,8 @@
             "upgradeSpecs": {
                 "quantity": true
             },
-            "description": "Typical Escape Pods are small, single-use Vehicles providing 1 day of life support for eight Medium creatures. Required by law on all Starships (Military exempt)."
+            "description": "Typical Escape Pods are small, single-use Vehicles providing 1 day of life support for eight Medium creatures. Required by law on all Starships (Military exempt).",
+            "location": "Internal Bay"
         },
         {
             "id": "lifeboat_small",
@@ -1728,13 +1728,13 @@
             "name_es": "Bote Salvavidas, Pequeño",
             "category": "Starship Accessories",
             "group": "Safety",
-            "type": "system",
             "baseCost": 400,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
             "minShipSize": "Colossal (frigate)",
-            "description": "Provide life support for up to 50 Medium creatures for 2 months. Includes Class 15 Hyperdrive. Can be installed on ships of Colossal (Frigate) size or larger. 1 Bay includes (Cost Mod)/100 Lifeboats."
+            "description": "Provide life support for up to 50 Medium creatures for 2 months. Includes Class 15 Hyperdrive. Can be installed on ships of Colossal (Frigate) size or larger. 1 Bay includes (Cost Mod)/100 Lifeboats.",
+            "location": "Internal Bay"
         },
         {
             "id": "droid_repair_team",
@@ -1742,14 +1742,14 @@
             "name_es": "Equipo de Reparación Droide",
             "category": "Starship Accessories",
             "group": "Damage Control",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
             "description": "Automatically deploys to repair a Starship when it moves -1 or more steps down the Condition Track. Makes a +13 Mechanics check to Jury-Rig (+1 step). 25% chance of destruction if damage > SR while active.",
             "minShipSize": "Colossal (transport)",
-            "maxSize": "Colossal (station)"
+            "maxSize": "Colossal (station)",
+            "location": "Internal Bay"
         },
         {
             "id": "medical_bed",
@@ -1757,11 +1757,11 @@
             "name_es": "Cama Médica",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "medical_suite",
@@ -1769,13 +1769,13 @@
             "name_es": "Suite Médica",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 2,
             "sizeMult": false,
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Includes (Size Mod)/5 medical beds and (Size Mod)/50 Bacta Tanks. Medical beds function as Medpac (10 uses), Medical Kit, and Surgery Kit."
+            "description": "Includes (Size Mod)/5 medical beds and (Size Mod)/50 Bacta Tanks. Medical beds function as Medpac (10 uses), Medical Kit, and Surgery Kit.",
+            "location": "Internal Bay"
         },
         {
             "id": "passenger_conversion",
@@ -1783,12 +1783,12 @@
             "name_es": "Conversión de Pasajeros",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
-            "description": "Provides room for (Cost Mod) passengers (Seating or Quarters). Steerage quality unless combined with Luxury Upgrade."
+            "description": "Provides room for (Cost Mod) passengers (Seating or Quarters). Steerage quality unless combined with Luxury Upgrade.",
+            "location": "Internal Bay"
         },
         {
             "id": "sensor_array_computer_2",
@@ -1796,7 +1796,6 @@
             "name_es": "Ordenador de Matriz de Sensores (+2 Int)",
             "category": "Starship Accessories",
             "group": "Computers",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": true,
@@ -1805,7 +1804,8 @@
             },
             "exclusiveGroup": "sensor_computer",
             "availability": "Common",
-            "description": "Exclusively processes sensor data, freeing the main computer. Grants +2 Equipment bonus to Intelligence."
+            "description": "Exclusively processes sensor data, freeing the main computer. Grants +2 Equipment bonus to Intelligence.",
+            "location": "Internal Bay"
         },
         {
             "id": "sensor_array_computer_4",
@@ -1813,7 +1813,6 @@
             "name_es": "Ordenador de Matriz de Sensores (+4 Int)",
             "category": "Starship Accessories",
             "group": "Computers",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 2,
             "sizeMult": true,
@@ -1822,7 +1821,8 @@
             },
             "exclusiveGroup": "sensor_computer",
             "availability": "Licensed",
-            "description": "Exclusively processes sensor data, freeing the main computer. Grants +4 Equipment bonus to Intelligence."
+            "description": "Exclusively processes sensor data, freeing the main computer. Grants +4 Equipment bonus to Intelligence.",
+            "location": "Internal Bay"
         },
         {
             "id": "sensor_array_computer_6",
@@ -1830,7 +1830,6 @@
             "name_es": "Ordenador de Matriz de Sensores (+6 Int)",
             "category": "Starship Accessories",
             "group": "Computers",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 4,
             "sizeMult": true,
@@ -1839,7 +1838,8 @@
             },
             "exclusiveGroup": "sensor_computer",
             "availability": "Restricted",
-            "description": "Exclusively processes sensor data, freeing the main computer. Grants +6 Equipment bonus to Intelligence."
+            "description": "Exclusively processes sensor data, freeing the main computer. Grants +6 Equipment bonus to Intelligence.",
+            "location": "Internal Bay"
         },
         {
             "id": "sensor_enhancement",
@@ -1847,12 +1847,12 @@
             "name_es": "Paquete de Mejora de Sensores",
             "category": "Starship Accessories",
             "group": "Sensors",
-            "type": "system",
             "baseCost": 15000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Licensed",
-            "description": "Superior sensors providing better detection. Grants +5 bonus on Perception and Use Computer checks made to Use Sensors."
+            "description": "Superior sensors providing better detection. Grants +5 bonus on Perception and Use Computer checks made to Use Sensors.",
+            "location": "Internal Bay"
         },
         {
             "id": "baffled_drive",
@@ -1860,13 +1860,13 @@
             "name_es": "Impulsor con Deflectores",
             "category": "Movement Systems",
             "group": "Sublight Drives",
-            "type": "modification",
             "baseCost": 100000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Military",
             "minShipSize": "Colossal (transport)",
-            "description": "Uses supercooled Tibanna gas. Always Speed 2 (Starship Scale). Range 100 squares before refuel. +5 to DC to detect ship. Moving 2x speed doesn't negate Sensor Baffling."
+            "description": "Uses supercooled Tibanna gas. Always Speed 2 (Starship Scale). Range 100 squares before refuel. +5 to DC to detect ship. Moving 2x speed doesn't negate Sensor Baffling.",
+            "location": "Internal Bay"
         },
         {
             "id": "amphibious_seals",
@@ -1874,12 +1874,12 @@
             "name_es": "Sellos Anfibios",
             "category": "Movement Systems",
             "group": "Environmental",
-            "type": "modification",
             "baseCost": 500,
             "baseEp": 0,
             "sizeMult": true,
             "availability": "Common",
-            "description": "Allows Starship to function underwater. Swim speed 1/2 fly speed. Max underwater velocity 1/10 atmospheric."
+            "description": "Allows Starship to function underwater. Swim speed 1/2 fly speed. Max underwater velocity 1/10 atmospheric.",
+            "location": "Internal Bay"
         },
         {
             "id": "cockpit_ejection",
@@ -1887,12 +1887,12 @@
             "name_es": "Sistema de Eyección de Cabina",
             "category": "Starship Accessories",
             "group": "Safety",
-            "type": "system",
             "baseCost": 8000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Licensed",
-            "description": "Allows cockpit to eject as an Escape Pod on ship destruction (DC 20 Pilot check to avoid damage)."
+            "description": "Allows cockpit to eject as an Escape Pod on ship destruction (DC 20 Pilot check to avoid damage).",
+            "location": "Internal Bay"
         },
         {
             "id": "cotterdam",
@@ -1900,13 +1900,13 @@
             "name_es": "Túnel de Acoplamiento",
             "category": "Starship Accessories",
             "group": "Docking",
-            "type": "system",
             "baseCost": 3000,
             "baseEp": 1,
             "sizeMult": false,
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Flexible tube connecting two Colossal+ ships. Creates tunnel 3 squares long. Maneuvering to connect requires DC 15 Pilot check."
+            "description": "Flexible tube connecting two Colossal+ ships. Creates tunnel 3 squares long. Maneuvering to connect requires DC 15 Pilot check.",
+            "location": "Internal Bay"
         },
         {
             "id": "environmental_filters",
@@ -1914,12 +1914,12 @@
             "name_es": "Filtros Ambientales",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
-            "description": "Allows ship to support multiple environments (gravity, atmosphere, etc.). Can be used offensively (DC 25 Use Computer) to flood sections with hazards."
+            "description": "Allows ship to support multiple environments (gravity, atmosphere, etc.). Can be used offensively (DC 25 Use Computer) to flood sections with hazards.",
+            "location": "Internal Bay"
         },
         {
             "id": "fuel_converters",
@@ -1927,12 +1927,12 @@
             "name_es": "Convertidores de Combustible",
             "category": "Starship Accessories",
             "group": "Logistics",
-            "type": "system",
             "baseCost": 2400,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
-            "description": "Transform matter into usable Fuel. 1 hour gathering = 1 unit of fuel (1 day realspace / 1 jump)."
+            "description": "Transform matter into usable Fuel. 1 hour gathering = 1 unit of fuel (1 day realspace / 1 jump).",
+            "location": "Internal Bay"
         },
         {
             "id": "grappler_mag",
@@ -1940,12 +1940,12 @@
             "name_es": "Imán de Agarre",
             "category": "Weapon Systems",
             "group": "Tactical",
-            "type": "weapon",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Short-range grappling hook (Range 1). Can be used without power to attach clandestinely (Opposed Pilot/Stealth vs Pilot/Use Computer)."
+            "description": "Short-range grappling hook (Range 1). Can be used without power to attach clandestinely (Opposed Pilot/Stealth vs Pilot/Use Computer).",
+            "location": "Hardpoint"
         },
         {
             "id": "hardpoint",
@@ -1953,12 +1953,12 @@
             "name_es": "Punto de Anclaje (x4)",
             "category": "Weapon Systems",
             "group": "Mounts",
-            "type": "weapon",
             "baseCost": 500,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Common",
-            "description": "External mounts for missiles/bombs. 1 Array = 4 Hardpoints. 1 Missile/Bomb = 1 HP (2 for Colossal weapons). Can also carry Drop Tanks. Half payload lost if Condition Track drops."
+            "description": "External mounts for missiles/bombs. 1 Array = 4 Hardpoints. 1 Missile/Bomb = 1 HP (2 for Colossal weapons). Can also carry Drop Tanks. Half payload lost if Condition Track drops.",
+            "location": "Hardpoint"
         },
         {
             "id": "interrogation_chamber",
@@ -1966,12 +1966,12 @@
             "name_es": "Cámara de Interrogatorio",
             "category": "Starship Accessories",
             "group": "Security",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Restricted",
-            "description": "Converts a Holding Cell. Grants +5 Persuasion vs prisoners. Allows torture (+1 Dark Side)."
+            "description": "Converts a Holding Cell. Grants +5 Persuasion vs prisoners. Allows torture (+1 Dark Side).",
+            "location": "Internal Bay"
         },
         {
             "id": "personalized_controls",
@@ -1979,12 +1979,12 @@
             "name_es": "Controles Personalizados",
             "category": "Starship Accessories",
             "group": "Control",
-            "type": "modification",
             "baseCost": 1000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Licensed",
-            "description": "Personalizes one crew position. +1 bonus on checks for owner, -2 penalty for others."
+            "description": "Personalizes one crew position. +1 bonus on checks for owner, -2 penalty for others.",
+            "location": "Internal Bay"
         },
         {
             "id": "plasma_punch",
@@ -1992,12 +1992,12 @@
             "name_es": "Perforadora de Plasma",
             "category": "Weapon Systems",
             "group": "Tactical",
-            "type": "weapon",
             "baseCost": 25000,
             "baseEp": 2,
             "sizeMult": false,
             "availability": "Military",
-            "description": "Bores through hull to create airlocks. Halves target DR for drilling time. Functions like Plasma Torch but faster and doesn't require Tractor Clamp."
+            "description": "Bores through hull to create airlocks. Halves target DR for drilling time. Functions like Plasma Torch but faster and doesn't require Tractor Clamp.",
+            "location": "Hardpoint"
         },
         {
             "id": "plasma_torch",
@@ -2005,12 +2005,12 @@
             "name_es": "Antorcha de Plasma",
             "category": "Weapon Systems",
             "group": "Tactical",
-            "type": "weapon",
             "baseCost": 6000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Military",
-            "description": "Modification for Tractor Clamp. Cuts hole in secured ship's hull. 1 round per point of DR. Deal 1d6 damage per round to ship."
+            "description": "Modification for Tractor Clamp. Cuts hole in secured ship's hull. 1 round per point of DR. Deal 1d6 damage per round to ship.",
+            "location": "Hardpoint"
         },
         {
             "id": "sensor_baffling",
@@ -2018,12 +2018,12 @@
             "name_es": "Deflectores de Sensores",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Restricted",
-            "description": "Allows Stealth checks without Cover/Concealment. Benefit lost if moving > Speed."
+            "description": "Allows Stealth checks without Cover/Concealment. Benefit lost if moving > Speed.",
+            "location": "Internal Bay"
         },
         {
             "id": "sensor_decoy",
@@ -2031,12 +2031,12 @@
             "name_es": "Señuelo de Sensores",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "weapon",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Restricted",
-            "description": "Missile that emulates a Starship on sensors. DC 25 Use Computer to identify. Revealed by visual range (1-20 squares depending on size). Includes 3 decoys."
+            "description": "Missile that emulates a Starship on sensors. DC 25 Use Computer to identify. Revealed by visual range (1-20 squares depending on size). Includes 3 decoys.",
+            "location": "Hardpoint"
         },
         {
             "id": "sensor_mask",
@@ -2044,12 +2044,12 @@
             "name_es": "Máscara de Sensores",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 150000,
             "baseEp": 2,
             "sizeMult": true,
             "availability": "Illegal",
-            "description": "Replicates sensor signals to make ship appear transparent. Adds +10 to DC of Use Computer checks to detect the ship."
+            "description": "Replicates sensor signals to make ship appear transparent. Adds +10 to DC of Use Computer checks to detect the ship.",
+            "location": "Internal Bay"
         },
         {
             "id": "tractor_clamp",
@@ -2057,12 +2057,12 @@
             "name_es": "Pinza Tractora",
             "category": "Weapon Systems",
             "group": "Tactical",
-            "type": "weapon",
             "baseCost": 15000,
             "baseEp": 12,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Secures enemy ships for boarding. +5 Grapple bonus to maintain hold. Includes boarding tube. Can equip Plasma Torch."
+            "description": "Secures enemy ships for boarding. +5 Grapple bonus to maintain hold. Includes boarding tube. Can equip Plasma Torch.",
+            "location": "Hardpoint"
         },
         {
             "id": "transponder_masked",
@@ -2070,12 +2070,12 @@
             "name_es": "Transpondedor (Enmascarado)",
             "category": "Starship Accessories",
             "group": "Communications",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Illegal",
-            "description": "Code is impossible to read. Immediately apparent and suspicious."
+            "description": "Code is impossible to read. Immediately apparent and suspicious.",
+            "location": "Internal Bay"
         },
         {
             "id": "transponder_disguised",
@@ -2083,12 +2083,12 @@
             "name_es": "Transpondedor (Disfrazado)",
             "category": "Starship Accessories",
             "group": "Communications",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Illegal",
-            "description": "Mimics another ship's code. Requires Use Computer + Deception check to install. -5 Deception for each additional disguised transponder."
+            "description": "Mimics another ship's code. Requires Use Computer + Deception check to install. -5 Deception for each additional disguised transponder.",
+            "location": "Internal Bay"
         },
         {
             "id": "transponder_iff",
@@ -2096,12 +2096,12 @@
             "name_es": "Transpondedor (IFF)",
             "category": "Starship Accessories",
             "group": "Communications",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Military",
-            "description": "Military Friend/Foe transponder. Can be loaded with codes to appear as 'Friend'. Can hack enemy computers to appear as Friend (Use Computer check)."
+            "description": "Military Friend/Foe transponder. Can be loaded with codes to appear as 'Friend'. Can hack enemy computers to appear as Friend (Use Computer check).",
+            "location": "Internal Bay"
         },
         {
             "id": "workshop",
@@ -2109,12 +2109,12 @@
             "name_es": "Taller",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "system",
             "baseCost": 3000,
             "baseEp": 5,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Fully equipped workshop. +2 Equipment bonus on Mechanics/Use Computer checks to repair/modify/construct objects."
+            "description": "Fully equipped workshop. +2 Equipment bonus on Mechanics/Use Computer checks to repair/modify/construct objects.",
+            "location": "Internal Bay"
         },
         {
             "id": "slave_circuits",
@@ -2122,13 +2122,13 @@
             "name_es": "Circuitos Esclavos (Básicos)",
             "category": "Starship Accessories",
             "group": "Control",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Restricted",
             "exclusiveGroup": "slave_circuits",
-            "description": "Reduces crew requirements by 1/3 (minimum 1)."
+            "description": "Reduces crew requirements by 1/3 (minimum 1).",
+            "location": "Internal Bay"
         },
         {
             "id": "slave_circuits_adv",
@@ -2136,7 +2136,6 @@
             "name_es": "Circuitos Esclavos (Avanzados)",
             "category": "Starship Accessories",
             "group": "Control",
-            "type": "system",
             "baseCost": 4000,
             "baseEp": 1,
             "sizeMult": true,
@@ -2153,7 +2152,8 @@
                         "sizeMult": true
                     }
                 }
-            }
+            },
+            "location": "Internal Bay"
         },
         {
             "id": "slave_circuits_recall",
@@ -2161,13 +2161,13 @@
             "name_es": "Circuitos Esclavos (Llamada)",
             "category": "Starship Accessories",
             "group": "Control",
-            "type": "system",
             "baseCost": 6000,
             "baseEp": 0,
             "sizeMult": true,
             "availability": "Illegal",
             "exclusiveGroup": "slave_circuits",
-            "description": "Functions as Advanced Slave Circuits. Allows ship to be summoned via Comlink. Ship can lift off, fly to summoner, and land automatically (Untrained crew quality)."
+            "description": "Functions as Advanced Slave Circuits. Allows ship to be summoned via Comlink. Ship can lift off, fly to summoner, and land automatically (Untrained crew quality).",
+            "location": "Internal Bay"
         },
         {
             "id": "smuggler_compartment",
@@ -2175,12 +2175,12 @@
             "name_es": "Compartimento de Contrabando",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Illegal",
-            "description": "Hidden cargo spaces. DC 30 Perception to find. Holds (Cost Mod) x 200 kg. Max 5% of total cargo capacity."
+            "description": "Hidden cargo spaces. DC 30 Perception to find. Holds (Cost Mod) x 200 kg. Max 5% of total cargo capacity.",
+            "location": "Cargo Hold"
         },
         {
             "id": "cargo_pod_small",
@@ -2188,7 +2188,6 @@
             "name_es": "Módulo de Carga (Pequeño)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "cargo",
             "baseCost": 500,
             "baseEp": 0,
             "sizeMult": true,
@@ -2197,7 +2196,8 @@
             "stats": {
                 "dex_bonus": -2,
                 "cargo_bonus_size_mult": 1
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "cargo_pod_med",
@@ -2205,7 +2205,6 @@
             "name_es": "Módulo de Carga (Mediano)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "cargo",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": true,
@@ -2214,7 +2213,8 @@
             "stats": {
                 "dex_bonus": -2,
                 "cargo_bonus_size_mult": 5
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "cargo_pod_large",
@@ -2222,7 +2222,6 @@
             "name_es": "Módulo de Carga (Grande)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "cargo",
             "baseCost": 1500,
             "baseEp": 2,
             "sizeMult": true,
@@ -2231,7 +2230,8 @@
             "stats": {
                 "dex_bonus": -2,
                 "cargo_bonus_size_mult": 10
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "cargo_jettison",
@@ -2239,12 +2239,12 @@
             "name_es": "Sistema de Expulsión de Carga",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "system",
             "baseCost": 1500,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Allows a ship to dump part or all of its cargo into space without docking or slowing down as a Swift Action."
+            "description": "Allows a ship to dump part or all of its cargo into space without docking or slowing down as a Swift Action.",
+            "location": "Cargo Hold"
         },
         {
             "id": "extended_range",
@@ -2252,12 +2252,12 @@
             "name_es": "Alcance Extendido",
             "category": "Starship Accessories",
             "group": "Logistics",
-            "type": "modification",
             "baseCost": 100,
             "baseEp": 0,
             "sizeMult": true,
             "availability": "Common",
-            "description": "Improves a Starship's consumables by 10% of its original value (rounded down, minimum 1 day) x the number of times installed."
+            "description": "Improves a Starship's consumables by 10% of its original value (rounded down, minimum 1 day) x the number of times installed.",
+            "location": "Internal Bay"
         },
         {
             "id": "luxury_basic",
@@ -2265,13 +2265,13 @@
             "name_es": "Mejora de Lujo (Básica)",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "modification",
             "baseCost": 10000,
             "baseEp": 1,
             "sizeMult": false,
             "exclusiveGroup": "luxury",
             "availability": "Licensed",
-            "description": "Changes a Starship from a harsh travel vehicle to a comfortable home. Includes comfortable beds, wardrobes, recliners, and music systems. Requires monthly maintenance (1/50 of cost)."
+            "description": "Changes a Starship from a harsh travel vehicle to a comfortable home. Includes comfortable beds, wardrobes, recliners, and music systems. Requires monthly maintenance (1/50 of cost).",
+            "location": "Internal Bay"
         },
         {
             "id": "luxury_advanced",
@@ -2279,13 +2279,13 @@
             "name_es": "Mejora de Lujo (Avanzada)",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "modification",
             "baseCost": 20000,
             "baseEp": 1,
             "sizeMult": false,
             "exclusiveGroup": "luxury",
             "availability": "Licensed",
-            "description": "Makes the ship the equivalent of an upper-scale hotel. Gourmet cooking, quality artwork, and stylish trim. Requires monthly maintenance (1/50 of cost)."
+            "description": "Makes the ship the equivalent of an upper-scale hotel. Gourmet cooking, quality artwork, and stylish trim. Requires monthly maintenance (1/50 of cost).",
+            "location": "Internal Bay"
         },
         {
             "id": "luxury_extreme",
@@ -2293,13 +2293,13 @@
             "name_es": "Mejora de Lujo (Extrema)",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "modification",
             "baseCost": 50000,
             "baseEp": 1,
             "sizeMult": false,
             "exclusiveGroup": "luxury",
             "availability": "Restricted",
-            "description": "Turns a Starship into a palace in space. Increases Crew Quality by one step (max Expert), though this has no effect on hero statistics. Requires monthly maintenance (1/50 of cost)."
+            "description": "Turns a Starship into a palace in space. Increases Crew Quality by one step (max Expert), though this has no effect on hero statistics. Requires monthly maintenance (1/50 of cost).",
+            "location": "Internal Bay"
         },
         {
             "id": "hangar_bay",
@@ -2307,13 +2307,13 @@
             "name_es": "Bahía de Hangar",
             "category": "Starship Accessories",
             "group": "Hangar",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 50,
             "sizeMult": true,
             "minShipSize": "Colossal (frigate)",
             "availability": "Common",
-            "description": "Holds secondary craft. Each bay has (Cost Modifier)/50 units of hangar space (Huge=1, Gargantuan=5, Colossal=20). Can be combined."
+            "description": "Holds secondary craft. Each bay has (Cost Modifier)/50 units of hangar space (Huge=1, Gargantuan=5, Colossal=20). Can be combined.",
+            "location": "Internal Bay"
         },
         {
             "id": "hangar_bay_concealed",
@@ -2321,13 +2321,13 @@
             "name_es": "Bahía de Hangar, Oculta",
             "category": "Starship Accessories",
             "group": "Hangar",
-            "type": "system",
             "baseCost": 25000,
             "baseEp": 50,
             "sizeMult": true,
             "minShipSize": "Colossal (frigate)",
             "availability": "Restricted",
-            "description": "Functions as Hangar Bay but requires DC 30 Perception to notice externally. Launch/Land takes 2 Full-Round Actions."
+            "description": "Functions as Hangar Bay but requires DC 30 Perception to notice externally. Launch/Land takes 2 Full-Round Actions.",
+            "location": "Internal Bay"
         },
         {
             "id": "cryo_chambers",
@@ -2335,12 +2335,12 @@
             "name_es": "Cámaras Criogénicas (10 uds)",
             "category": "Starship Accessories",
             "group": "Accommodations",
-            "type": "cargo",
             "baseCost": 500,
             "baseEp": 2,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Hibernation systems that allow live creatures to be carried in stasis. Capacity: (Cost Mod)/5 Medium creatures per unit. Large=5x space, Huge=20x."
+            "description": "Hibernation systems that allow live creatures to be carried in stasis. Capacity: (Cost Mod)/5 Medium creatures per unit. Large=5x space, Huge=20x.",
+            "location": "Internal Bay"
         },
         {
             "id": "docking_clamp",
@@ -2348,12 +2348,12 @@
             "name_es": "Pinza de Acoplamiento",
             "category": "Starship Accessories",
             "group": "Docking",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Used to carry smaller ships (e.g. TIE Fighters on a Gozanti). A Starship can maneuver and Hyperspace with ships attached. If ship takes damage > Threshold, clamped ships are shaken off."
+            "description": "Used to carry smaller ships (e.g. TIE Fighters on a Gozanti). A Starship can maneuver and Hyperspace with ships attached. If ship takes damage > Threshold, clamped ships are shaken off.",
+            "location": "Internal Bay"
         },
         {
             "id": "armor_1",
@@ -2361,7 +2361,6 @@
             "name_es": "Armadura de Nave (+1)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": true,
@@ -2370,7 +2369,8 @@
             },
             "availability": "Licensed",
             "exclusiveGroup": "armor",
-            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case.",
+            "location": "Internal Bay"
         },
         {
             "id": "armor_2",
@@ -2378,7 +2378,6 @@
             "name_es": "Armadura de Nave (+2)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 5,
             "sizeMult": true,
@@ -2388,7 +2387,8 @@
             "minShipSize": "Colossal (transport)",
             "availability": "Restricted",
             "exclusiveGroup": "armor",
-            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case.",
+            "location": "Internal Bay"
         },
         {
             "id": "armor_3",
@@ -2396,7 +2396,6 @@
             "name_es": "Armadura de Nave (+3)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 10,
             "sizeMult": true,
@@ -2406,7 +2405,8 @@
             "minShipSize": "Colossal (frigate)",
             "availability": "Military",
             "exclusiveGroup": "armor",
-            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case.",
+            "location": "Internal Bay"
         },
         {
             "id": "armor_4",
@@ -2414,7 +2414,6 @@
             "name_es": "Armadura de Nave (+4)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 20,
             "sizeMult": true,
@@ -2424,7 +2423,8 @@
             "minShipSize": "Colossal (frigate)",
             "availability": "Military",
             "exclusiveGroup": "armor",
-            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case."
+            "description": "Starship Armor is bought as an Equipment bonus to the Armor a Starship adds to its Reflex Defense. Skilled pilots often prefer ships without heavy armor, since they can use their Character Level in place of a ship's Armor bonus in any case.",
+            "location": "Internal Bay"
         },
         {
             "id": "jamming_array",
@@ -2432,13 +2432,13 @@
             "name_es": "Matriz de Interferencias",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 5,
             "sizeMult": true,
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "A Jamming Array affects all enemy Starships within 6 squares, regardless of size. The penalty on Use Computer checks is -6 for Starfighters, -4 for Space Transports, and -2 for Capital Ships."
+            "description": "A Jamming Array affects all enemy Starships within 6 squares, regardless of size. The penalty on Use Computer checks is -6 for Starfighters, -4 for Space Transports, and -2 for Capital Ships.",
+            "location": "Internal Bay"
         },
         {
             "id": "regenerating_shields",
@@ -2446,7 +2446,6 @@
             "name_es": "Escudos Regenerativos",
             "category": "Defense Systems",
             "group": "Shields",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 2,
             "sizeMult": true,
@@ -2455,7 +2454,8 @@
                 "regenerating": true
             },
             "exclusiveGroup": "shield_mod",
-            "description": "If a ship possesses Regenerating Shields, its current Shield Rating increases by 10 (Up to its maximum Shield Rating) when a System Operator uses the Recharge Shields Action."
+            "description": "If a ship possesses Regenerating Shields, its current Shield Rating increases by 10 (Up to its maximum Shield Rating) when a System Operator uses the Recharge Shields Action.",
+            "location": "Internal Bay"
         },
         {
             "id": "bulkheads_20",
@@ -2463,7 +2463,6 @@
             "name_es": "Mamparos Reforzados (+20%)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 5,
             "sizeMult": true,
@@ -2472,7 +2471,8 @@
             },
             "availability": "Licensed",
             "exclusiveGroup": "bulkheads",
-            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 20% (These improvements don't stack)."
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 20% (These improvements don't stack).",
+            "location": "Internal Bay"
         },
         {
             "id": "bulkheads_30",
@@ -2480,7 +2480,6 @@
             "name_es": "Mamparos Reforzados (+30%)",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 10,
             "sizeMult": true,
@@ -2489,7 +2488,8 @@
             },
             "availability": "Restricted",
             "exclusiveGroup": "bulkheads",
-            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 30% (These improvements don't stack)."
+            "description": "Reinforced Bulkheads increase a Starship's Hit Points by 30% (These improvements don't stack).",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_70",
@@ -2497,7 +2497,6 @@
             "name_es": "Generador de Escudos (SR 70)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 3,
             "sizeMult": true,
@@ -2506,7 +2505,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_80",
@@ -2514,7 +2514,6 @@
             "name_es": "Generador de Escudos (SR 80)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 12500,
             "baseEp": 4,
             "sizeMult": true,
@@ -2523,7 +2522,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_90",
@@ -2531,7 +2531,6 @@
             "name_es": "Generador de Escudos (SR 90)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 15000,
             "baseEp": 4,
             "sizeMult": true,
@@ -2540,7 +2539,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_100",
@@ -2548,7 +2548,6 @@
             "name_es": "Generador de Escudos (SR 100)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 5,
             "sizeMult": true,
@@ -2557,7 +2556,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_125",
@@ -2565,7 +2565,6 @@
             "name_es": "Generador de Escudos (SR 125)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 25000,
             "baseEp": 6,
             "sizeMult": true,
@@ -2574,7 +2573,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (frigate)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_150",
@@ -2582,7 +2582,6 @@
             "name_es": "Generador de Escudos (SR 150)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 30000,
             "baseEp": 7,
             "sizeMult": true,
@@ -2591,7 +2590,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (cruiser)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_175",
@@ -2599,7 +2599,6 @@
             "name_es": "Generador de Escudos (SR 175)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 40000,
             "baseEp": 8,
             "sizeMult": true,
@@ -2608,7 +2607,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (cruiser)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "shield_gen_200",
@@ -2616,7 +2616,6 @@
             "name_es": "Generador de Escudos (SR 200)",
             "category": "Defense Systems",
             "group": "Shield Generators",
-            "type": "system",
             "baseCost": 50000,
             "baseEp": 10,
             "sizeMult": true,
@@ -2625,7 +2624,8 @@
             },
             "exclusiveGroup": "shield",
             "minShipSize": "Colossal (cruiser)",
-            "availability": "Common"
+            "availability": "Common",
+            "location": "Internal Bay"
         },
         {
             "id": "anti_boarding",
@@ -2633,13 +2633,13 @@
             "name_es": "Sistemas Anti-Abordaje",
             "category": "Defense Systems",
             "group": "Security",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 5,
             "sizeMult": true,
             "minShipSize": "Colossal (transport)",
             "availability": "Restricted",
-            "description": "Anti-Boarding Systems include blast doors (DR 10, 250 HP), security cameras, and blaster rifle turrets at vital locations. The system has independent backup power allowing turrets to make up to 50 shots after power loss."
+            "description": "Anti-Boarding Systems include blast doors (DR 10, 250 HP), security cameras, and blaster rifle turrets at vital locations. The system has independent backup power allowing turrets to make up to 50 shots after power loss.",
+            "location": "Internal Bay"
         },
         {
             "id": "com_jammers",
@@ -2647,12 +2647,12 @@
             "name_es": "Interferidores de Comunicaciones",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 20000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Military",
-            "description": "A Com Jammer prevents any communication within 6 squares. It takes a DC 30 Use Computer check to send or receive a message within this area. The jamming ship is also affected and is easier to detect (+20 to sensors checks)."
+            "description": "A Com Jammer prevents any communication within 6 squares. It takes a DC 30 Use Computer check to send or receive a message within this area. The jamming ship is also affected and is easier to detect (+20 to sensors checks).",
+            "location": "Internal Bay"
         },
         {
             "id": "reinforced_keel",
@@ -2660,14 +2660,14 @@
             "name_es": "Quilla Reforzada",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 4000,
             "baseEp": 2,
             "sizeMult": true,
             "minShipSize": "Colossal (transport)",
             "availability": "Military",
             "exclusiveGroup": "keel",
-            "description": "A Reinforced Keel causes the ship to take only half damage from Collisions. If the ship Rams another, it deals +2 damage per die."
+            "description": "A Reinforced Keel causes the ship to take only half damage from Collisions. If the ship Rams another, it deals +2 damage per die.",
+            "location": "Internal Bay"
         },
         {
             "id": "reinforced_keel_boarding",
@@ -2675,14 +2675,14 @@
             "name_es": "Quilla Reforzada, Abordaje",
             "category": "Defense Systems",
             "group": "Armor",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 4,
             "sizeMult": true,
             "minShipSize": "Colossal (transport)",
             "availability": "Military",
             "exclusiveGroup": "keel",
-            "description": "Boarding Keels function as Reinforced Keels but can also dock with an enemy ship after a successful ram that moves the target down the Condition Track, allowing boarders to invade."
+            "description": "Boarding Keels function as Reinforced Keels but can also dock with an enemy ship after a successful ram that moves the target down the Condition Track, allowing boarders to invade.",
+            "location": "Internal Bay"
         },
         {
             "id": "security_bracing",
@@ -2690,13 +2690,13 @@
             "name_es": "Refuerzos de Seguridad",
             "category": "Defense Systems",
             "group": "Security",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 2,
             "sizeMult": true,
             "minShipSize": "Colossal (transport)",
             "availability": "Common",
-            "description": "Security Bracing protects Passenger Conversions and Escape Pods. When the ship is destroyed by massive damage, subtract the ship's DR from damage dealt to anyone in the protected area."
+            "description": "Security Bracing protects Passenger Conversions and Escape Pods. When the ship is destroyed by massive damage, subtract the ship's DR from damage dealt to anyone in the protected area.",
+            "location": "Internal Bay"
         },
         {
             "id": "turbolaser_light",
@@ -2704,7 +2704,6 @@
             "name_es": "Turboláser Ligero (3d10x5)",
             "category": "Weapon Systems",
             "group": "Turbolasers",
-            "type": "weapon",
             "baseCost": 5000,
             "baseEp": 2,
             "sizeMult": false,
@@ -2715,7 +2714,8 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "3d10x5",
-            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire."
+            "description": "Turbolasers require immense power and cooling. Light Turbolasers can be Fire-Linked with Autofire.",
+            "location": "Hardpoint"
         },
         {
             "id": "turbolaser_med",
@@ -2723,7 +2723,6 @@
             "name_es": "Turboláser Mediano (5d10x5)",
             "category": "Weapon Systems",
             "group": "Turbolasers",
-            "type": "weapon",
             "baseCost": 10000,
             "baseEp": 5,
             "sizeMult": false,
@@ -2734,7 +2733,8 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "5d10x5",
-            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences.",
+            "location": "Hardpoint"
         },
         {
             "id": "turbolaser_hvy",
@@ -2742,7 +2742,6 @@
             "name_es": "Turboláser Pesado (7d10x5)",
             "category": "Weapon Systems",
             "group": "Turbolasers",
-            "type": "weapon",
             "baseCost": 20000,
             "baseEp": 10,
             "sizeMult": false,
@@ -2753,7 +2752,8 @@
             },
             "minShipSize": "Colossal (frigate)",
             "damage": "7d10x5",
-            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences."
+            "description": "Turbolasers require immense power and cooling. Most Turbolasers are incapable of Autofire due to longer firing sequences.",
+            "location": "Hardpoint"
         },
         {
             "id": "blaster_cannon_light",
@@ -2761,7 +2761,6 @@
             "name_es": "Cañón Bláster Ligero (3d10x2)",
             "category": "Weapon Systems",
             "group": "Blaster Cannons",
-            "type": "weapon",
             "baseCost": 1200,
             "baseEp": 1,
             "sizeMult": false,
@@ -2771,7 +2770,8 @@
                 "weaponVariants": true
             },
             "damage": "3d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
+            "location": "Hardpoint"
         },
         {
             "id": "blaster_cannon_med",
@@ -2779,7 +2779,6 @@
             "name_es": "Cañón Bláster Mediano (4d10x2)",
             "category": "Weapon Systems",
             "group": "Blaster Cannons",
-            "type": "weapon",
             "baseCost": 2500,
             "baseEp": 1,
             "sizeMult": false,
@@ -2789,7 +2788,8 @@
                 "weaponVariants": true
             },
             "damage": "4d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
+            "location": "Hardpoint"
         },
         {
             "id": "blaster_cannon_hvy",
@@ -2797,7 +2797,6 @@
             "name_es": "Cañón Bláster Pesado (5d10x2)",
             "category": "Weapon Systems",
             "group": "Blaster Cannons",
-            "type": "weapon",
             "baseCost": 5500,
             "baseEp": 2,
             "sizeMult": false,
@@ -2807,7 +2806,8 @@
                 "weaponVariants": true
             },
             "damage": "5d10x2",
-            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range."
+            "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
+            "location": "Hardpoint"
         },
         {
             "id": "harpoon_gun",
@@ -2815,12 +2815,12 @@
             "name_es": "Cañón Arpón",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
-            "type": "weapon",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "A Gunner may use the Harpoon Gun to make a Grapple check against a target Walker. If the Grapple check succeeds, the target Walker cannot move without first making a Pilot check (DC = Harpoon Gun's Grapple check result). If this Pilot check fails, the Walker suffers an automatic Collision, taking twice its Collision damage."
+            "description": "A Gunner may use the Harpoon Gun to make a Grapple check against a target Walker. If the Grapple check succeeds, the target Walker cannot move without first making a Pilot check (DC = Harpoon Gun's Grapple check result). If this Pilot check fails, the Walker suffers an automatic Collision, taking twice its Collision damage.",
+            "location": "Hardpoint"
         },
         {
             "id": "docking_gun",
@@ -2828,12 +2828,12 @@
             "name_es": "Montaje de Cañón de Atraque",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
-            "type": "weapon",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Common",
-            "description": "Allows Character Scale Ranged Weapons to be added as a Docking Gun. Counts as Heavy Weapon. Draws power from ship. The cost is for the mount only - the gun itself is bought normally. Docking Guns have no effect on Starship Scale combat."
+            "description": "Allows Character Scale Ranged Weapons to be added as a Docking Gun. Counts as Heavy Weapon. Draws power from ship. The cost is for the mount only - the gun itself is bought normally. Docking Guns have no effect on Starship Scale combat.",
+            "location": "Hardpoint"
         },
         {
             "id": "droid_jammer",
@@ -2841,12 +2841,12 @@
             "name_es": "Interferidor de Droides",
             "category": "Defense Systems",
             "group": "Electronic Warfare",
-            "type": "system",
             "baseCost": 1000,
             "baseEp": 1,
             "sizeMult": false,
             "availability": "Military",
-            "description": "Attacks from the Starship gain a +2 Equipment bonus to hit automated craft (like Droid Starfighters) within a 5-square radius."
+            "description": "Attacks from the Starship gain a +2 Equipment bonus to hit automated craft (like Droid Starfighters) within a 5-square radius.",
+            "location": "Internal Bay"
         },
         {
             "id": "cannon_enhancements",
@@ -2854,12 +2854,12 @@
             "name_es": "Mejoras de Cañón",
             "category": "Modifications",
             "group": "Weapon Upgrades",
-            "type": "upgrade",
             "baseCost": 3000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Restricted",
-            "description": "Standard Cannon Enhancements increase damage by +1 die. Costs 2x base weapon cost."
+            "description": "Standard Cannon Enhancements increase damage by +1 die. Costs 2x base weapon cost.",
+            "location": "Installed"
         },
         {
             "id": "cannon_enhancements_adv",
@@ -2867,29 +2867,28 @@
             "name_es": "Mejoras de Cañón (Avanzadas)",
             "category": "Modifications",
             "group": "Weapon Upgrades",
-            "type": "upgrade",
             "baseCost": 6000,
             "baseEp": 0,
             "sizeMult": false,
             "availability": "Restricted",
-            "description": "Advanced Cannon Enhancements increase damage by +2 dice. Costs 5x base weapon cost. Military availability."
+            "description": "Advanced Cannon Enhancements increase damage by +2 dice. Costs 5x base weapon cost. Military availability.",
+            "location": "Installed"
         },
         {
             "id": "gravity_well",
             "name": "Gravity Well Projector",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 25000,
             "sizeMult": true,
             "baseEp": 5,
             "availability": "Military",
-            "description": "A Gravity Well Projector creates an artificial gravity well that prevents Hyperspace travel. Any Starship within 12 squares of an active Gravity Well Projector cannot activate its Hyperdrive. Additionally, any ship traveling through Hyperspace that passes within 12 squares of the active Gravity Well Projector is immediately pulled out of Hyperspace."
+            "description": "A Gravity Well Projector creates an artificial gravity well that prevents Hyperspace travel. Any Starship within 12 squares of an active Gravity Well Projector cannot activate its Hyperdrive. Additionally, any ship traveling through Hyperspace that passes within 12 squares of the active Gravity Well Projector is immediately pulled out of Hyperspace.",
+            "location": "Hardpoint"
         },
         {
             "id": "ion_bomb_rack",
             "name": "Ion Bomb Rack",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 1500,
@@ -2898,12 +2897,12 @@
             "damage": "4d10x2",
             "damageType": "Ion",
             "availability": "Military",
-            "description": "Ion Bombs deal 4d10x2 Ion damage in a 2-square burst area. However, they are unguided weapons and take a -5 penalty on attack rolls against moving targets (speed > 0)."
+            "description": "Ion Bombs deal 4d10x2 Ion damage in a 2-square burst area. However, they are unguided weapons and take a -5 penalty on attack rolls against moving targets (speed > 0).",
+            "location": "Hardpoint"
         },
         {
             "id": "shieldbuster_torp",
             "name": "Shieldbuster Torpedo Launcher",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 2000,
@@ -2912,12 +2911,12 @@
             "damage": "4d10x2",
             "damageType": "Energy",
             "availability": "Military",
-            "description": "A specialized torpedo designed to overload shielding systems. On a hit, it reduces the target's Shield Rating by -10 (instead of the usual -5). Shields damaged in this way can be recharged normally."
+            "description": "A specialized torpedo designed to overload shielding systems. On a hit, it reduces the target's Shield Rating by -10 (instead of the usual -5). Shields damaged in this way can be recharged normally.",
+            "location": "Hardpoint"
         },
         {
             "id": "space_mine_launcher",
             "name": "Space Mine Launcher",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 5000,
@@ -2926,12 +2925,12 @@
             "damage": "6d10x2",
             "damageType": "Energy",
             "availability": "Restricted",
-            "description": "Space Mines are stationary explosives deployed in space. If a ship enters a square containing a Space Mine, it detonates, dealing 6d10x2 Energy damage to that ship."
+            "description": "Space Mines are stationary explosives deployed in space. If a ship enters a square containing a Space Mine, it detonates, dealing 6d10x2 Energy damage to that ship.",
+            "location": "Hardpoint"
         },
         {
             "id": "discord_missile_launcher",
             "name": "Discord Missile Launcher",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 1000,
@@ -2940,12 +2939,12 @@
             "damage": "2d10/turn",
             "damageType": "Physical",
             "availability": "Military",
-            "description": "Deploys a buzz droid swarm on the target ship. The target takes 2d10 damage per turn (ignoring DR and SR) until the droids are removed or destroyed. Requires a successful attack roll to hit."
+            "description": "Deploys a buzz droid swarm on the target ship. The target takes 2d10 damage per turn (ignoring DR and SR) until the droids are removed or destroyed. Requires a successful attack roll to hit.",
+            "location": "Hardpoint"
         },
         {
             "id": "composite_beam",
             "name": "Composite Beam Cannon",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 3000,
@@ -2954,12 +2953,12 @@
             "damage": "5d10x2",
             "damageType": "Energy",
             "availability": "Military",
-            "description": "A laser weapon that ignores 5 points of the target's Shield Rating (treat SR as 5 lower against this attack)."
+            "description": "A laser weapon that ignores 5 points of the target's Shield Rating (treat SR as 5 lower against this attack).",
+            "location": "Hardpoint"
         },
         {
             "id": "bomblet_generator",
             "name": "Bomblet Generator",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 5000,
@@ -2968,23 +2967,23 @@
             "damage": "3d10x2",
             "damageType": "Energy",
             "availability": "Military",
-            "description": "Automatically deploys a field of small explosives in adjacent squares. Any ship entering an adjacent square takes 3d10x2 Energy damage. Has infinite ammunition (energy based)."
+            "description": "Automatically deploys a field of small explosives in adjacent squares. Any ship entering an adjacent square takes 3d10x2 Energy damage. Has infinite ammunition (energy based).",
+            "location": "Hardpoint"
         },
         {
             "id": "heavy_ordnance_mod",
             "name": "Heavy Ordnance Modification",
-            "type": "upgrade",
             "category": "Weapon Upgrades",
             "baseCost": 2000,
             "sizeMult": false,
             "baseEp": 0,
             "availability": "Military",
-            "description": "Modifications to standard launchers to fire heavier payloads like Proton Bombs or heavy rockets. Increases damage dice by +1d10 but reduces range by 50%."
+            "description": "Modifications to standard launchers to fire heavier payloads like Proton Bombs or heavy rockets. Increases damage dice by +1d10 but reduces range by 50%.",
+            "location": "Installed"
         },
         {
             "id": "ion_pulse_cannon",
             "name": "Ion Pulse Cannon",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 4000,
@@ -2993,12 +2992,12 @@
             "damage": "9d10x10",
             "damageType": "Ion",
             "availability": "Military",
-            "description": "A massive ion weapon used on ships like the Subjugator. It fires a massive ion pulse that affects all ships in a large area, disabling electronics and shields. Requires a massive recharge time."
+            "description": "A massive ion weapon used on ships like the Subjugator. It fires a massive ion pulse that affects all ships in a large area, disabling electronics and shields. Requires a massive recharge time.",
+            "location": "Hardpoint"
         },
         {
             "id": "mass_driver",
             "name": "Mass-Driver Cannon",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 3500,
@@ -3007,24 +3006,24 @@
             "damage": "6d10x2",
             "damageType": "Physical",
             "availability": "Military",
-            "description": "A projectile weapon. Damage 6d10x2."
+            "description": "A projectile weapon. Damage 6d10x2.",
+            "location": "Hardpoint"
         },
         {
             "id": "pressor_beam",
             "name": "Pressor Beam",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 5000,
             "sizeMult": true,
             "baseEp": 2,
             "availability": "Restricted",
-            "description": "Reverse Tractor Beam. Pushes a target ship 1 square away on a successful hit. The target must be smaller than the firing ship."
+            "description": "Reverse Tractor Beam. Pushes a target ship 1 square away on a successful hit. The target must be smaller than the firing ship.",
+            "location": "Hardpoint"
         },
         {
             "id": "proton_grenade_launcher",
             "name": "Proton Grenade Launcher",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 800,
@@ -3033,12 +3032,12 @@
             "damage": "8d6",
             "damageType": "Energy",
             "availability": "Restricted",
-            "description": "Fires a cluster of proton grenades. Deals 3d10x2 Energy damage in a 1-square burst. Short range only."
+            "description": "Fires a cluster of proton grenades. Deals 3d10x2 Energy damage in a 1-square burst. Short range only.",
+            "location": "Hardpoint"
         },
         {
             "id": "rail_cannon",
             "name": "Rail Cannon",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 4500,
@@ -3047,12 +3046,12 @@
             "damage": "5d10x5",
             "damageType": "Physical",
             "availability": "Military",
-            "description": "Similar to Mass-Drivers but more powerful. Deals 5d10x2 Physical damage. Ignores SR."
+            "description": "Similar to Mass-Drivers but more powerful. Deals 5d10x2 Physical damage. Ignores SR.",
+            "location": "Hardpoint"
         },
         {
             "id": "gravity_mine_launcher",
             "name": "Gravity Mine Launcher",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 5000,
@@ -3061,12 +3060,12 @@
             "damage": "4d10x2",
             "damageType": "Energy",
             "availability": "Military",
-            "description": "Detonates when a ship enters the square, creating a temporary gravity well that prevents Hyperspace travel for 1 round and deals 4d10x2 Energy damage."
+            "description": "Detonates when a ship enters the square, creating a temporary gravity well that prevents Hyperspace travel for 1 round and deals 4d10x2 Energy damage.",
+            "location": "Hardpoint"
         },
         {
             "id": "flak_pod",
             "name": "Flak Pod",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 2000,
@@ -3075,42 +3074,43 @@
             "damage": "3d10x2",
             "damageType": "Physical",
             "availability": "Military",
-            "description": "Anti-fighter defense. Deals 3d10x2 damage to all starfighters in adjacent squares."
+            "description": "Anti-fighter defense. Deals 3d10x2 damage to all starfighters in adjacent squares.",
+            "location": "Hardpoint"
         },
         {
             "id": "chaff_gun",
             "name": "Chaff Gun",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 1000,
             "sizeMult": true,
             "baseEp": 1,
             "availability": "Restricted",
-            "description": "Launches a cloud of sensor-confusing debris. Provides concealment and imposes a -5 penalty on attack rolls and Pilot checks for missiles and sensors attempting to target the ship."
+            "description": "Launches a cloud of sensor-confusing debris. Provides concealment and imposes a -5 penalty on attack rolls and Pilot checks for missiles and sensors attempting to target the ship.",
+            "location": "Hardpoint"
         },
         {
             "id": "defoliator",
             "name": "Defoliator",
-            "type": "weapon",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
             "baseCost": 10000,
             "sizeMult": true,
             "baseEp": 3,
             "availability": "Illegal",
-            "description": "Biological weapon. Deals massive damage to organic crew but no damage to the ship structure. Illegal in all jurisdictions."
+            "description": "Biological weapon. Deals massive damage to organic crew but no damage to the ship structure. Illegal in all jurisdictions.",
+            "location": "Hardpoint"
         },
         {
             "id": "point_defense_mod",
             "name": "Point Defense System",
-            "type": "upgrade",
             "category": "Modifications",
             "baseCost": 4000,
             "sizeMult": true,
             "baseEp": 0,
             "availability": "Military",
-            "description": "Automated laser system that shoots down incoming missiles. Provides a +5 bonus to Reflex Defense against missile attacks."
+            "description": "Automated laser system that shoots down incoming missiles. Provides a +5 bonus to Reflex Defense against missile attacks.",
+            "location": "Installed"
         },
         {
             "id": "aux_gen_2",
@@ -3118,7 +3118,6 @@
             "name_es": "Generador Auxiliar (+2)",
             "category": "Defense Systems",
             "group": "Generators",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": false,
@@ -3126,7 +3125,8 @@
             "description": "Supplies power to specific systems. Gives a +2 equipment bonus to Strength. Allows systems to continue when engines are shut down.",
             "stats": {
                 "str_bonus": 2
-            }
+            },
+            "location": "Internal Bay"
         },
         {
             "id": "aux_gen_4",
@@ -3134,7 +3134,6 @@
             "name_es": "Generador Auxiliar (+4)",
             "category": "Defense Systems",
             "group": "Generators",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 1,
             "sizeMult": false,
@@ -3142,7 +3141,8 @@
             "description": "Supplies power to specific systems. Gives a +4 equipment bonus to Strength.",
             "stats": {
                 "str_bonus": 4
-            }
+            },
+            "location": "Internal Bay"
         },
         {
             "id": "aux_gen_6",
@@ -3150,7 +3150,6 @@
             "name_es": "Generador Auxiliar (+6)",
             "category": "Defense Systems",
             "group": "Generators",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 1,
             "sizeMult": false,
@@ -3158,7 +3157,8 @@
             "description": "Supplies power to specific systems. Gives a +6 equipment bonus to Strength.",
             "stats": {
                 "str_bonus": 6
-            }
+            },
+            "location": "Internal Bay"
         },
         {
             "id": "hidden_cargo_25",
@@ -3166,7 +3166,6 @@
             "name_es": "Bodega de Carga Oculta (25%)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "system",
             "baseCost": 2000,
             "baseEp": 1,
             "sizeMult": true,
@@ -3174,7 +3173,8 @@
             "description": "Converts 25% of cargo space into hidden compartments (-5 to Perception checks to find).",
             "stats": {
                 "hidden_cargo_pct": 0.25
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "hidden_cargo_50",
@@ -3182,7 +3182,6 @@
             "name_es": "Bodega de Carga Oculta (50%)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "system",
             "baseCost": 5000,
             "baseEp": 1,
             "sizeMult": true,
@@ -3190,7 +3189,8 @@
             "description": "Converts 50% of cargo space into hidden compartments.",
             "stats": {
                 "hidden_cargo_pct": 0.5
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "hidden_cargo_75",
@@ -3198,7 +3198,6 @@
             "name_es": "Bodega de Carga Oculta (75%)",
             "category": "Starship Accessories",
             "group": "Storage",
-            "type": "system",
             "baseCost": 10000,
             "baseEp": 1,
             "sizeMult": true,
@@ -3206,7 +3205,8 @@
             "description": "Converts 75% of cargo space into hidden compartments.",
             "stats": {
                 "hidden_cargo_pct": 0.75
-            }
+            },
+            "location": "Cargo Hold"
         },
         {
             "id": "mass_driver_hvy",
@@ -3214,7 +3214,6 @@
             "name_es": "Cañón Mass-Driver Pesado",
             "category": "Weapon Systems",
             "group": "Exotic Weapons",
-            "type": "weapon",
             "baseCost": 15000,
             "baseEp": 2,
             "sizeMult": true,
@@ -3222,7 +3221,8 @@
             "damageType": "Physical",
             "availability": "Military",
             "description": "A heavy projectile weapon. Damage 7d10x2.",
-            "minShipSize": "Huge"
+            "minShipSize": "Huge",
+            "location": "Hardpoint"
         },
         {
             "id": "autoblaster_upgrade",
@@ -3230,13 +3230,13 @@
             "name_es": "Modificación Autobláster",
             "category": "Modifications",
             "group": "Weapon Upgrades",
-            "type": "upgrade",
             "baseCost": 2000,
             "costMultiplier": "weapon_cost",
             "baseEp": 0,
             "sizeMult": false,
             "description": "Modifies a single-mount weapon to be an Autoblaster. Increases cyclic rate, allowing Autofire but at -2 attack penalty. Cost is 2x the base cost of the weapon.",
-            "availability": "Restricted"
+            "availability": "Restricted",
+            "location": "Installed"
         },
         {
             "id": "heavy_ordnance_launcher",
@@ -3244,7 +3244,6 @@
             "name_es": "Lanzador de Artillería Pesada",
             "category": "Weapon Systems",
             "group": "Launchers",
-            "type": "weapon",
             "baseCost": 10000,
             "baseEp": 2,
             "sizeMult": true,
@@ -3257,7 +3256,8 @@
                 "fireLinkOption": {
                     "cost": 1000
                 }
-            }
+            },
+            "location": "Hardpoint"
         },
         {
             "id": "lifeboat_large",
@@ -3265,13 +3265,13 @@
             "name_es": "Bote Salvavidas, Grande",
             "category": "Starship Accessories",
             "group": "Safety",
-            "type": "system",
             "baseCost": 400,
             "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
             "minShipSize": "Colossal (frigate)",
-            "description": "Provide life support for up to 50 Medium creatures for 2 months. Includes Class 15 Hyperdrive. Can be installed on ships of Colossal (Frigate) size or larger."
+            "description": "Provide life support for up to 50 Medium creatures for 2 months. Includes Class 15 Hyperdrive. Can be installed on ships of Colossal (Frigate) size or larger.",
+            "location": "Internal Bay"
         }
     ]
 }
