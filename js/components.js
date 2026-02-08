@@ -729,7 +729,7 @@ export const AddModDialog = {
                 const def = store.allEquipment.find(e => e.id === newComponentSelection.value);
 
                 const doInstall = () => {
-                    let loc = def.location || 'Internal Bay';
+                    let loc = def.location || '';
                     store.addComponent(newComponentSelection.value, loc, newComponentNonStandard.value);
                     newComponentSelection.value = null;
                     newComponentNonStandard.value = false;
@@ -951,7 +951,7 @@ export const CustomComponentDialog = {
     setup() {
         const store = useShipStore();
         const { t } = useI18n();
-        const newCustomComponent = reactive({ name: '', category: 'Weapon Systems', group: '', location: 'Internal Bay', baseCost: 0, baseEp: 0, sizeMult: false, stats: {} });
+        const newCustomComponent = reactive({ name: '', category: 'Weapon Systems', group: '', location: '', baseCost: 0, baseEp: 0, sizeMult: false, stats: {} });
         const activeProperties = ref([]);
         const propertyToAdd = ref(null);
         const groupOptionsFiltered = ref([]);
@@ -1087,7 +1087,7 @@ export const CustomComponentDialog = {
                         });
                     }
                 } else {
-                    Object.assign(newCustomComponent, { name: '', category: 'Weapon Systems', group: '', location: 'Internal Bay', baseCost: 0, baseEp: 0, sizeMult: false, stats: {}, id: '', addToCore: false });
+                    Object.assign(newCustomComponent, { name: '', category: 'Weapon Systems', group: '', location: '', baseCost: 0, baseEp: 0, sizeMult: false, stats: {}, id: '', addToCore: false });
                     activeProperties.value = [];
                 }
             } else {

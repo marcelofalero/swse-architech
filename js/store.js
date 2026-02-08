@@ -619,7 +619,7 @@ export const useShipStore = defineStore('ship', () => {
 
             const def = allEquipment.value.find(e => e.id === defId);
             if(def) {
-                let loc = def.location || 'Installed';
+                let loc = def.location || '';
                 const mods = { payloadCount: 0, payloadOption: false, batteryCount: batteryCount, quantity: quantity, fireLinkOption: false };
                 if (isWeapon(def.id)) mods.weaponUser = 'Pilot';
                 installedComponents.value.push({ instanceId: crypto.randomUUID(), defId: def.id, location: loc, miniaturization: 0, isStock: true, isNonStandard: false, modifications: mods });
