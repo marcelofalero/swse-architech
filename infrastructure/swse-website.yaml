@@ -23,12 +23,6 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-      # WebsiteConfiguration is typically removed for OAC, but keeping it as a backup or if direct S3 website features (like redirects) are needed is tricky.
-      # For strict OAC, we treat it as a regular private bucket.
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: index.html
-
   # CloudFront Origin Access Control
   CloudFrontOAC:
     Type: AWS::CloudFront::OriginAccessControl
