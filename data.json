@@ -2357,12 +2357,15 @@
             "category": "Starship Accessories",
             "group": "Logistics",
             "baseCost": 100,
-            "baseEp": 0,
+            "baseEp": 1,
             "sizeMult": true,
             "availability": "Common",
             "description": "Improves a Starship's consumables by 10% of its original value (rounded down, minimum 1 day) x the number of times installed.",
             "location": "Internal Bay",
-            "wiki": "https://swse.fandom.com/wiki/Extended_Range"
+            "wiki": "https://swse.fandom.com/wiki/Extended_Range",
+            "upgradeSpecs": {
+                "quantity": true
+            }
         },
         {
             "id": "luxury_basic",
