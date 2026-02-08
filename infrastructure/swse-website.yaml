@@ -139,7 +139,7 @@ Resources:
           # Managed-CORS-S3Origin Policy (88a5eaf4-2fd4-4709-b370-b4c650ea3fcf)
           OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf
           # Managed-SecurityHeadersPolicy (67f7725c-df29-4744-9ea2-019197abb8bf)
-          ResponseHeadersPolicyId: 67f7725c-df29-4744-9ea2-019197abb8bf
+#          ResponseHeadersPolicyId: 67f7725c-df29-4744-9ea2-019197abb8bf
         ViewerCertificate:
           AcmCertificateArn: !Ref Certificate
           SslSupportMethod: sni-only
