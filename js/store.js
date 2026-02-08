@@ -54,7 +54,7 @@ export const useShipStore = defineStore('ship', () => {
         return def.group === 'Sublight Drives' && def.stats && def.stats.speed !== undefined;
     }
 
-    function calculateEp(defId, batteryCount = 1, isNonStandard = false, miniaturization = 0, quantity = 1, mount = 'single', fireLink = 1, enhancement = 'normal') {
+    function calculateEp({ defId, batteryCount = 1, isNonStandard = false, miniaturization = 0, quantity = 1, mount = 'single', fireLink = 1, enhancement = 'normal' } = {}) {
         const def = allEquipment.value.find(e => e.id === defId);
         if (!def) return 0;
 
@@ -105,7 +105,16 @@ export const useShipStore = defineStore('ship', () => {
         const mount = instance.modifications?.mount || 'single';
         const fireLink = instance.modifications?.fireLink || 1;
         const enhancement = instance.modifications?.enhancement || 'normal';
-        return calculateEp(instance.defId, batteryCount, instance.isNonStandard, instance.miniaturization, quantity, mount, fireLink, enhancement);
+        return calculateEp({
+            defId: instance.defId,
+            batteryCount,
+            isNonStandard: instance.isNonStandard,
+            miniaturization: instance.miniaturization,
+            quantity,
+            mount,
+            fireLink,
+            enhancement
+        });
     }
 
     function getComponentDamage(instance) {
@@ -381,7 +390,7 @@ export const useShipStore = defineStore('ship', () => {
                  if (modConfig.batteryCount) batteryCount = modConfig.batteryCount;
                  if (modConfig.quantity) quantity = modConfig.quantity;
              }
-             return total + calculateEp(defId, batteryCount, false, 0, quantity);
+             return total + calculateEp({ defId, batteryCount, quantity });
         }, 0);
     });
 
