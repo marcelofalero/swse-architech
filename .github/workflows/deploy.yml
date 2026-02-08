@@ -32,16 +32,32 @@ jobs:
           echo "ACCOUNT_ID=$ACCOUNT_ID" >> $GITHUB_ENV
           echo "Account ID: $ACCOUNT_ID"
 
-      - name: Configure AWS Credentials (Deployment Role)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-          # Construct Role ARN: arn:aws:iam::<account-id>:role/swse-deployment-role-<stack-name>
-          role-to-assume: arn:aws:iam::${{ env.ACCOUNT_ID }}:role/swse-deployment-role-${{ env.STACK_NAME }}
-          role-duration-seconds: 1200
-          role-skip-session-tagging: true
+      - name: Manual Assume Role & Export
+        run: |
+          echo "Assuming role: ${{ env.DEPLOYMENT_ROLE_ARN }}"
+          
+          # 1. Execute the handshake and capture the JSON-less output
+          # We use --query to get exactly what we need in a tab-separated string
+          KST=($(aws sts assume-role \
+            --role-arn ${{ env.DEPLOYMENT_ROLE_ARN }} \
+            --role-session-name "GitHubVibeCheck" \
+            --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' \
+            --output text))
+          
+          # 2. Mask the new secrets in the GitHub logs (Security best practice)
+          echo "::add-mask::${KST[0]}"
+          echo "::add-mask::${KST[1]}"
+          echo "::add-mask::${KST[2]}"
+          
+          # 3. Export to GITHUB_ENV so subsequent steps use these keys
+          echo "AWS_ACCESS_KEY_ID=${KST[0]}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${KST[1]}" >> $GITHUB_ENV
+          echo "AWS_SESSION_TOKEN=${KST[2]}" >> $GITHUB_ENV
+          
+          echo "Successfully assumed role. Subsequent steps will act as the Role."
+
+      - name: Verify Identity
+        run: aws sts get-caller-identity
 
       - name: Get Stack Outputs
         id: stack-outputs
