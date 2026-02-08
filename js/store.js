@@ -433,6 +433,60 @@ export const useShipStore = defineStore('ship', () => {
         return pass;
     });
 
+    const currentConsumables = computed(() => {
+        const consStr = chassis.value.logistics.cons || "1 day";
+
+        // Parse base days
+        const parseDays = (str) => {
+            let total = 0;
+            const years = str.match(/(\d+)\s*years?/);
+            const months = str.match(/(\d+)\s*months?/);
+            const days = str.match(/(\d+)\s*days?/); // Also check for "1 day"
+
+            if (years) total += parseInt(years[1]) * 360;
+            if (months) total += parseInt(months[1]) * 30;
+            if (days) total += parseInt(days[1]);
+
+            // Fallback for simple "1 day" without plural if not caught
+            if (total === 0 && str.includes("day") && !days) {
+                 const simple = str.match(/(\d+)\s*day/);
+                 if (simple) total += parseInt(simple[1]);
+            }
+            return total || 1; // Default to 1 day if parse fails
+        };
+
+        const baseDays = parseDays(consStr);
+
+        // Count Extended Range
+        let extendedRangeCount = 0;
+        installedComponents.value.forEach(instance => {
+            if (instance.defId === 'extended_range') {
+                extendedRangeCount += (instance.modifications?.quantity || 1);
+            }
+        });
+
+        // Calculate Bonus
+        // 10% per installation, min 1 day
+        const bonusPerInstance = Math.max(Math.floor(baseDays * 0.10), 1);
+        const totalBonus = bonusPerInstance * extendedRangeCount;
+
+        const totalDays = baseDays + totalBonus;
+
+        // Format Result
+        const years = Math.floor(totalDays / 360);
+        const remYear = totalDays % 360;
+        const months = Math.floor(remYear / 30);
+        const days = remYear % 30;
+
+        const parts = [];
+        if (years > 0) parts.push(`${years} year${years > 1 ? 's' : ''}`);
+        if (months > 0) parts.push(`${months} month${months > 1 ? 's' : ''}`);
+        if (days > 0) parts.push(`${days} day${days > 1 ? 's' : ''}`);
+
+        if (parts.length === 0) return "0 days";
+        return parts.join(' ');
+    });
+
     const totalPopulation = computed(() => currentCrew.value + currentPassengers.value);
 
     const hasEscapePods = computed(() => {
@@ -603,7 +657,7 @@ export const useShipStore = defineStore('ship', () => {
     return {
         db, initDb,
         meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount, escapePodsToEpPct, customComponents, allEquipment, customDialogState, showCustomManager,
-        chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal, hasEscapePods, escapePodsEpGain, currentCrew, currentPassengers, totalPopulation, escapePodCapacity,
+        chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal, hasEscapePods, escapePodsEpGain, currentCrew, currentPassengers, currentConsumables, totalPopulation, escapePodCapacity,
         addComponent, addCustomComponent, updateCustomComponent, openCustomDialog, removeComponent, removeCustomComponent, isCustomComponentInstalled, addEquipment, removeEquipment, updateEquipment, downloadDataJson, reset, createNew, loadState, getComponentCost, getComponentEp, getComponentDamage,
         isAdmin, isWeapon, isEngine
     };

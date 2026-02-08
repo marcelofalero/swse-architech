@@ -56,7 +56,7 @@ const StatPanel = {
                 </div>
                 <div class="row justify-between q-py-xs">
                     <div class="text-grey">Consumables</div>
-                    <div>{{ store.chassis.logistics.cons }}</div>
+                    <div>{{ store.currentConsumables }}</div>
                 </div>
             </div>
         </q-card-section>
@@ -314,7 +314,7 @@ const ShipSheet = {
                 <div><span class="bold">Crew</span> {{ store.currentCrew }}</div>
                 <div><span class="bold">Passengers</span> {{ store.currentPassengers }}</div>
                 <div><span class="bold">Cargo</span> {{ store.currentCargo }}</div>
-                <div><span class="bold">Consumables</span> {{ store.chassis.logistics.cons }}</div>
+                <div><span class="bold">Consumables</span> {{ store.currentConsumables }}</div>
             </div>
 
             <div class="cost-line">
