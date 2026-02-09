@@ -111,6 +111,7 @@ const SystemList = {
                     <div class="row items-center">
                         <q-badge v-if="instance.miniaturization > 0" color="orange" label="Mini" class="q-mr-xs" />
                         <q-btn v-if="hasUpgrades(instance.defId)" flat round icon="settings" color="accent" size="sm" @click="openConfig(instance)" />
+                        <q-btn flat round icon="help_outline" color="info" size="sm" @click="openWiki(instance.defId)" />
                         <q-btn flat round icon="delete" color="negative" size="sm" @click="store.removeComponent(instance.instanceId)" />
                     </div>
                 </q-item-section>
@@ -522,10 +523,10 @@ export const AddModDialog = {
                         </div>
                     </div>
                     <div v-if="selectedItemDef.sizeMult && !selectedItemDef.variableCost" class="text-xs text-grey-5 q-mt-xs">* {{ $t('ui.size_mult_msg', { size: store.chassis.size }) }}</div>
-                    <div v-if="store.isAdmin" class="row q-gutter-sm q-mt-sm justify-end">
+                    <div class="row q-gutter-sm q-mt-sm justify-end">
                         <q-btn flat dense icon="open_in_new" label="Wiki" color="info" @click="openWiki"></q-btn>
-                        <q-btn flat dense icon="code" label="Edit JSON" color="accent" @click="openJsonEditor"></q-btn>
-                        <q-btn flat dense icon="delete" label="Delete" color="negative" @click="deleteComponent"></q-btn>
+                        <q-btn v-if="store.isAdmin" flat dense icon="code" label="Edit JSON" color="accent" @click="openJsonEditor"></q-btn>
+                        <q-btn v-if="store.isAdmin" flat dense icon="delete" label="Delete" color="negative" @click="deleteComponent"></q-btn>
                     </div>
                 </q-card>
             </q-card-section>
@@ -1268,6 +1269,18 @@ export const SystemListWrapper = {
 
         const openConfig = (instance) => { editingInstance.value = instance; showConfigDialog.value = true; };
 
+        const openWiki = (defId) => {
+             const def = store.allEquipment.find(e => e.id === defId);
+             if (!def) return;
+
+             if (def.wiki) {
+                 window.open(def.wiki, '_blank');
+             } else {
+                 const name = def.name.replace(/ /g, '_');
+                 window.open(`https://swse.fandom.com/wiki/${name}`, '_blank');
+             }
+        };
+
         const checkValidity = (instance) => {
             const def = store.allEquipment.find(e => e.id === instance.defId);
             if (!def) return true;
@@ -1356,7 +1369,7 @@ export const SystemListWrapper = {
             };
         });
 
-        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingInstance, hasUpgrades, getUpgradeSpecs, canMount, canFireLink, canEnhance, canBattery, canPointBlank, getGenericOptions, openConfig, checkValidity, configModel, getOptionCost };
+        return { store, getName, getIcon, getEpDynamic, getAvailability, getBaseEp, isVariableCost, isModification, isWeapon, isLauncher, isCustom, format, showConfigDialog, editingInstance, hasUpgrades, getUpgradeSpecs, canMount, canFireLink, canEnhance, canBattery, canPointBlank, getGenericOptions, openConfig, openWiki, checkValidity, configModel, getOptionCost };
     }
 };
 
