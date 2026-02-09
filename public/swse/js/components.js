@@ -620,7 +620,11 @@ export const AddModDialog = {
             return store.allEquipment.filter(e => e.group === newComponentGroup.value && e.category === newComponentCategory.value).map(e => ({
                 ...e,
                 label: getLocalizedName(e)
-            })).sort((a, b) => a.label.localeCompare(b.label));
+            })).sort((a, b) => {
+                const nameCompare = a.label.localeCompare(b.label);
+                if (nameCompare !== 0) return nameCompare;
+                return a.baseEp - b.baseEp;
+            });
         });
 
         const selectedItemDef = computed(() => {
