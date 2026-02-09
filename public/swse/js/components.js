@@ -1152,6 +1152,20 @@ export const SystemListWrapper = {
                  if (mods.enhancement === 'enhanced') currentLevel = Math.max(currentLevel, 2); // Restricted
                  if (mods.enhancement === 'advanced') currentLevel = Math.max(currentLevel, 3); // Military
 
+                 // Check options defined in upgradeSpecs
+                 if (def.upgradeSpecs && def.upgradeSpecs.optionCosts) {
+                     for (const [key, value] of Object.entries(def.upgradeSpecs.optionCosts)) {
+                         if (mods[key]) {
+                             if (value.availability) {
+                                 const availLevel = levels[value.availability];
+                                 if (availLevel !== undefined) {
+                                     currentLevel = Math.max(currentLevel, availLevel);
+                                 }
+                             }
+                         }
+                     }
+                 }
+
                  return reverse[currentLevel];
             }
             return avail;
