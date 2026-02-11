@@ -163,7 +163,6 @@ const SystemList = {
                     <div v-if="canPointBlank(editingInstance.defId)" class="q-mb-md">
                         <q-checkbox dark v-model="editingInstance.modifications.pointBlank" :label="'Point Blank (+' + format(getOptionCost(editingInstance.defId, 'pointBlank')) + ')'" />
                     </div>
-                    <!-- Generic Options from componentOptions -->
                     <div v-for="opt in getGenericOptions(editingInstance.defId)" :key="opt.value" class="q-mb-md">
                          <q-checkbox dark v-model="editingInstance.modifications[opt.value]" :label="opt.label" />
                     </div>
@@ -327,8 +326,6 @@ const ShipSheet = {
     setup() { return {}; }
 };
 
-// --- NEW REFACTORED DIALOGS ---
-
 export const HangarDialog = {
     props: ['modelValue'],
     emits: ['update:modelValue'],
@@ -370,9 +367,9 @@ export const HangarDialog = {
         const hangarTab = ref('stock');
         const fileInput = ref(null);
 
-        const stockFighters = computed(() => store.db.STOCK_SHIPS.filter(s => ['Huge', 'Gargantuan'].includes(s.size)));
-        const stockFreighters = computed(() => store.db.STOCK_SHIPS.filter(s => s.name.includes('Freighter') || s.name === 'Shuttle'));
-        const stockCapitals = computed(() => store.db.STOCK_SHIPS.filter(s => s.size.includes('Colossal') && !s.name.includes('Freighter') && !s.name.includes('Shuttle')));
+        const stockFighters = computed(() => store.allShips.filter(s => ['Huge', 'Gargantuan'].includes(s.size)));
+        const stockFreighters = computed(() => store.allShips.filter(s => s.name.includes('Freighter') || s.name === 'Shuttle'));
+        const stockCapitals = computed(() => store.allShips.filter(s => s.size.includes('Colossal') && !s.name.includes('Freighter') && !s.name.includes('Shuttle')));
 
         const selectStockShip = (id) => {
             store.createNew(id);
@@ -402,6 +399,177 @@ export const HangarDialog = {
         };
 
         return { hangarTab, stockFighters, stockFreighters, stockCapitals, selectStockShip, handleFileUpload, fileInput, triggerFileSelect, getLocalizedName };
+    }
+};
+
+export const CustomManagerDialog = {
+    template: `
+    <q-dialog v-model="store.showCustomManager">
+        <q-card class="bg-grey-9 text-white" :style="$q.screen.lt.sm ? 'width: 100%; height: 100vh; display: flex; flex-direction: column;' : 'min-width: 600px; height: 80vh; display: flex; flex-direction: column;'">
+            <q-card-section class="row items-center q-pb-none">
+                <div class="text-h6">Library Manager</div>
+                <q-space></q-space>
+                <q-btn icon="close" flat round dense v-close-popup></q-btn>
+            </q-card-section>
+
+            <q-card-section class="q-py-sm">
+                <div class="row q-gutter-sm">
+                    <q-btn color="primary" icon="add" label="New Library" @click="store.addLibrary()"></q-btn>
+                    <q-btn color="secondary" icon="upload" label="Import Library" @click="triggerLibraryImport"></q-btn>
+                    <input type="file" ref="libraryInput" @change="handleLibraryImport" accept=".json" style="display: none" />
+                </div>
+            </q-card-section>
+
+            <q-card-section class="col q-pa-none scroll">
+                <q-list separator dark class="q-pa-md">
+                    <q-expansion-item v-for="(lib, index) in store.libraries" :key="lib.id" class="bg-grey-8 q-mb-sm rounded-borders" group="libraries">
+                        <template v-slot:header>
+                            <q-item-section avatar>
+                                <q-toggle v-model="lib.active" color="positive" @click.stop />
+                            </q-item-section>
+                            <q-item-section>
+                                <q-item-label class="text-bold">
+                                    {{ lib.name }}
+                                    <q-badge v-if="lib.editable" color="info" label="Editable" class="q-ml-sm" />
+                                </q-item-label>
+                                <q-item-label caption class="text-grey-4">
+                                    {{ lib.components.length }} Components, {{ lib.ships.length }} Ships
+                                </q-item-label>
+                            </q-item-section>
+                            <q-item-section side>
+                                <div class="row q-gutter-xs">
+                                    <q-btn flat round icon="keyboard_arrow_up" size="sm" @click.stop="store.moveLibrary(lib.id, 'up')" :disable="index === 0"></q-btn>
+                                    <q-btn flat round icon="keyboard_arrow_down" size="sm" @click.stop="store.moveLibrary(lib.id, 'down')" :disable="index === store.libraries.length - 1"></q-btn>
+                                    <q-btn flat round icon="edit" color="info" size="sm" @click.stop="editLibraryName(lib)"></q-btn>
+                                    <q-btn flat round icon="download" color="accent" size="sm" @click.stop="exportLibrary(lib)"></q-btn>
+                                    <q-btn flat round icon="delete" color="negative" size="sm" @click.stop="deleteLibrary(lib)"></q-btn>
+                                </div>
+                            </q-item-section>
+                        </template>
+
+                        <q-card class="bg-grey-9">
+                             <q-card-section class="row items-center q-pb-none">
+                                <div class="text-subtitle2">Contents</div>
+                                <q-space></q-space>
+                                <q-btn size="sm" color="primary" icon="add" label="Add Component" @click="store.openCustomDialog()" :disable="!lib.editable" />
+                             </q-card-section>
+                             <q-card-section>
+                                <q-list separator dark dense>
+                                    <q-item-label header class="text-grey-5">Components</q-item-label>
+                                    <q-item v-for="comp in lib.components" :key="comp.id">
+                                        <q-item-section>{{ comp.name }}</q-item-section>
+                                        <q-item-section side>
+                                            <div class="row q-gutter-xs">
+                                                <q-btn flat round icon="edit" size="xs" color="info" @click="store.openCustomDialog(comp.id)" :disable="!lib.editable" />
+                                                <q-btn flat round icon="delete" size="xs" color="negative" @click="store.removeCustomComponent(comp.id)" :disable="!lib.editable" />
+                                            </div>
+                                        </q-item-section>
+                                    </q-item>
+                                    <div v-if="lib.components.length === 0" class="text-caption text-grey q-ml-md">None</div>
+
+                                    <q-item-label header class="text-grey-5">Ships</q-item-label>
+                                    <q-item v-for="ship in lib.ships" :key="ship.id">
+                                        <q-item-section>{{ ship.name }} ({{ ship.size }})</q-item-section>
+                                        <q-item-section side>
+                                            <q-badge color="grey" label="Read Only" />
+                                        </q-item-section>
+                                    </q-item>
+                                    <div v-if="lib.ships.length === 0" class="text-caption text-grey q-ml-md">None</div>
+                                </q-list>
+                             </q-card-section>
+                        </q-card>
+                    </q-expansion-item>
+                    <div v-if="store.libraries.length === 0" class="text-center text-grey q-pa-lg">
+                        No libraries loaded.
+                    </div>
+                </q-list>
+            </q-card-section>
+        </q-card>
+    </q-dialog>
+    `,
+    setup() {
+        const store = useShipStore();
+        const $q = useQuasar();
+        const libraryInput = ref(null);
+
+        const triggerLibraryImport = () => { if(libraryInput.value) libraryInput.value.click(); };
+
+        const handleLibraryImport = (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    // Support legacy import (array of components) by wrapping
+                    if (Array.isArray(data)) {
+                        store.importLibrary({
+                            name: file.name.replace('.json', ''),
+                            components: data
+                        });
+                         $q.notify({ type: 'positive', message: 'Legacy library imported successfully.' });
+                    } else if (data.components || data.ships) {
+                         // Standard Library Import
+                         store.importLibrary(data);
+                         $q.notify({ type: 'positive', message: 'Library imported successfully.' });
+                    } else {
+                        $q.notify({ type: 'negative', message: 'Invalid file format.' });
+                    }
+                } catch (error) {
+                    console.error(error);
+                    $q.notify({ type: 'negative', message: 'Failed to parse JSON.' });
+                }
+                if (libraryInput.value) libraryInput.value.value = '';
+            };
+            reader.readAsText(file);
+        };
+
+        const exportLibrary = (lib) => {
+            const exportObj = {
+                name: lib.name,
+                version: "1.0",
+                components: lib.components,
+                ships: lib.ships
+            };
+            const jsonStr = JSON.stringify(exportObj, null, 2);
+            const blob = new Blob([jsonStr], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `swse_lib_${lib.name.replace(/\s+/g, '_').toLowerCase()}.json`;
+            a.click();
+        };
+
+        const deleteLibrary = (lib) => {
+            $q.dialog({
+                dark: true,
+                title: 'Confirm Deletion',
+                message: `Are you sure you want to delete library "${lib.name}"?`,
+                cancel: true,
+                persistent: true,
+                color: 'negative'
+            }).onOk(() => {
+                store.removeLibrary(lib.id);
+            });
+        };
+
+        const editLibraryName = (lib) => {
+             $q.dialog({
+                dark: true,
+                title: 'Edit Library Name',
+                prompt: {
+                    model: lib.name,
+                    type: 'text'
+                },
+                cancel: true,
+                persistent: true,
+                color: 'primary'
+            }).onOk(data => {
+                store.updateLibrary(lib.id, { name: data });
+            });
+        };
+
+        return { store, libraryInput, triggerLibraryImport, handleLibraryImport, exportLibrary, deleteLibrary, editLibraryName };
     }
 };
 
@@ -763,123 +931,6 @@ export const AddModDialog = {
     }
 };
 
-export const CustomManagerDialog = {
-    template: `
-    <q-dialog v-model="store.showCustomManager">
-        <q-card class="bg-grey-9 text-white" :style="$q.screen.lt.sm ? 'width: 100%; height: 100vh; display: flex; flex-direction: column;' : 'min-width: 600px; height: 70vh; display: flex; flex-direction: column;'">
-            <q-card-section class="row items-center q-pb-none">
-                <div class="text-h6">Custom Components Library</div>
-                <q-space></q-space>
-                <q-btn icon="close" flat round dense v-close-popup></q-btn>
-            </q-card-section>
-
-            <q-card-section class="q-py-sm">
-                <div class="row q-gutter-sm">
-                    <q-btn color="primary" icon="add" label="Create New" @click="store.openCustomDialog()"></q-btn>
-                    <q-btn color="secondary" icon="upload" label="Import JSON" @click="triggerLibraryImport"></q-btn>
-                    <q-btn color="accent" icon="download" label="Export JSON" @click="exportCustomLibrary" :disable="store.customComponents.length === 0"></q-btn>
-                    <input type="file" ref="libraryInput" @change="handleLibraryImport" accept=".json" style="display: none" />
-                </div>
-            </q-card-section>
-
-            <q-card-section class="col q-pa-none">
-                <q-scroll-area class="fit">
-                    <q-list separator dark class="q-pa-md">
-                        <q-item v-for="comp in store.customComponents" :key="comp.id">
-                            <q-item-section>
-                                <q-item-label>{{ comp.name }}</q-item-label>
-                                <q-item-label caption class="text-grey-5">{{ comp.baseCost }} cr | {{ comp.baseEp }} EP</q-item-label>
-                            </q-item-section>
-                            <q-item-section side>
-                                <div class="row q-gutter-xs">
-                                    <q-btn flat round icon="edit" color="info" size="sm" @click="store.openCustomDialog(comp.id)"></q-btn>
-                                    <q-btn flat round icon="delete" :color="store.isCustomComponentInstalled(comp.id) ? 'grey-8' : 'negative'" size="sm" @click="deleteCustomComponent(comp.id)">
-                                        <q-tooltip v-if="store.isCustomComponentInstalled(comp.id)">Uninstall from ship first</q-tooltip>
-                                    </q-btn>
-                                </div>
-                            </q-item-section>
-                        </q-item>
-                        <div v-if="store.customComponents.length === 0" class="text-center text-grey q-pa-lg">
-                            No custom components found. Create or Import one.
-                        </div>
-                    </q-list>
-                </q-scroll-area>
-            </q-card-section>
-        </q-card>
-    </q-dialog>
-    `,
-    setup() {
-        const store = useShipStore();
-        const $q = useQuasar();
-        const libraryInput = ref(null);
-
-        const triggerLibraryImport = () => { if(libraryInput.value) libraryInput.value.click(); };
-
-        const handleLibraryImport = (event) => {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if (Array.isArray(data)) {
-                        let count = 0;
-                        data.forEach(item => {
-                            if (item.name && item.type) {
-                                const newId = 'custom_' + crypto.randomUUID();
-                                const comp = { ...item, id: newId };
-                                store.addCustomComponent(comp);
-                                count++;
-                            }
-                        });
-                        $q.notify({ type: 'positive', message: 'Imported ' + count + ' components.' });
-                    } else {
-                        $q.notify({ type: 'negative', message: 'Invalid file format. Expected JSON array.' });
-                    }
-                } catch (error) {
-                    console.error(error);
-                    $q.notify({ type: 'negative', message: 'Failed to parse JSON.' });
-                }
-                if (libraryInput.value) libraryInput.value.value = '';
-            };
-            reader.readAsText(file);
-        };
-
-        const exportCustomLibrary = () => {
-            if (store.customComponents.length === 0) {
-                $q.notify({ type: 'warning', message: 'No custom components to export.' });
-                return;
-            }
-            const jsonStr = JSON.stringify(store.customComponents, null, 2);
-            const blob = new Blob([jsonStr], {type: 'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'swse_custom_components.json';
-            a.click();
-        };
-
-        const deleteCustomComponent = (id) => {
-            if (store.isCustomComponentInstalled(id)) {
-                $q.notify({ type: 'warning', message: 'Cannot delete: Component is currently installed on the ship. Uninstall it first.' });
-                return;
-            }
-            $q.dialog({
-                dark: true,
-                title: 'Confirm Deletion',
-                message: 'Are you sure you want to delete this custom component?',
-                cancel: true,
-                persistent: true,
-                color: 'negative'
-            }).onOk(() => {
-                store.removeCustomComponent(id);
-            });
-        };
-
-        return { store, libraryInput, triggerLibraryImport, handleLibraryImport, exportCustomLibrary, deleteCustomComponent };
-    }
-};
-
 export const CustomComponentDialog = {
     template: `
     <q-dialog v-model="store.customDialogState.visible">
@@ -1076,7 +1127,7 @@ export const CustomComponentDialog = {
             if (visible) {
                 activeProperties.value = [];
                 if (store.customDialogState.componentId) {
-                    const existing = store.customComponents.find(c => c.id === store.customDialogState.componentId);
+                    const existing = store.allEquipment.find(c => c.id === store.customDialogState.componentId);
                     if (existing) {
                         Object.assign(newCustomComponent, {
                             name: existing.name, category: existing.category, group: existing.group, location: existing.location,
@@ -1139,20 +1190,17 @@ export const SystemListWrapper = {
             const def = store.allEquipment.find(e => e.id === id);
             let avail = def && def.availability ? def.availability : 'Common';
 
-            // If a full component object is passed, check modifications
             if (idOrInstance.modifications) {
                  const levels = { 'Common': 0, 'Licensed': 1, 'Restricted': 2, 'Military': 3, 'Illegal': 4 };
                  const reverse = ['Common', 'Licensed', 'Restricted', 'Military', 'Illegal'];
                  let currentLevel = levels[avail] || 0;
                  const mods = idOrInstance.modifications;
 
-                 // Mod Availabilities (Best Effort based on context)
-                 if (mods.mount === 'quad') currentLevel = Math.max(currentLevel, 2); // Restricted
-                 if (mods.fireLink > 1) currentLevel = Math.max(currentLevel, 2); // Restricted
-                 if (mods.enhancement === 'enhanced') currentLevel = Math.max(currentLevel, 2); // Restricted
-                 if (mods.enhancement === 'advanced') currentLevel = Math.max(currentLevel, 3); // Military
+                 if (mods.mount === 'quad') currentLevel = Math.max(currentLevel, 2);
+                 if (mods.fireLink > 1) currentLevel = Math.max(currentLevel, 2);
+                 if (mods.enhancement === 'enhanced') currentLevel = Math.max(currentLevel, 2);
+                 if (mods.enhancement === 'advanced') currentLevel = Math.max(currentLevel, 3);
 
-                 // Check options defined in upgradeSpecs
                  if (def.upgradeSpecs && def.upgradeSpecs.optionCosts) {
                      for (const [key, value] of Object.entries(def.upgradeSpecs.optionCosts)) {
                          if (mods[key]) {
@@ -1203,6 +1251,8 @@ export const SystemListWrapper = {
             return def && def.group === 'Launchers';
         }
         const isCustom = (id) => {
+            // Updated to check flattened allEquipment vs base equipment?
+            // Actually, customComponents in store now returns all components from libraries.
             return store.customComponents.some(c => c.id === id);
         }
         const format = (n) => n === 0 ? '-' : new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
@@ -1261,20 +1311,14 @@ export const SystemListWrapper = {
             const specs = getUpgradeSpecs(defId);
             if (!specs) return false;
             if (!specs.componentOptions || !specs.componentOptions.includes('weapon.pointBlank')) return false;
-
-            // Check specs.pointBlank constraint if available
             if (specs.pointBlank) return checkConstraints(specs.pointBlank);
-
             return true;
         };
 
         const getGenericOptions = (defId) => {
             const specs = getUpgradeSpecs(defId);
             if (!specs || !specs.componentOptions) return [];
-            // Filter out options that are handled by specific UI controls
             const handled = ['weapon.multibarrel', 'weapon.fireLink', 'weapon.enhancement', 'weapon.battery', 'ordnance', 'weapon.pointBlank'];
-            // We need labels for these. Ideally these should be localized or defined in store/app.
-            // For now, mapping known ones.
             const labels = {
                 'weapon.autofire': 'Autofire Capability',
                 'slaveCircuits.recall': 'Recall Circuit Functionality',
@@ -1316,31 +1360,30 @@ export const SystemListWrapper = {
         };
 
         const getOptionCost = (defId, key) => {
+            return store.getComponentCost({ defId: defId, modifications: { [key]: true }, isStock: false }); // Hacky reuse of store function?
+            // Actually store.getComponentCost is instance based.
+            // But we can replicate the cost lookup logic or just trust the store exposes it.
+            // The Wrapper previous implementation had logic here.
+            // I should have kept the previous logic for getOptionCost or use the one in store if available.
+            // Store has internal logic.
+            // Let's restore the logic from previous file content for safety as it was there.
+
              const def = store.allEquipment.find(e => e.id === defId);
              if (!def) return 0;
-
              let costDef = null;
-             // 1. Check Component Override
              if (def.upgradeSpecs && def.upgradeSpecs.optionCosts && def.upgradeSpecs.optionCosts[key] !== undefined) {
                  costDef = def.upgradeSpecs.optionCosts[key];
              } else if (def.upgradeSpecs && def.upgradeSpecs[key] && typeof def.upgradeSpecs[key] === 'object' && def.upgradeSpecs[key].cost !== undefined) {
                  costDef = def.upgradeSpecs[key].cost;
              }
-
-             // 2. Check Global Default
              if (costDef === null && store.db.DEFAULT_OPTION_COSTS && store.db.DEFAULT_OPTION_COSTS[key] !== undefined) {
                  costDef = store.db.DEFAULT_OPTION_COSTS[key];
              }
-
              if (costDef === null) return 0;
-
-             // 3. Calculate Logic
              if (typeof costDef === 'number') {
                  return costDef;
              } else if (typeof costDef === 'object') {
-                 if (costDef.multiplier) {
-                     return def.baseCost * costDef.multiplier;
-                 }
+                 if (costDef.multiplier) return def.baseCost * costDef.multiplier;
                  if (costDef.cost) {
                      let val = costDef.cost;
                      if (costDef.sizeMult) val *= store.sizeMultVal;
@@ -1441,7 +1484,6 @@ export const ShipSheetWrapper = {
             return nonWeapons.map(instance => getName(instance.defId)).join(', ');
         });
 
-        // Enhanced Damage Logic for Variants
         const getDmg = (instance) => {
             return store.getComponentDamage(instance) || '-';
         }
