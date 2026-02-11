@@ -29,6 +29,7 @@ export const useShipStore = defineStore('ship', () => {
     const libraries = ref([]);
 
     const customDialogState = reactive({ visible: false, componentId: null });
+    const customShipDialogState = reactive({ visible: false, shipId: null });
     const showCustomManager = ref(false);
 
     // Initialize DB Action
@@ -613,6 +614,32 @@ export const useShipStore = defineStore('ship', () => {
         }
     }
 
+    function addCustomShip(ship) {
+        const lib = getEditableLibrary();
+        lib.ships.push(ship);
+    }
+
+    function updateCustomShip(ship) {
+        for (const lib of libraries.value) {
+            const idx = lib.ships.findIndex(s => s.id === ship.id);
+            if (idx !== -1) {
+                lib.ships[idx] = ship;
+                return;
+            }
+        }
+        addCustomShip(ship);
+    }
+
+    function removeCustomShip(shipId) {
+        for (const lib of libraries.value) {
+            const idx = lib.ships.findIndex(s => s.id === shipId);
+            if (idx !== -1) {
+                lib.ships.splice(idx, 1);
+                return;
+            }
+        }
+    }
+
     function isCustomComponentInstalled(componentId) {
         return installedComponents.value.some(m => m.defId === componentId);
     }
@@ -620,6 +647,11 @@ export const useShipStore = defineStore('ship', () => {
     function openCustomDialog(componentId = null) {
         customDialogState.componentId = componentId;
         customDialogState.visible = true;
+    }
+
+    function openCustomShipDialog(shipId = null) {
+        customShipDialogState.shipId = shipId;
+        customShipDialogState.visible = true;
     }
 
     // Library Management Actions
@@ -794,9 +826,9 @@ export const useShipStore = defineStore('ship', () => {
         db, initDb,
         meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount, escapePodsToEpPct,
         libraries, allEquipment, allShips, customComponents, // Exported for components.js
-        customDialogState, showCustomManager,
+        customDialogState, customShipDialogState, showCustomManager,
         chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal, hasEscapePods, escapePodsEpGain, currentCrew, currentPassengers, currentConsumables, totalPopulation, escapePodCapacity,
-        addComponent, addCustomComponent, updateCustomComponent, openCustomDialog, removeComponent, removeCustomComponent, isCustomComponentInstalled, addEquipment, removeEquipment, updateEquipment, downloadDataJson, reset, createNew, loadState, getComponentCost, getComponentEp, getComponentDamage,
+        addComponent, addCustomComponent, updateCustomComponent, openCustomDialog, removeComponent, removeCustomComponent, isCustomComponentInstalled, addCustomShip, updateCustomShip, removeCustomShip, openCustomShipDialog, addEquipment, removeEquipment, updateEquipment, downloadDataJson, reset, createNew, loadState, getComponentCost, getComponentEp, getComponentDamage,
         addLibrary, removeLibrary, toggleLibrary, moveLibrary, importLibrary, updateLibrary,
         isAdmin, isWeapon, isEngine
     };

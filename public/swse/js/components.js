@@ -451,7 +451,8 @@ export const CustomManagerDialog = {
                              <q-card-section class="row items-center q-pb-none">
                                 <div class="text-subtitle2">Contents</div>
                                 <q-space></q-space>
-                                <q-btn size="sm" color="primary" icon="add" label="Add Component" @click="store.openCustomDialog()" :disable="!lib.editable" />
+                                <q-btn size="sm" color="primary" icon="add" label="Add Component" @click="store.openCustomDialog()" :disable="!lib.editable" class="q-mr-sm" />
+                                <q-btn size="sm" color="accent" icon="rocket" label="New Ship" @click="store.openCustomShipDialog()" :disable="!lib.editable" />
                              </q-card-section>
                              <q-card-section>
                                 <q-list separator dark dense>
@@ -471,7 +472,10 @@ export const CustomManagerDialog = {
                                     <q-item v-for="ship in lib.ships" :key="ship.id">
                                         <q-item-section>{{ ship.name }} ({{ ship.size }})</q-item-section>
                                         <q-item-section side>
-                                            <q-badge color="grey" label="Read Only" />
+                                            <div class="row q-gutter-xs">
+                                                <q-btn flat round icon="edit" size="xs" color="info" @click="store.openCustomShipDialog(ship.id)" :disable="!lib.editable" />
+                                                <q-btn flat round icon="delete" size="xs" color="negative" @click="store.removeCustomShip(ship.id)" :disable="!lib.editable" />
+                                            </div>
                                         </q-item-section>
                                     </q-item>
                                     <div v-if="lib.ships.length === 0" class="text-caption text-grey q-ml-md">None</div>
@@ -570,6 +574,148 @@ export const CustomManagerDialog = {
         };
 
         return { store, libraryInput, triggerLibraryImport, handleLibraryImport, exportLibrary, deleteLibrary, editLibraryName };
+    }
+};
+
+export const CustomShipDialog = {
+    template: `
+    <q-dialog v-model="store.customShipDialogState.visible">
+        <q-card class="bg-grey-9 text-white" :style="$q.screen.lt.sm ? 'width: 100%' : 'min-width: 600px'">
+            <q-card-section>
+                <div class="text-h6">{{ store.customShipDialogState.shipId ? 'Edit Custom Ship' : 'Create Custom Ship' }}</div>
+            </q-card-section>
+            <q-card-section class="q-pt-none scroll" style="max-height: 80vh">
+                <div class="column q-gutter-md">
+                    <!-- Basic Info -->
+                    <div class="text-subtitle2 text-primary">General Information</div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-8"><q-input filled dark v-model="newShip.name" label="Ship Name" :rules="[val => !!val || 'Name is required']"></q-input></div>
+                        <div class="col-4">
+                            <q-select filled dark v-model="newShip.size" :options="store.db.SIZE_RANK" label="Size" emit-value map-options></q-select>
+                        </div>
+                    </div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-6"><q-input filled dark v-model="newShip.cost" label="Base Cost (cr)" type="number"></q-input></div>
+                        <div class="col-6"><q-input filled dark v-model="newShip.baseEp" label="Base EP" type="number"></q-input></div>
+                    </div>
+
+                    <q-separator dark />
+
+                    <!-- Stats -->
+                    <div class="text-subtitle2 text-primary">Base Statistics</div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-4"><q-input filled dark v-model.number="newShip.stats.str" label="Strength" type="number"></q-input></div>
+                        <div class="col-4"><q-input filled dark v-model.number="newShip.stats.dex" label="Dexterity" type="number"></q-input></div>
+                        <div class="col-4"><q-input filled dark v-model.number="newShip.stats.int" label="Intelligence" type="number"></q-input></div>
+                    </div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-3"><q-input filled dark v-model.number="newShip.stats.hp" label="HP" type="number"></q-input></div>
+                        <div class="col-3"><q-input filled dark v-model.number="newShip.stats.armor" label="Armor" type="number"></q-input></div>
+                        <div class="col-3"><q-input filled dark v-model.number="newShip.stats.sr" label="Shields (SR)" type="number"></q-input></div>
+                        <div class="col-3"><q-input filled dark v-model.number="newShip.stats.dr" label="DR" type="number"></q-input></div>
+                    </div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-6"><q-input filled dark v-model.number="newShip.stats.threshold" label="Threshold" type="number" hint="Usually Str + Size Mod"></q-input></div>
+                        <div class="col-6"><q-input filled dark v-model.number="newShip.stats.speed" label="Speed (Squares)" type="number"></q-input></div>
+                    </div>
+
+                    <q-separator dark />
+
+                    <!-- Logistics -->
+                    <div class="text-subtitle2 text-primary">Logistics</div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-6"><q-input filled dark v-model.number="newShip.logistics.crew" label="Min Crew" type="number"></q-input></div>
+                        <div class="col-6"><q-input filled dark v-model.number="newShip.logistics.pass" label="Passengers" type="number"></q-input></div>
+                    </div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-6"><q-input filled dark v-model="newShip.logistics.cargo" label="Cargo Capacity" hint="e.g. '100 tons'"></q-input></div>
+                        <div class="col-6"><q-input filled dark v-model="newShip.logistics.cons" label="Consumables" hint="e.g. '1 month'"></q-input></div>
+                    </div>
+                    <div>
+                        <q-input filled dark v-model="newShip.logistics.hangar" label="Hangar / Carried Craft" type="textarea" autogrow></q-input>
+                    </div>
+
+                </div>
+            </q-card-section>
+            <q-card-actions align="right">
+                <q-btn flat label="Cancel" color="grey" v-close-popup />
+                <q-btn unelevated class="q-ml-sm" :label="store.customShipDialogState.shipId ? 'Save Changes' : 'Create'" color="positive" @click="createCustomShip" :disable="!newShip.name" />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
+    `,
+    setup() {
+        const store = useShipStore();
+        const $q = useQuasar();
+
+        const newShip = reactive({
+            id: '',
+            name: '',
+            size: 'Huge',
+            cost: 0,
+            baseEp: 0,
+            stats: { str: 0, dex: 0, int: 0, hp: 0, armor: 0, sr: 0, dr: 0, threshold: 0, speed: 0 },
+            logistics: { crew: 0, pass: 0, cargo: '', cons: '', hangar: '' }
+        });
+
+        const createCustomShip = () => {
+            if (!newShip.name) return;
+            const isEdit = !!store.customShipDialogState.shipId;
+
+            let id = newShip.id;
+            if (!id) {
+                 id = isEdit ? store.customShipDialogState.shipId : 'custom_ship_' + crypto.randomUUID();
+            }
+
+            const ship = {
+                id: id,
+                name: newShip.name,
+                size: newShip.size,
+                cost: Number(newShip.cost),
+                baseEp: Number(newShip.baseEp),
+                stats: { ...newShip.stats },
+                logistics: { ...newShip.logistics }
+            };
+
+            if (isEdit) {
+                store.updateCustomShip(ship);
+            } else {
+                store.addCustomShip(ship);
+            }
+            store.customShipDialogState.visible = false;
+        };
+
+        watch(() => store.customShipDialogState.visible, (visible) => {
+            if (visible) {
+                if (store.customShipDialogState.shipId) {
+                    const existing = store.allShips.find(s => s.id === store.customShipDialogState.shipId);
+                    if (existing) {
+                        newShip.id = existing.id;
+                        newShip.name = existing.name;
+                        newShip.size = existing.size;
+                        newShip.cost = existing.cost;
+                        newShip.baseEp = existing.baseEp;
+
+                        // Deep copy stats/logistics to avoid reactivity linking directly to store until save
+                        newShip.stats = { str: 0, dex: 0, int: 0, hp: 0, armor: 0, sr: 0, dr: 0, threshold: 0, speed: 0, ...existing.stats };
+                        newShip.logistics = { crew: 0, pass: 0, cargo: '', cons: '', hangar: '', ...existing.logistics };
+                    }
+                } else {
+                    // Reset
+                    newShip.id = '';
+                    newShip.name = '';
+                    newShip.size = 'Huge';
+                    newShip.cost = 0;
+                    newShip.baseEp = 0;
+                    newShip.stats = { str: 40, dex: 10, int: 10, hp: 120, armor: 5, sr: 0, dr: 10, threshold: 50, speed: 4 };
+                    newShip.logistics = { crew: 1, pass: 0, cargo: '0 tons', cons: '1 day', hangar: '' };
+                }
+            } else {
+                store.customShipDialogState.shipId = null;
+            }
+        });
+
+        return { store, newShip, createCustomShip };
     }
 };
 

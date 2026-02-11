@@ -1,6 +1,6 @@
 import { useShipStore } from './store.js';
 import { i18n, getLocalizedName } from './i18n.js';
-import { StatPanelWrapper, SystemListWrapper, ConfigPanelWrapper, ShipSheetWrapper, HangarDialog, AddModDialog, CustomManagerDialog, CustomComponentDialog } from './components.js';
+import { StatPanelWrapper, SystemListWrapper, ConfigPanelWrapper, ShipSheetWrapper, HangarDialog, AddModDialog, CustomManagerDialog, CustomComponentDialog, CustomShipDialog } from './components.js';
 import { initTutorial } from './tutorial.js';
 
 const { createApp, ref, onMounted } = Vue;
@@ -132,6 +132,7 @@ fetch('data.json')
         app.component('add-mod-dialog', AddModDialog);
         app.component('custom-manager-dialog', CustomManagerDialog);
         app.component('custom-component-dialog', CustomComponentDialog);
+        app.component('custom-ship-dialog', CustomShipDialog);
 
         // Initialize Store with Data
         const store = useShipStore();
