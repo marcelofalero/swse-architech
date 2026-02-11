@@ -67,7 +67,7 @@ const StatPanel = {
 
 const SystemList = {
     template: `
-    <div id="tour-system-list" class="q-pa-md col column">
+    <div id="tour-system-list" class="q-pa-md col column bg-grey-9">
         <div class="row justify-between items-center q-mb-md"><div class="text-h6">{{ $t('ui.installed_systems') }}</div><q-btn id="tour-add-btn" round color="positive" icon="add" size="sm" @click="store.showAddComponentDialog = true" /></div>
         <component :is="$q.screen.gt.sm ? 'q-scroll-area' : 'div'" :class="$q.screen.gt.sm ? 'col' : ''"><q-list separator dark>
             <q-item v-for="instance in store.installedComponents" :key="instance.instanceId">
