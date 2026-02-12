@@ -30,9 +30,7 @@ const setup = () => {
         const saved = localStorage.getItem('swse_architect_current_build');
         if (saved) {
             try { shipStore.loadState(JSON.parse(saved)); }
-            catch(e) { console.error("Save corruption", e); shipStore.createNew('light_fighter'); }
-        } else {
-            shipStore.createNew('light_fighter');
+            catch(e) { console.error("Save corruption", e); }
         }
 
         // Initialize Tutorial

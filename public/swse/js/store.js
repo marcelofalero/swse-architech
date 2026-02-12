@@ -33,6 +33,7 @@ export const useShipStore = defineStore('ship', () => {
     // Template Edit State
     const isTemplateEditMode = ref(false);
     const templateEditId = ref(null);
+    const preEditState = ref(null);
 
     // Libraries State (Replaces customComponents)
     const libraries = ref([]);
@@ -200,7 +201,6 @@ export const useShipStore = defineStore('ship', () => {
     }
 
     function getComponentCost(instance) {
-        if (isTemplateEditMode.value) return 0;
         const def = allEquipment.value.find(e => e.id === instance.defId);
         if (!def || instance.isStock) return 0;
 
@@ -943,6 +943,19 @@ export const useShipStore = defineStore('ship', () => {
         const ship = allShips.value.find(s => s.id === shipId);
         if (!ship) return;
 
+        // Snapshot Current State
+        preEditState.value = {
+            activeShipId: activeShipId.value,
+            meta: { ...meta },
+            chassisId: chassisId.value,
+            activeTemplate: activeTemplate.value,
+            engineering: { ...engineering },
+            cargoToEpAmount: cargoToEpAmount.value,
+            escapePodsToEpPct: escapePodsToEpPct.value,
+            crewQuality: crewQuality.value,
+            manifest: installedComponents.value.map(m => ({ ...m, modifications: { ...m.modifications } }))
+        };
+
         activeShipId.value = null;
         isTemplateEditMode.value = true;
         templateEditId.value = shipId;
@@ -950,6 +963,26 @@ export const useShipStore = defineStore('ship', () => {
         createNew(ship.id);
 
         meta.name = `Template: ${ship.name}`;
+    }
+
+    function restorePreEditState() {
+        if (!preEditState.value) {
+            reset();
+            return;
+        }
+        const s = preEditState.value;
+        activeShipId.value = s.activeShipId;
+        meta.name = s.meta.name;
+        meta.version = s.meta.version;
+        chassisId.value = s.chassisId;
+        activeTemplate.value = s.activeTemplate;
+        engineering.hasStarshipDesigner = s.engineering.hasStarshipDesigner;
+        cargoToEpAmount.value = s.cargoToEpAmount;
+        escapePodsToEpPct.value = s.escapePodsToEpPct;
+        crewQuality.value = s.crewQuality;
+        installedComponents.value = s.manifest;
+
+        preEditState.value = null;
     }
 
     function saveTemplateEdit() {
@@ -987,14 +1020,14 @@ export const useShipStore = defineStore('ship', () => {
 
         isTemplateEditMode.value = false;
         templateEditId.value = null;
-        activeShipId.value = crypto.randomUUID(); // Convert to normal instance
-        syncActiveToHangar(); // Save to hangar as new ship
+
+        restorePreEditState();
     }
 
     function cancelTemplateEdit() {
         isTemplateEditMode.value = false;
         templateEditId.value = null;
-        createNew('light_fighter');
+        restorePreEditState();
     }
 
     // Watch libraries instead of customComponents
