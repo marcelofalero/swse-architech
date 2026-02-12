@@ -24,6 +24,7 @@ export const useShipStore = defineStore('ship', () => {
     const showAddComponentDialog = ref(false);
     const cargoToEpAmount = ref(0);
     const escapePodsToEpPct = ref(0);
+    const crewQuality = ref('Normal');
 
     // Libraries State (Replaces customComponents)
     const libraries = ref([]);
@@ -831,6 +832,7 @@ export const useShipStore = defineStore('ship', () => {
         engineering.hasStarshipDesigner = state.configuration.feats.starshipDesigner;
         cargoToEpAmount.value = state.configuration.cargoToEpAmount || 0;
         escapePodsToEpPct.value = state.configuration.escapePodsToEpPct || 0;
+        crewQuality.value = state.configuration.crewQuality || 'Normal';
 
         // Migration Logic
         if (state.libraries) {
@@ -859,20 +861,30 @@ export const useShipStore = defineStore('ship', () => {
     }
 
     // Watch libraries instead of customComponents
-    watch([meta, chassisId, activeTemplate, installedComponents, engineering, cargoToEpAmount, escapePodsToEpPct, libraries], () => {
+    watch([meta, chassisId, activeTemplate, installedComponents, engineering, cargoToEpAmount, escapePodsToEpPct, libraries, crewQuality], () => {
         const saveObj = {
             apiVersion: "2.0", // Bumped version
             meta: { name: meta.name, model: chassisId.value, version: "1.0", notes: "" },
-            configuration: { baseChassis: chassisId.value, template: activeTemplate.value, feats: { starshipDesigner: engineering.hasStarshipDesigner }, cargoToEpAmount: cargoToEpAmount.value, escapePodsToEpPct: escapePodsToEpPct.value },
+            configuration: { baseChassis: chassisId.value, template: activeTemplate.value, feats: { starshipDesigner: engineering.hasStarshipDesigner }, cargoToEpAmount: cargoToEpAmount.value, escapePodsToEpPct: escapePodsToEpPct.value, crewQuality: crewQuality.value },
             libraries: libraries.value, // Save libraries
             manifest: installedComponents.value.map(m => ({ id: m.instanceId, defId: m.defId, location: m.location, miniaturizationRank: m.miniaturization, isStock: m.isStock, isNonStandard: m.isNonStandard, modifications: m.modifications }))
         };
         localStorage.setItem('swse_architect_current_build', JSON.stringify(saveObj));
     }, { deep: true });
 
+    const CREW_QUALITY_STATS = {
+        'Untrained': { skill: 0, atk: -5, cl: -1 },
+        'Normal': { skill: 5, atk: 0, cl: 0 },
+        'Skilled': { skill: 6, atk: 2, cl: 1 },
+        'Expert': { skill: 8, atk: 5, cl: 2 },
+        'Ace': { skill: 12, atk: 10, cl: 4 }
+    };
+
+    const crewStats = computed(() => CREW_QUALITY_STATS[crewQuality.value] || CREW_QUALITY_STATS['Normal']);
+
     return {
         db, initDb,
-        meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount, escapePodsToEpPct,
+        meta, chassisId, activeTemplate, installedComponents, engineering, showAddComponentDialog, cargoToEpAmount, escapePodsToEpPct, crewQuality, crewStats, CREW_QUALITY_STATS,
         libraries, allEquipment, allShips, customComponents, // Exported for components.js
         customDialogState, customShipDialogState, showCustomManager,
         chassis, template, currentStats, currentCargo, maxCargoCapacity, reflexDefense, totalEP, usedEP, remainingEP, epUsagePct, totalCost, hullCost, componentsCost, licensingCost, shipAvailability, sizeMultVal, hasEscapePods, escapePodsEpGain, currentCrew, currentPassengers, currentConsumables, totalPopulation, escapePodCapacity,

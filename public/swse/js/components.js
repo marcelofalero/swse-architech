@@ -190,6 +190,11 @@ const ConfigPanel = {
                     <q-tooltip content-class="bg-grey-9" max-width="250px">{{ $t('ui.starship_designer_tip') }}</q-tooltip>
                 </q-btn>
             </div>
+            <div class="q-mt-sm">
+                <q-select filled dark v-model="store.crewQuality" :options="crewQualityOptions" label="Crew Quality" emit-value map-options dense options-dense>
+                    <template v-slot:prepend><q-icon name="group" /></template>
+                </q-select>
+            </div>
         </q-card-section>
 
         <q-separator dark />
@@ -283,7 +288,7 @@ const ShipSheet = {
         <div class="swse-header"><span>{{ store.meta.name || 'Untitled Ship' }}</span><span>CL {{ calculateCL }}</span></div>
         <div class="swse-sub">{{ store.chassis.size }} Starfighter ({{ getLocalizedName(store.chassis) }})</div>
         <div class="sheet-body">
-            <div><span class="bold">Init</span> +{{ getMod(store.currentStats.dex) }}; <span class="bold">Senses</span> Perception +{{ getMod(store.currentStats.int) }}</div>
+            <div><span class="bold">Init</span> +{{ getMod(store.currentStats.dex) + store.crewStats.skill }}; <span class="bold">Senses</span> Perception +{{ getMod(store.currentStats.int) + store.crewStats.skill }}</div>
 
             <div class="section-title">Defense</div>
             <div><span class="bold">Ref</span> {{ store.reflexDefense }} (Flat-footed {{ store.reflexDefense - getMod(store.currentStats.dex) }}), <span class="bold">Fort</span> {{ 10 + getMod(store.currentStats.str) }}; <span class="bold">+{{ store.currentStats.armor }} Armor</span></div>
@@ -291,7 +296,10 @@ const ShipSheet = {
 
             <div class="section-title">Offense</div>
             <div><span class="bold">Speed</span> fly {{ store.currentStats.speed }} squares (starship scale)</div>
-            <div v-for="w in weapons" :key="w.instanceId" class="weapon-line"><span class="bold">Ranged</span> {{ getName(w) }} +5 ({{ getDmg(w) }})</div>
+            <div v-for="w in weaponData" :key="w.instanceId" class="weapon-line">
+                <span class="bold">Ranged</span> {{ w.name }} +{{ w.attackBonus }} ({{ w.damage }})
+                <div v-if="w.details" class="text-caption text-italic q-ml-md" style="font-size: 0.8em;">{{ w.details }}</div>
+            </div>
 
             <div class="section-title">Statistics</div>
             <div class="stat-grid">
@@ -299,7 +307,7 @@ const ShipSheet = {
                 <div><span class="bold">Dex</span> {{ store.currentStats.dex }}</div>
                 <div><span class="bold">Int</span> {{ store.currentStats.int }}</div>
             </div>
-            <div><span class="bold">Base Atk</span> +2; <span class="bold">Grapple</span> +{{ 2 + (getMod(store.currentStats.str)) + (store.sizeMultVal > 1 ? 10 : 0) }}</div>
+            <div><span class="bold">Base Atk</span> +{{ store.crewStats.atk }}; <span class="bold">Grapple</span> +{{ store.crewStats.atk + (getMod(store.currentStats.str)) + (store.sizeMultVal > 1 ? 10 : 0) }}</div>
 
             <div class="section-title">Systems</div>
             <div>{{ systemNames }}</div>
@@ -592,9 +600,12 @@ export const CustomShipDialog = {
                     <div class="text-subtitle2 text-primary">General Information</div>
                     <div><q-select filled dark v-model="store.customShipDialogState.targetLibraryId" :options="store.libraries.filter(l => l.editable).map(l => ({ label: l.name, value: l.id }))" label="Target Library" emit-value map-options></q-select></div>
                     <div class="row q-col-gutter-sm">
-                        <div class="col-8"><q-input filled dark v-model="newShip.name" label="Ship Class" :rules="[val => !!val || 'Name is required']"></q-input></div>
-                        <div class="col-4">
+                        <div class="col-6"><q-input filled dark v-model="newShip.name" label="Ship Class" :rules="[val => !!val || 'Name is required']"></q-input></div>
+                        <div class="col-3">
                             <q-select filled dark v-model="newShip.size" :options="store.db.SIZE_RANK" label="Size" emit-value map-options></q-select>
+                        </div>
+                        <div class="col-3">
+                            <q-input filled dark v-model.number="newShip.challengeLevel" label="CL" hint="Override" type="number"></q-input>
                         </div>
                         <div class="col-12" v-if="store.isAdmin">
                             <q-input filled dark v-model="newShip.id" label="ID (Admin)" hint="Leave blank to auto-generate"></q-input>
@@ -603,6 +614,10 @@ export const CustomShipDialog = {
                     <div class="row q-col-gutter-sm">
                         <div class="col-6"><q-input filled dark v-model="newShip.cost" label="Base Cost (cr)" type="number"></q-input></div>
                         <div class="col-6"><q-input filled dark v-model="newShip.baseEp" label="Base EP" type="number"></q-input></div>
+                    </div>
+                    <div class="row q-col-gutter-sm">
+                        <div class="col-6"><q-input filled dark v-model="newShip.usedCost" label="Used Cost (cr)" type="number"></q-input></div>
+                        <div class="col-6"><q-select filled dark v-model="newShip.availability" :options="store.db.AVAILABILITY_RANK" label="Availability" emit-value map-options></q-select></div>
                     </div>
 
                     <q-separator dark />
@@ -653,8 +668,11 @@ export const CustomShipDialog = {
             id: '',
             name: '',
             size: 'Huge',
+            challengeLevel: null,
             cost: 0,
             baseEp: 0,
+            availability: 'Common',
+            usedCost: 0,
             description: '',
             stats: { str: 0, dex: 0, int: 0, hp: 0, armor: 0, dr: 0 },
             logistics: { crew: 0, pass: 0, cargo: '', cons: '' }
@@ -673,8 +691,11 @@ export const CustomShipDialog = {
                 id: id,
                 name: newShip.name,
                 size: newShip.size,
+                challengeLevel: newShip.challengeLevel !== '' && newShip.challengeLevel !== null ? Number(newShip.challengeLevel) : null,
                 cost: Number(newShip.cost),
                 baseEp: Number(newShip.baseEp),
+                availability: newShip.availability,
+                usedCost: Number(newShip.usedCost),
                 description: newShip.description,
                 stats: { ...newShip.stats },
                 logistics: { ...newShip.logistics }
@@ -696,8 +717,11 @@ export const CustomShipDialog = {
                         newShip.id = existing.id;
                         newShip.name = existing.name;
                         newShip.size = existing.size;
+                        newShip.challengeLevel = existing.challengeLevel || null;
                         newShip.cost = existing.cost;
                         newShip.baseEp = existing.baseEp;
+                        newShip.availability = existing.availability || 'Common';
+                        newShip.usedCost = existing.usedCost || 0;
                         newShip.description = existing.description || '';
 
                         newShip.stats = { str: 0, dex: 0, int: 0, hp: 0, armor: 0, dr: 0, ...existing.stats };
@@ -708,8 +732,11 @@ export const CustomShipDialog = {
                     newShip.id = '';
                     newShip.name = '';
                     newShip.size = 'Huge';
+                    newShip.challengeLevel = null;
                     newShip.cost = 0;
                     newShip.baseEp = 0;
+                    newShip.availability = 'Common';
+                    newShip.usedCost = 0;
                     newShip.description = '';
                     newShip.stats = { str: 40, dex: 10, int: 10, hp: 120, armor: 5, dr: 10 };
                     newShip.logistics = { crew: 1, pass: 0, cargo: '0 tons', cons: '1 day' };
@@ -1590,8 +1617,12 @@ export const ConfigPanelWrapper = {
                 ...store.db.TEMPLATES.map(tmp => ({ label: getLocalizedName(tmp), value: tmp.id }))
             ];
         });
+        const crewQualityOptions = computed(() => {
+            if (!store.CREW_QUALITY_STATS) return [];
+            return Object.keys(store.CREW_QUALITY_STATS).map(k => ({ label: k, value: k }));
+        });
         const format = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
-        return { store, templateOptions, format, showEpDialog };
+        return { store, templateOptions, crewQualityOptions, format, showEpDialog };
     }
 };
 
@@ -1630,8 +1661,52 @@ export const ShipSheetWrapper = {
         const getDmg = (instance) => {
             return store.getComponentDamage(instance) || '-';
         }
-        const calculateCL = computed(() => { let cl = 10; if(store.chassis.size.includes('Colossal')) cl += 5; cl += Math.floor(store.installedComponents.length / 2); if(store.template) cl += 2; return cl; });
+        const calculateCL = computed(() => {
+            if (store.chassis.challengeLevel !== null && store.chassis.challengeLevel !== undefined) {
+                return store.chassis.challengeLevel;
+            }
+            let cl = 10;
+            if(store.chassis.size.includes('Colossal')) cl += 5;
+            cl += Math.floor(store.installedComponents.length / 2);
+            if(store.template) cl += 2;
+            cl += store.crewStats.cl;
+            return cl;
+        });
         const formatCreds = (n) => new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(n) + ' cr';
+
+        const weaponData = computed(() => {
+            return weapons.value.map(w => {
+                const def = store.allEquipment.find(e => e.id === w.defId);
+                const name = getName(w); // Uses the existing getName which handles some mods
+                const damage = getDmg(w);
+
+                // Calculate Attack Bonus: Crew Atk + Int Mod + Range(0) + Size?
+                // Usually Starship weapons are Int based.
+                // SotG p16: "Attack Bonus" is Base Atk.
+                // We add ship's Int modifier (or Pilot's Dex if we had a pilot, but we assume generic crew).
+                // "Generic crew use the ship's Intelligence modifier for attack rolls with ship weapons."
+                const atk = store.crewStats.atk + getMod(store.currentStats.int);
+
+                const detailsParts = [];
+                if (w.modifications.batteryCount > 1) detailsParts.push(`Battery (${w.modifications.batteryCount} guns)`);
+                if (w.modifications.fireLink > 1) detailsParts.push(`Fire-Linked (${w.modifications.fireLink})`);
+                if (w.modifications.autofire) detailsParts.push('Autofire');
+                if (w.modifications.pointBlank) detailsParts.push('Point-Blank');
+
+                // Range isn't easily available in data.json currently without parsing description or adding a field.
+                // We'll skip range for now or infer it? Laser Cannon = Short?
+                // We'll just stick to declarative mods.
+
+                return {
+                    instanceId: w.instanceId,
+                    name: name,
+                    damage: damage,
+                    attackBonus: atk,
+                    details: detailsParts.join(', '),
+                    defId: w.defId
+                };
+            });
+        });
 
         const componentsWithDescriptions = computed(() => {
             const seen = new Set();
@@ -1650,6 +1725,6 @@ export const ShipSheetWrapper = {
              return def ? def.description : '';
         };
 
-        return { store, getName, getMod, weapons, systemNames, getDmg, calculateCL, formatCreds, getLocalizedName, componentsWithDescriptions, getDescription };
+        return { store, getName, getMod, weapons, weaponData, systemNames, getDmg, calculateCL, formatCreds, getLocalizedName, componentsWithDescriptions, getDescription };
     }
 };
