@@ -1566,39 +1566,21 @@
         },
         {
             "id": "tech_spec_sh",
-            "name": "Tech Spec: Shields (+10 SR)",
-            "name_es": "Esp. Tec: Escudos (+10 SR)",
+            "name": "Tech Spec: Shields (+5 SR)",
+            "name_es": "Esp. Tec: Escudos (+5 SR)",
             "category": "Modifications",
             "group": "Tech Specialist",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
             "stats": {
-                "sr_bonus": 10
+                "sr_bonus": 5
             },
             "exclusiveGroup": "tech_upgrade",
             "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Tech_Spec:_Shields_(+10_SR)"
-        },
-        {
-            "id": "tech_spec_ar",
-            "name": "Tech Spec: Armor (+2)",
-            "name_es": "Esp. Tec: Armadura (+2)",
-            "category": "Modifications",
-            "group": "Tech Specialist",
-            "baseCost": 0,
-            "baseEp": 0,
-            "sizeMult": false,
-            "stats": {
-                "armor_bonus": 2
-            },
-            "exclusiveGroup": "tech_upgrade",
-            "availability": "Common",
-            "variableCost": true,
-            "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Tech_Spec:_Armor_(+2)"
+            "wiki": "https://swse.miraheze.org/wiki/Tech_Specialist"
         },
         {
             "id": "ts_dex",
@@ -1615,7 +1597,7 @@
             "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Enhanced_Dexterity_(+2_Dex)"
+            "wiki": "https://swse.miraheze.org/wiki/Tech_Specialist"
         },
         {
             "id": "ts_speed",
@@ -1632,41 +1614,25 @@
             "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Improved_Speed_(+25%)"
+            "wiki": "https://swse.miraheze.org/wiki/Tech_Specialist"
         },
         {
             "id": "sup_tech_sh",
-            "name": "Shields (+20 SR)",
+            "name": "Shields (+10 SR)",
+            "name_es": "Escudos (+10 SR)",
             "category": "Modifications",
             "group": "Superior Tech",
             "baseCost": 0,
             "baseEp": 0,
             "sizeMult": false,
             "stats": {
-                "sr_bonus": 20
+                "sr_bonus": 10
             },
             "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
+            "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Shields_(+20_SR)"
-        },
-        {
-            "id": "sup_tech_ar",
-            "name": "Armor (+2 Armor)",
-            "category": "Modifications",
-            "group": "Superior Tech",
-            "baseCost": 0,
-            "baseEp": 0,
-            "sizeMult": false,
-            "stats": {
-                "armor_bonus": 2
-            },
-            "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
-            "variableCost": true,
-            "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Armor_(+2_Armor)"
+            "wiki": "https://swse.miraheze.org/wiki/Superior_Tech"
         },
         {
             "id": "st_dex",
@@ -1680,10 +1646,10 @@
                 "dex_bonus": 4
             },
             "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
+            "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Superior_Dex_(+4_Dex)"
+            "wiki": "https://swse.miraheze.org/wiki/Superior_Tech"
         },
         {
             "id": "st_str",
@@ -1697,10 +1663,10 @@
                 "str_bonus": 2
             },
             "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
+            "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Superior_Str_(+2_Str)"
+            "wiki": "https://swse.miraheze.org/wiki/Superior_Tech"
         },
         {
             "id": "st_sensors",
@@ -1714,10 +1680,10 @@
                 "perception_bonus": 2
             },
             "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
+            "availability": "Common",
             "variableCost": true,
             "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Superior_Sensors_(+2_Per)"
+            "wiki": "https://swse.miraheze.org/wiki/Superior_Tech"
         },
         {
             "id": "st_speed",
@@ -1731,7 +1697,7 @@
                 "speed_factor": 0.333
             },
             "exclusiveGroup": "tech_upgrade",
-            "availability": "Rare",
+            "availability": "Common",
             "variableCost": true,
             "location": "Installed",
             "wiki": "https://swse.miraheze.org/wiki/Superior_Speed_(+33%)"
@@ -2462,7 +2428,7 @@
             "availability": "Common",
             "description": "Used to carry smaller ships (e.g. TIE Fighters on a Gozanti). A Starship can maneuver and Hyperspace with ships attached. If ship takes damage > Threshold, clamped ships are shaken off.",
             "location": "",
-            "wiki": "https://swse.miraheze.org/wiki/Docking_Clamp"
+            "wiki": "https://swse.miraheze.org/wiki/Docking_Clamps"
         },
         {
             "id": "armor_1",
@@ -2928,8 +2894,8 @@
             },
             "damage": "3d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
-            "location": "Hardpoint",
-            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon_(Vehicles)"
+            "location": "",
+            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon#Vehicle_Weapon"
         },
         {
             "id": "blaster_cannon_med",
@@ -2956,8 +2922,8 @@
             },
             "damage": "4d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
-            "location": "Hardpoint",
-            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon_(Vehicles)"
+            "location": "",
+            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon#Vehicle_Weapon"
         },
         {
             "id": "blaster_cannon_hvy",
@@ -2984,8 +2950,8 @@
             },
             "damage": "5d10x2",
             "description": "Blaster Cannons are frequently mounted on Starfighters. They are less expensive than Laser Cannons but have a more limited range.",
-            "location": "Hardpoint",
-            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon_(Vehicles)"
+            "location": "",
+            "wiki": "https://swse.miraheze.org/wiki/Blaster_Cannon#Vehicle_Weapon"
         },
         {
             "id": "harpoon_gun",
@@ -2998,7 +2964,7 @@
             "sizeMult": false,
             "availability": "Common",
             "description": "A Gunner may use the Harpoon Gun to make a Grapple check against a target Walker. If the Grapple check succeeds, the target Walker cannot move without first making a Pilot check (DC = Harpoon Gun's Grapple check result). If this Pilot check fails, the Walker suffers an automatic Collision, taking twice its Collision damage.",
-            "location": "Hardpoint",
+            "location": "",
             "wiki": "https://swse.miraheze.org/wiki/Harpoon_Gun"
         },
         {
@@ -3028,34 +2994,6 @@
             "description": "Attacks from the Starship gain a +2 Equipment bonus to hit automated craft (like Droid Starfighters) within a 5-square radius.",
             "location": "",
             "wiki": "https://swse.miraheze.org/wiki/Droid_Jammer"
-        },
-        {
-            "id": "cannon_enhancements",
-            "name": "Cannon Enhancements",
-            "name_es": "Mejoras de Cañón",
-            "category": "Modifications",
-            "group": "Weapon Upgrades",
-            "baseCost": 3000,
-            "baseEp": 0,
-            "sizeMult": false,
-            "availability": "Restricted",
-            "description": "Standard Cannon Enhancements increase damage by +1 die. Costs 2x base weapon cost.",
-            "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Cannon_Enhancements"
-        },
-        {
-            "id": "cannon_enhancements_adv",
-            "name": "Cannon Enhancements (Advanced)",
-            "name_es": "Mejoras de Cañón (Avanzadas)",
-            "category": "Modifications",
-            "group": "Weapon Upgrades",
-            "baseCost": 6000,
-            "baseEp": 0,
-            "sizeMult": false,
-            "availability": "Restricted",
-            "description": "Advanced Cannon Enhancements increase damage by +2 dice. Costs 5x base weapon cost. Military availability.",
-            "location": "Installed",
-            "wiki": "https://swse.miraheze.org/wiki/Cannon_Enhancements_(Advanced)"
         },
         {
             "id": "gravity_well",
@@ -3098,7 +3036,7 @@
             "availability": "Military",
             "description": "A specialized torpedo designed to overload shielding systems. On a hit, it reduces the target's Shield Rating by -10 (instead of the usual -5). Shields damaged in this way can be recharged normally.",
             "location": "Hardpoint",
-            "wiki": "https://swse.miraheze.org/wiki/Shieldbuster_Torpedo_Launcher"
+            "wiki": "https://swse.miraheze.org/wiki/Shieldbuster_Torpedoes"
         },
         {
             "id": "space_mine_launcher_standard",
@@ -3120,7 +3058,7 @@
                 "costFactor": 0.25,
                 "unitLabel": "mines"
             },
-            "wiki": "https://swse.miraheze.org/wiki/Space_Mine_Launcher"
+            "wiki": "https://swse.miraheze.org/wiki/Space_Mines"
         },
         {
             "id": "space_mine_launcher_heavy",
@@ -3142,7 +3080,7 @@
                 "costFactor": 0.25,
                 "unitLabel": "mines"
             },
-            "wiki": "https://swse.miraheze.org/wiki/Space_Mine_Launcher"
+            "wiki": "https://swse.miraheze.org/wiki/Space_Mines"
         },
         {
             "id": "discord_missile_launcher",
@@ -3157,7 +3095,7 @@
             "availability": "Military",
             "description": "Deploys a buzz droid swarm on the target ship. The target takes 2d10 damage per turn (ignoring DR and SR) until the droids are removed or destroyed. Requires a successful attack roll to hit.",
             "location": "Hardpoint",
-            "wiki": "https://swse.miraheze.org/wiki/Discord_Missile_Launcher"
+            "wiki": "https://swse.miraheze.org/wiki/Discord_Missiles"
         },
         {
             "id": "composite_beam",
@@ -3185,7 +3123,7 @@
             "availability": "Military",
             "description": "Detonates when a ship enters the square, creating a temporary gravity well that prevents Hyperspace travel for 1 round and deals 4d10x2 Energy damage.",
             "location": "",
-            "wiki": "https://swse.miraheze.org/wiki/Gravity_Mine_Launcher"
+            "wiki": "https://swse.miraheze.org/wiki/Gravity_Mines"
         },
         {
             "id": "chaff_gun",
@@ -3215,7 +3153,7 @@
                 "str_bonus": 2
             },
             "location": "",
-            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generator"
+            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generators"
         },
         {
             "id": "aux_gen_4",
@@ -3232,7 +3170,7 @@
                 "str_bonus": 4
             },
             "location": "",
-            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generator"
+            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generators"
         },
         {
             "id": "aux_gen_6",
@@ -3249,7 +3187,7 @@
                 "str_bonus": 6
             },
             "location": "",
-            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generator"
+            "wiki": "https://swse.miraheze.org/wiki/Auxiliary_Generators"
         },
         {
             "id": "hidden_cargo_25",
