@@ -200,9 +200,9 @@ export const useShipStore = defineStore('ship', () => {
         return `${diceCount}d${dieType}${multiplier}`;
     }
 
-    function getComponentCost(instance) {
+    function calculateComponentCost(instance, ignoreStock = false) {
         const def = allEquipment.value.find(e => e.id === instance.defId);
-        if (!def || instance.isStock) return 0;
+        if (!def || (!ignoreStock && instance.isStock)) return 0;
 
         let cost = def.baseCost;
         if (def.sizeMult) cost *= sizeMultVal.value;
@@ -308,6 +308,11 @@ export const useShipStore = defineStore('ship', () => {
         if (instance.isNonStandard) cost *= 5;
 
         return cost;
+    }
+
+    function getComponentCost(instance) {
+        if (isTemplateEditMode.value) return 0;
+        return calculateComponentCost(instance, false);
     }
 
     // Computed Properties
@@ -600,11 +605,7 @@ export const useShipStore = defineStore('ship', () => {
         // In Template Mode, add cost of "Stock" components to Hull Base
         if (isTemplateEditMode.value) {
             const stockCost = installedComponents.value.reduce((total, instance) => {
-                // Calculate cost as if it wasn't stock
-                const def = allEquipment.value.find(e => e.id === instance.defId);
-                if (!def) return total;
-                const mockInstance = { ...instance, isStock: false };
-                return total + getComponentCost(mockInstance);
+                return total + calculateComponentCost(instance, true);
             }, 0);
             base += stockCost;
         }
