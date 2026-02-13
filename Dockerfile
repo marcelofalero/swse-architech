@@ -15,11 +15,16 @@ WORKDIR /app
 
 RUN npm install -g wrangler
 
-# Copy requirements so wrangler can bundle them
-COPY requirements.txt .
+# Copy backend requirements for bundling
+COPY backend/requirements.txt .
 
 # Expose default wrangler dev port
 EXPOSE 8787
 
+# Set workdir to backend where wrangler.toml lives (when mounted or copied)
+# But wait, wrangler dev needs to run from the directory containing wrangler.toml
+WORKDIR /app/backend
+
 # Command to run wrangler dev
+# Note: This assumes the host volume mounts the repo root to /app
 CMD ["wrangler", "dev", "--host", "0.0.0.0"]
