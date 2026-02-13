@@ -7,18 +7,42 @@ import time
 import uuid
 from jose import jwt
 import httpx
-import js
+import hashlib
+import secrets
+import os
 
 app = FastAPI()
 
 # --- Helpers ---
 
-async def get_env():
-    return js.env
+async def get_env(request: Request):
+    return request.scope["extensions"]["cloudflare"]["env"]
 
-async def get_db():
-    env = await get_env()
+async def get_db(request: Request):
+    env = await get_env(request)
     return env.DB
+
+def hash_password(password: str) -> str:
+    salt = secrets.token_hex(16)
+    pw_hash = hashlib.pbkdf2_hmac(
+        'sha256',
+        password.encode(),
+        salt.encode(),
+        100000
+    ).hex()
+    return f"{salt}${pw_hash}"
+
+def verify_password(stored_password: str, provided_password: str) -> bool:
+    if not stored_password or '$' not in stored_password:
+        return False
+    salt, stored_hash = stored_password.split('$')
+    pw_hash = hashlib.pbkdf2_hmac(
+        'sha256',
+        provided_password.encode(),
+        salt.encode(),
+        100000
+    ).hex()
+    return secrets.compare_digest(stored_hash, pw_hash)
 
 # --- Models ---
 
@@ -51,6 +75,15 @@ class User(BaseModel):
     id: str
     email: str
     name: str
+
+class RegisterUser(BaseModel):
+    email: str
+    password: str
+    name: str
+
+class LoginUser(BaseModel):
+    email: str
+    password: str
 
 # --- Auth ---
 
@@ -94,7 +127,7 @@ async def get_current_user(request: Request) -> Optional[User]:
     if not auth or not auth.startswith("Bearer "):
         return None
     token = auth.split(" ")[1]
-    env = await get_env()
+    env = await get_env(request)
     try:
         payload = jwt.decode(token, env.SESSION_SECRET, algorithms=["HS256"])
         return User(id=payload["sub"], email=payload["email"], name=payload["name"])
@@ -103,9 +136,60 @@ async def get_current_user(request: Request) -> Optional[User]:
 
 # --- Endpoints ---
 
+@app.post("/auth/register")
+async def register(user_req: RegisterUser, request: Request):
+    db = await get_db(request)
+
+    # Check if user exists
+    res = await db.prepare("SELECT id FROM users WHERE email = ?").bind(user_req.email).all()
+    if res.results:
+        raise HTTPException(status_code=400, detail="User already exists")
+
+    user_id = str(uuid.uuid4())
+    pw_hash = hash_password(user_req.password)
+
+    await db.prepare("INSERT INTO users (id, email, name, password_hash) VALUES (?, ?, ?, ?)").bind(
+        user_id, user_req.email, user_req.name, pw_hash
+    ).run()
+
+    return {"status": "ok", "user_id": user_id}
+
+@app.post("/auth/login")
+async def login(login_req: LoginUser, request: Request):
+    db = await get_db(request)
+    env = await get_env(request)
+
+    res = await db.prepare("SELECT * FROM users WHERE email = ?").bind(login_req.email).all()
+    results = res.results
+    if hasattr(results, 'to_py'):
+        results = results.to_py()
+
+    if not results:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    user_row = results[0]
+    stored_hash = user_row.get('password_hash')
+
+    if not stored_hash:
+        # User might be a Google-only user
+        raise HTTPException(status_code=401, detail="Invalid credentials (try Google login)")
+
+    if not verify_password(stored_hash, login_req.password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    # Create session token
+    session_payload = {
+        "sub": user_row['id'],
+        "email": user_row['email'],
+        "name": user_row['name'],
+        "exp": int(time.time()) + 86400 * 7 # 7 days
+    }
+    session_token = jwt.encode(session_payload, env.SESSION_SECRET, algorithm="HS256")
+    return {"access_token": session_token, "token_type": "bearer"}
+
 @app.get("/auth/google")
-async def auth_google(token: str):
-    env = await get_env()
+async def auth_google(token: str, request: Request):
+    env = await get_env(request)
     payload = await verify_google_token(token, env.GOOGLE_CLIENT_ID)
     if not payload:
         raise HTTPException(status_code=400, detail="Invalid token")
@@ -114,7 +198,7 @@ async def auth_google(token: str):
     email = payload["email"]
     name = payload.get("name", "")
 
-    db = await get_db()
+    db = await get_db(request)
 
     # Upsert user
     res = await db.prepare("SELECT * FROM users WHERE id = ?").bind(user_id).all()
@@ -123,7 +207,17 @@ async def auth_google(token: str):
         results = results.to_py()
 
     if not results:
-        await db.prepare("INSERT INTO users (id, email, name) VALUES (?, ?, ?)").bind(user_id, email, name).run()
+        # Check by email
+        res_email = await db.prepare("SELECT * FROM users WHERE email = ?").bind(email).all()
+        email_results = res_email.results
+        if hasattr(email_results, 'to_py'):
+            email_results = email_results.to_py()
+
+        if email_results:
+            user_row = email_results[0]
+            user_id = user_row['id']
+        else:
+            await db.prepare("INSERT INTO users (id, email, name) VALUES (?, ?, ?)").bind(user_id, email, name).run()
 
     # Create session token
     session_payload = {
@@ -140,21 +234,31 @@ async def list_ships(request: Request):
     user = await get_current_user(request)
     user_id = user.id if user else None
 
-    db = await get_db()
+    db = await get_db(request)
 
     if user_id:
-        # Select distinct ships and the specific permission level for the user
+        # Access Ranks: admin=3, write=2, read=1
         sql = """
-        SELECT s.*, p.access_level
+        SELECT s.*,
+        MAX(CASE
+            WHEN s.owner_id = ? THEN 3
+            WHEN p.access_level = 'admin' THEN 3
+            WHEN p.access_level = 'write' THEN 2
+            WHEN p.access_level = 'read' THEN 1
+            ELSE 0
+        END) as access_rank
         FROM ships s
-        LEFT JOIN permissions p ON s.id = p.target_id AND p.grantee_id = ? AND p.grantee_type = 'user'
+        LEFT JOIN permissions p ON s.id = p.target_id
+        LEFT JOIN group_members gm ON p.grantee_id = gm.group_id AND p.grantee_type = 'group'
         WHERE s.visibility = 'public'
            OR s.owner_id = ?
-           OR p.access_level IS NOT NULL
+           OR (p.grantee_id = ? AND p.grantee_type = 'user')
+           OR (gm.user_id = ?)
+        GROUP BY s.id
         """
-        params = [user_id, user_id]
+        params = [user_id, user_id, user_id, user_id]
     else:
-        sql = "SELECT *, NULL as access_level FROM ships WHERE visibility = 'public'"
+        sql = "SELECT *, 0 as access_rank FROM ships WHERE visibility = 'public'"
         params = []
 
     res = await db.prepare(sql).bind(*params).all()
@@ -164,22 +268,17 @@ async def list_ships(request: Request):
 
     ships = []
     for row in results:
-        # Determine access level
-        effective_access = 'read' # default for public
-        if user_id and row['owner_id'] == user_id:
-            effective_access = 'admin'
-        elif 'access_level' in row and row['access_level']:
-            effective_access = row['access_level']
+        access_rank = row.get('access_rank', 0)
 
         # HATEOAS Links
         links = {
             "self": Link(href=f"/ships/{row['id']}", rel="self", method="GET")
         }
 
-        if effective_access in ['write', 'admin']:
+        if access_rank >= 2: # write or admin
             links["update"] = Link(href=f"/ships/{row['id']}", rel="update", method="PUT")
 
-        if effective_access == 'admin':
+        if access_rank >= 3: # admin
             links["share"] = Link(href=f"/ships/{row['id']}/share", rel="share", method="PATCH")
             links["delete"] = Link(href=f"/ships/{row['id']}", rel="delete", method="DELETE")
 
@@ -202,7 +301,7 @@ async def create_ship(ship_req: CreateShip, request: Request):
         raise HTTPException(status_code=401, detail="Authentication required")
 
     ship_id = str(uuid.uuid4())
-    db = await get_db()
+    db = await get_db(request)
 
     # Store data
     await db.prepare("""
@@ -238,29 +337,42 @@ async def share_ship(ship_id: str, share_req: ShareShip, request: Request):
     if not user:
         raise HTTPException(status_code=401, detail="Authentication required")
 
-    db = await get_db()
+    db = await get_db(request)
 
-    # Verify ownership or admin access
-    # Fetch ship and user permission
-    res = await db.prepare("""
-        SELECT s.owner_id, p.access_level
+    # Access Ranks
+    sql = """
+        SELECT s.owner_id,
+        MAX(CASE
+            WHEN s.owner_id = ? THEN 3
+            WHEN p.access_level = 'admin' THEN 3
+            ELSE 0
+        END) as access_rank
         FROM ships s
-        LEFT JOIN permissions p ON s.id = p.target_id AND p.grantee_id = ?
-        WHERE s.id = ?
-    """).bind(user.id, ship_id).all()
+        LEFT JOIN permissions p ON s.id = p.target_id
+        LEFT JOIN group_members gm ON p.grantee_id = gm.group_id AND p.grantee_type = 'group'
+        WHERE s.id = ? AND (
+           s.owner_id = ?
+           OR (p.grantee_id = ? AND p.grantee_type = 'user')
+           OR (gm.user_id = ?)
+        )
+        GROUP BY s.id
+    """
 
+    res = await db.prepare(sql).bind(user.id, ship_id, user.id, user.id, user.id).all()
     results = res.results
     if hasattr(results, 'to_py'):
         results = results.to_py()
 
     if not results:
-        raise HTTPException(status_code=404, detail="Ship not found")
+        # Check if ship exists
+        check = await db.prepare("SELECT 1 FROM ships WHERE id = ?").bind(ship_id).all()
+        if not check.results:
+            raise HTTPException(status_code=404, detail="Ship not found")
+        raise HTTPException(status_code=403, detail="Not authorized")
 
-    row = results[0]
-    is_owner = row['owner_id'] == user.id
-    access_level = row.get('access_level')
+    access_rank = results[0].get('access_rank', 0)
 
-    if not is_owner and access_level != 'admin':
+    if access_rank < 3:
         raise HTTPException(status_code=403, detail="Not authorized to share this ship")
 
     # Upsert permission
@@ -274,3 +386,9 @@ async def share_ship(ship_id: str, share_req: ShareShip, request: Request):
     ).run()
 
     return {"status": "ok"}
+
+# --- Worker Entry Point ---
+
+async def on_fetch(request, env):
+    import asgi
+    return await asgi.fetch(app, request, env)

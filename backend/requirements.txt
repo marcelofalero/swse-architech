@@ -1,4 +1,4 @@
 fastapi
-python-jose[cryptography]
+python-jose[rsa]
 httpx
 pydantic
