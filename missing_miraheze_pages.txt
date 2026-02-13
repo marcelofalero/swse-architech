@@ -1,7 +1,10 @@
 Migration Report
 ================
 
-UNVERIFIED COMPONENTS (162) - Updated (Network/Block Issue):
+UNVERIFIED COMPONENTS (162) - Updated/Checked (Network/Block Issue):
+Note: verification may fail (403 Forbidden) in some environments (e.g., cloud sandboxes) due to anti-bot measures.
+These links were updated assuming the page exists or is temporarily inaccessible to the script.
+
 - Light Laser Cannon (ID: laser_light)
   New: https://swse.miraheze.org/wiki/Laser_Cannon
   Error: 403 Forbidden
@@ -380,7 +383,7 @@ UNVERIFIED COMPONENTS (162) - Updated (Network/Block Issue):
 
 - Transponder (Disguised) (2) (ID: transponder_disguised_2)
   New: https://swse.miraheze.org/wiki/Transponder
-  Error: 0 <urlopen error [Errno 101] Network is unreachable>
+  Error: 403 Forbidden
 
 - Transponder (Disguised) (3) (ID: transponder_disguised_3)
   New: https://swse.miraheze.org/wiki/Transponder
@@ -388,7 +391,7 @@ UNVERIFIED COMPONENTS (162) - Updated (Network/Block Issue):
 
 - Transponder (IFF) (ID: transponder_iff)
   New: https://swse.miraheze.org/wiki/Transponder
-  Error: 0 <urlopen error [Errno 101] Network is unreachable>
+  Error: 403 Forbidden
 
 - Workshop (ID: workshop)
   New: https://swse.miraheze.org/wiki/Workshop
@@ -424,7 +427,7 @@ UNVERIFIED COMPONENTS (162) - Updated (Network/Block Issue):
 
 - Extended Range (ID: extended_range)
   New: https://swse.miraheze.org/wiki/Extended_Range
-  Error: 403 Forbidden
+  Error: 0 <urlopen error [Errno 101] Network is unreachable>
 
 - Luxury Upgrade (Basic) (ID: luxury_basic)
   New: https://swse.miraheze.org/wiki/Luxury_Upgrade
@@ -472,11 +475,11 @@ UNVERIFIED COMPONENTS (162) - Updated (Network/Block Issue):
 
 - Jamming Array (ID: jamming_array)
   New: https://swse.miraheze.org/wiki/Jamming_Array
-  Error: 0 <urlopen error [Errno 101] Network is unreachable>
+  Error: 403 Forbidden
 
 - Regenerating Shields (ID: regenerating_shields)
   New: https://swse.miraheze.org/wiki/Regenerating_Shields
-  Error: 0 <urlopen error [Errno 101] Network is unreachable>
+  Error: 403 Forbidden
 
 - Reinforced Bulkheads (+20%) (ID: bulkheads_20)
   New: https://swse.miraheze.org/wiki/Reinforced_Bulkheads
