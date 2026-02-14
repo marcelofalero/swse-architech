@@ -7,11 +7,10 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 import time
 import uuid
-import jwt
-from jwt import PyJWKClient
 import hashlib
 import secrets
 import os
+import base64
 
 # --- ASGI Adapter ---
 
@@ -128,6 +127,176 @@ def verify_password(stored_password: str, provided_password: str) -> bool:
     ).hex()
     return secrets.compare_digest(stored_hash, pw_hash)
 
+# --- Web Crypto JWT Implementation ---
+
+def base64url_decode(input: str) -> bytes:
+    input += "=" * (-len(input) % 4)
+    return base64.urlsafe_b64decode(input)
+
+def base64url_encode(input: bytes) -> str:
+    return base64.urlsafe_b64encode(input).rstrip(b"=").decode("utf-8")
+
+async def verify_rs256_token(token: str, client_id: str):
+    try:
+        parts = token.split(".")
+        if len(parts) != 3:
+            return None
+
+        header_b64, payload_b64, signature_b64 = parts
+
+        header = json.loads(base64url_decode(header_b64))
+        payload = json.loads(base64url_decode(payload_b64))
+
+        # Verify audience
+        if payload.get("aud") != client_id:
+            return None
+
+        # Verify expiration
+        if payload.get("exp", 0) < time.time():
+            return None
+
+        kid = header.get("kid")
+        if not kid:
+            return None
+
+        # Fetch keys using js.fetch
+        jwks = await get_jwks()
+        if not jwks:
+            return None
+
+        key_data = next((k for k in jwks if k["kid"] == kid), None)
+        if not key_data:
+            return None
+
+        # Import key using Web Crypto
+        # key_data is a dict. Convert to JS object
+        key_js = js.JSON.parse(json.dumps(key_data))
+        algo = js.Object.new()
+        algo.name = "RSASSA-PKCS1-v1_5"
+        algo.hash = "SHA-256"
+
+        crypto_key = await js.crypto.subtle.importKey(
+            "jwk",
+            key_js,
+            algo,
+            False,
+            js.Array.new("verify")
+        )
+
+        # Verify signature
+        # Signature is base64url encoded
+        signature = base64url_decode(signature_b64)
+        signature_js = js.Uint8Array.new(signature)
+
+        # Data to verify is header.payload
+        data = f"{header_b64}.{payload_b64}".encode("utf-8")
+        data_js = js.Uint8Array.new(data)
+
+        is_valid = await js.crypto.subtle.verify(
+            algo,
+            crypto_key,
+            signature_js,
+            data_js
+        )
+
+        if is_valid:
+            return payload
+        return None
+
+    except Exception as e:
+        print(f"RS256 verification error: {e}")
+        return None
+
+async def sign_hs256_token(payload: dict, secret: str) -> str:
+    try:
+        header = {"typ": "JWT", "alg": "HS256"}
+        header_b64 = base64url_encode(json.dumps(header).encode("utf-8"))
+        payload_b64 = base64url_encode(json.dumps(payload).encode("utf-8"))
+
+        data = f"{header_b64}.{payload_b64}".encode("utf-8")
+        data_js = js.Uint8Array.new(data)
+
+        # Import secret key
+        secret_bytes = secret.encode("utf-8")
+        secret_js = js.Uint8Array.new(secret_bytes)
+
+        algo = js.Object.new()
+        algo.name = "HMAC"
+        algo.hash = "SHA-256"
+
+        crypto_key = await js.crypto.subtle.importKey(
+            "raw",
+            secret_js,
+            algo,
+            False,
+            js.Array.new("sign")
+        )
+
+        signature_ab = await js.crypto.subtle.sign(
+            algo,
+            crypto_key,
+            data_js
+        )
+        # signature_ab is ArrayBuffer, convert to bytes
+        signature_bytes = bytes(js.Uint8Array.new(signature_ab))
+        signature_b64 = base64url_encode(signature_bytes)
+
+        return f"{header_b64}.{payload_b64}.{signature_b64}"
+    except Exception as e:
+        print(f"HS256 signing error: {e}")
+        return ""
+
+async def verify_hs256_token(token: str, secret: str):
+    try:
+        parts = token.split(".")
+        if len(parts) != 3:
+            return None
+
+        header_b64, payload_b64, signature_b64 = parts
+
+        # Decode payload for expiry check
+        payload = json.loads(base64url_decode(payload_b64))
+
+        if payload.get("exp", 0) < time.time():
+            return None
+
+        # Verify signature
+        data = f"{header_b64}.{payload_b64}".encode("utf-8")
+        data_js = js.Uint8Array.new(data)
+
+        signature = base64url_decode(signature_b64)
+        signature_js = js.Uint8Array.new(signature)
+
+        secret_bytes = secret.encode("utf-8")
+        secret_js = js.Uint8Array.new(secret_bytes)
+
+        algo = js.Object.new()
+        algo.name = "HMAC"
+        algo.hash = "SHA-256"
+
+        crypto_key = await js.crypto.subtle.importKey(
+            "raw",
+            secret_js,
+            algo,
+            False,
+            js.Array.new("verify")
+        )
+
+        is_valid = await js.crypto.subtle.verify(
+            algo,
+            crypto_key,
+            signature_js,
+            data_js
+        )
+
+        if is_valid:
+            return payload
+        return None
+
+    except Exception as e:
+        print(f"HS256 verification error: {e}")
+        return None
+
 # --- Models ---
 
 class Link(BaseModel):
@@ -169,7 +338,7 @@ class LoginUser(BaseModel):
     email: str
     password: str
 
-# --- Auth ---
+# --- Auth Helpers ---
 
 jwks_cache = {"keys": None, "expiry": 0}
 
@@ -193,49 +362,17 @@ async def get_jwks():
         print(f"Failed to fetch JWKS: {e}")
         return None
 
-async def verify_google_token(token: str, client_id: str):
-    keys = await get_jwks()
-    if not keys:
-        return None
-
-    try:
-        # Get the kid from the header
-        header = jwt.get_unverified_header(token)
-        kid = header.get("kid")
-        if not kid:
-            return None
-
-        # Find the signing key
-        key_data = next((k for k in keys if k["kid"] == kid), None)
-        if not key_data:
-            return None
-
-        # Construct public key from JWK
-        public_key = jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(key_data))
-
-        payload = jwt.decode(
-            token,
-            public_key,
-            algorithms=["RS256"],
-            audience=client_id,
-            options={"verify_at_hash": False}
-        )
-        return payload
-    except Exception as e:
-        print(f"Token verification failed: {e}")
-        return None
-
 async def get_current_user(request: Request) -> Optional[User]:
     auth = request.headers.get("Authorization")
     if not auth or not auth.startswith("Bearer "):
         return None
     token = auth.split(" ")[1]
     env = await get_env(request)
-    try:
-        payload = jwt.decode(token, env.SESSION_SECRET, algorithms=["HS256"])
+
+    payload = await verify_hs256_token(token, env.SESSION_SECRET)
+    if payload:
         return User(id=payload["sub"], email=payload["email"], name=payload["name"])
-    except:
-        return None
+    return None
 
 # --- Endpoints ---
 
@@ -287,13 +424,14 @@ async def login(login_req: LoginUser, request: Request):
         "name": user_row['name'],
         "exp": int(time.time()) + 86400 * 7 # 7 days
     }
-    session_token = jwt.encode(session_payload, env.SESSION_SECRET, algorithm="HS256")
+
+    session_token = await sign_hs256_token(session_payload, env.SESSION_SECRET)
     return {"access_token": session_token, "token_type": "bearer"}
 
 @app.get("/auth/google")
 async def auth_google(token: str, request: Request):
     env = await get_env(request)
-    payload = await verify_google_token(token, env.GOOGLE_CLIENT_ID)
+    payload = await verify_rs256_token(token, env.GOOGLE_CLIENT_ID)
     if not payload:
         raise HTTPException(status_code=400, detail="Invalid token")
 
@@ -329,7 +467,7 @@ async def auth_google(token: str, request: Request):
         "name": name,
         "exp": int(time.time()) + 86400 * 7 # 7 days
     }
-    session_token = jwt.encode(session_payload, env.SESSION_SECRET, algorithm="HS256")
+    session_token = await sign_hs256_token(session_payload, env.SESSION_SECRET)
     return {"access_token": session_token, "token_type": "bearer"}
 
 @app.get("/ships", response_model=List[Ship])
