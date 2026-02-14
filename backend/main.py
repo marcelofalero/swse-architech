@@ -101,10 +101,14 @@ async def asgi_fetch(app, request, env):
     except BaseException as e:
         print(f"Internal Server Error: {e}", flush=True)
         traceback.print_exc(file=sys.stdout)
+
+        resp_init = js.Object.new()
+        resp_init.status = 500
+        resp_init.statusText = "Internal Server Error"
+
         return js.Response.new(
             "Internal Server Error",
-            status=500,
-            statusText="Internal Server Error"
+            resp_init
         )
 
 # --- App ---
