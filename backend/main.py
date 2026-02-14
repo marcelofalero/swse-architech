@@ -6,7 +6,7 @@ import json
 import time
 import uuid
 from jose import jwt
-import httpx
+import js
 import hashlib
 import secrets
 import os
@@ -93,16 +93,21 @@ async def get_jwks():
     now = time.time()
     if jwks_cache["keys"] and now < jwks_cache["expiry"]:
         return jwks_cache["keys"]
-    async with httpx.AsyncClient() as client:
-        try:
-            resp = await client.get("https://www.googleapis.com/oauth2/v3/certs")
-            keys = resp.json()
-            jwks_cache["keys"] = keys
-            jwks_cache["expiry"] = now + 3600
-            return keys
-        except Exception as e:
-            print(f"Failed to fetch JWKS: {e}")
+
+    try:
+        # Use js.fetch for Cloudflare Workers compatibility
+        resp = await js.fetch("https://www.googleapis.com/oauth2/v3/certs")
+        if resp.status != 200:
             return None
+        data = await resp.json()
+        # Convert JS object to Python dict
+        keys = data.to_py()
+        jwks_cache["keys"] = keys
+        jwks_cache["expiry"] = now + 3600
+        return keys
+    except Exception as e:
+        print(f"Failed to fetch JWKS: {e}")
+        return None
 
 async def verify_google_token(token: str, client_id: str):
     jwks = await get_jwks()
