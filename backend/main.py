@@ -129,22 +129,32 @@ async def get_db(request: Request):
 
 def safe_results(res):
     """Safely extract results from D1 result object."""
+    print(f"DEBUG: safe_results input: {res}", flush=True)
     # Check if res is valid
     if not res:
+        print("DEBUG: res is falsy", flush=True)
         return []
 
     # Try to access results property
     try:
         results = res.results
-    except Exception:
+        print(f"DEBUG: res.results: {results}", flush=True)
+    except Exception as e:
+        print(f"DEBUG: Failed to access res.results: {e}", flush=True)
         results = None
 
     if results is None:
         return []
 
     # Convert from JS proxy if needed
-    if hasattr(results, 'to_py'):
-        return results.to_py()
+    try:
+        if hasattr(results, 'to_py'):
+            py_results = results.to_py()
+            print(f"DEBUG: Converted to python: {py_results}", flush=True)
+            return py_results
+    except Exception as e:
+        print(f"DEBUG: to_py() failed: {e}", flush=True)
+
     return results
 
 def hash_password(password: str) -> str:
