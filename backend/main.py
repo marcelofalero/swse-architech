@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 import time
 import uuid
-import hashlib
 import secrets
 import os
 import base64
@@ -157,27 +156,87 @@ def safe_results(res):
 
     return results
 
-def hash_password(password: str) -> str:
-    salt = secrets.token_hex(16)
-    pw_hash = hashlib.pbkdf2_hmac(
-        'sha256',
-        password.encode(),
-        salt.encode(),
-        100000
-    ).hex()
-    return f"{salt}${pw_hash}"
+# --- Password Hashing (Web Crypto) ---
 
-def verify_password(stored_password: str, provided_password: str) -> bool:
-    if not stored_password or '$' not in stored_password:
+async def hash_password(password: str) -> str:
+    print(f"DEBUG: hashing password...", flush=True)
+    try:
+        enc = js.TextEncoder.new()
+        password_key = await js.crypto.subtle.importKey(
+            "raw",
+            enc.encode(password),
+            js.JSON.parse('{"name": "PBKDF2"}'),
+            False,
+            js.JSON.parse('["deriveBits", "deriveKey"]')
+        )
+
+        # Generate salt using os.urandom (supported in Pyodide usually)
+        # or js.crypto.getRandomValues if python random is flaky
+        salt_js = js.Uint8Array.new(16)
+        js.crypto.getRandomValues(salt_js)
+        salt_bytes = bytes(salt_js)
+        salt_hex = salt_bytes.hex()
+
+        # Derive bits
+        algo = js.Object.new()
+        algo.name = "PBKDF2"
+        algo.salt = salt_js
+        algo.iterations = 100000
+        algo.hash = "SHA-256"
+
+        derived_bits = await js.crypto.subtle.deriveBits(
+            algo,
+            password_key,
+            256
+        )
+
+        hash_bytes = bytes(js.Uint8Array.new(derived_bits))
+        hash_hex = hash_bytes.hex()
+
+        print(f"DEBUG: password hashed successfully", flush=True)
+        return f"{salt_hex}${hash_hex}"
+    except Exception as e:
+        print(f"DEBUG: hash_password failed: {e}", flush=True)
+        raise e
+
+async def verify_password(stored_password: str, provided_password: str) -> bool:
+    try:
+        if not stored_password or '$' not in stored_password:
+            return False
+        salt_hex, stored_hash_hex = stored_password.split('$')
+
+        salt_bytes = bytes.fromhex(salt_hex)
+        salt_js = js.Uint8Array.new(salt_bytes)
+
+        enc = js.TextEncoder.new()
+        password_key = await js.crypto.subtle.importKey(
+            "raw",
+            enc.encode(provided_password),
+            js.JSON.parse('{"name": "PBKDF2"}'),
+            False,
+            js.JSON.parse('["deriveBits", "deriveKey"]')
+        )
+
+        algo = js.Object.new()
+        algo.name = "PBKDF2"
+        algo.salt = salt_js
+        algo.iterations = 100000
+        algo.hash = "SHA-256"
+
+        derived_bits = await js.crypto.subtle.deriveBits(
+            algo,
+            password_key,
+            256
+        )
+
+        hash_bytes = bytes(js.Uint8Array.new(derived_bits))
+        hash_hex = hash_bytes.hex()
+
+        # Constant time compare (secrets module is good for this)
+        return secrets.compare_digest(stored_hash_hex, hash_hex)
+    except Exception as e:
+        print(f"DEBUG: verify_password failed: {e}", flush=True)
         return False
-    salt, stored_hash = stored_password.split('$')
-    pw_hash = hashlib.pbkdf2_hmac(
-        'sha256',
-        provided_password.encode(),
-        salt.encode(),
-        100000
-    ).hex()
-    return secrets.compare_digest(stored_hash, pw_hash)
 
 # --- Web Crypto JWT Implementation ---
 
@@ -451,8 +510,11 @@ async def register(user_req: RegisterUser, request: Request):
             print("DEBUG: User already exists", flush=True)
             raise HTTPException(status_code=400, detail="User already exists")
 
+        print("DEBUG: Generating UUID", flush=True)
         user_id = str(uuid.uuid4())
-        pw_hash = hash_password(user_req.password)
+        print(f"DEBUG: Generated UUID: {user_id}", flush=True)
+
+        pw_hash = await hash_password(user_req.password)
 
         print("DEBUG: Creating new user", flush=True)
         insert_stmt = db.prepare("INSERT INTO users (id, email, name, password_hash) VALUES (?, ?, ?, ?)")
@@ -487,7 +549,7 @@ async def login(login_req: LoginUser, request: Request):
         # User might be a Google-only user
         raise HTTPException(status_code=401, detail="Invalid credentials (try Google login)")
 
-    if not verify_password(stored_hash, login_req.password):
+    if not await verify_password(stored_hash, login_req.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     # Create session token
