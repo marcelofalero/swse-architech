@@ -162,18 +162,27 @@ async def hash_password(password: str) -> str:
     print(f"DEBUG: hashing password...", flush=True)
     try:
         enc = js.TextEncoder.new()
+
+        encoded_pw = enc.encode(password)
+
+        algo_import = js.Object.new()
+        algo_import.name = "PBKDF2"
+
+        usages_import = js.Array.new("deriveBits", "deriveKey")
+
         password_key = await js.crypto.subtle.importKey(
             "raw",
-            enc.encode(password),
-            js.JSON.parse('{"name": "PBKDF2"}'),
+            encoded_pw,
+            algo_import,
             False,
-            js.JSON.parse('["deriveBits", "deriveKey"]')
+            usages_import
         )
 
         # Generate salt using os.urandom (supported in Pyodide usually)
         # or js.crypto.getRandomValues if python random is flaky
         salt_js = js.Uint8Array.new(16)
         js.crypto.getRandomValues(salt_js)
+
         salt_bytes = bytes(salt_js)
         salt_hex = salt_bytes.hex()
 
@@ -197,6 +206,7 @@ async def hash_password(password: str) -> str:
         return f"{salt_hex}${hash_hex}"
     except Exception as e:
         print(f"DEBUG: hash_password failed: {e}", flush=True)
+        traceback.print_exc()
         raise e
 
 async def verify_password(stored_password: str, provided_password: str) -> bool:
@@ -209,12 +219,20 @@ async def verify_password(stored_password: str, provided_password: str) -> bool:
         salt_js = js.Uint8Array.new(salt_bytes)
 
         enc = js.TextEncoder.new()
+
+        encoded_pw = enc.encode(provided_password)
+
+        algo_import = js.Object.new()
+        algo_import.name = "PBKDF2"
+
+        usages_import = js.Array.new("deriveBits", "deriveKey")
+
         password_key = await js.crypto.subtle.importKey(
             "raw",
-            enc.encode(provided_password),
-            js.JSON.parse('{"name": "PBKDF2"}'),
+            encoded_pw,
+            algo_import,
             False,
-            js.JSON.parse('["deriveBits", "deriveKey"]')
+            usages_import
         )
 
         algo = js.Object.new()
@@ -236,6 +254,7 @@ async def verify_password(stored_password: str, provided_password: str) -> bool:
         return secrets.compare_digest(stored_hash_hex, hash_hex)
     except Exception as e:
         print(f"DEBUG: verify_password failed: {e}", flush=True)
+        traceback.print_exc()
         return False
 
 # --- Web Crypto JWT Implementation ---
