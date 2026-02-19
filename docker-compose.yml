@@ -28,6 +28,8 @@ services:
     build:
       context: tests
       dockerfile: Dockerfile
+    profiles:
+      - test
     depends_on:
       - backend
       - frontend
