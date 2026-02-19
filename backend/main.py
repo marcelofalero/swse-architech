@@ -12,6 +12,7 @@ import os
 import base64
 import traceback
 import sys
+import hashlib
 
 # --- ASGI Adapter ---
 
@@ -161,10 +162,25 @@ def safe_results(res):
 
     return results
 
-# --- Password Hashing (Web Crypto) ---
+# --- Password Hashing (Web Crypto & Scrypt) ---
 
 async def hash_password(password: str) -> str:
     print(f"DEBUG: hashing password...", flush=True)
+
+    # 1. Try Scrypt (Primary, Secure)
+    try:
+        if hasattr(hashlib, 'scrypt'):
+            salt = os.urandom(16)
+            # N=16384, r=8, p=1 is a good balance for Workers (usually < 100ms)
+            dk = hashlib.scrypt(password.encode(), salt=salt, n=16384, r=8, p=1)
+            salt_hex = salt.hex()
+            hash_hex = dk.hex()
+            print(f"DEBUG: password hashed with scrypt", flush=True)
+            return f"scrypt${salt_hex}${hash_hex}"
+    except Exception as e:
+        print(f"DEBUG: Scrypt unavailable or failed: {e}. Falling back to PBKDF2.", flush=True)
+
+    # 2. Fallback to PBKDF2 (Web Crypto)
     try:
         enc = js.TextEncoder.new()
         password_key = await js.crypto.subtle.importKey(
@@ -175,18 +191,16 @@ async def hash_password(password: str) -> str:
             js.JSON.parse('["deriveBits", "deriveKey"]')
         )
 
-        # Generate salt using os.urandom (supported in Pyodide usually)
-        # or js.crypto.getRandomValues if python random is flaky
         salt_js = js.Uint8Array.new(16)
         js.crypto.getRandomValues(salt_js)
         salt_bytes = bytes(salt_js)
         salt_hex = salt_bytes.hex()
 
-        # Derive bits
         algo = js.Object.new()
         algo.name = "PBKDF2"
         algo.salt = salt_js
-        algo.iterations = 100000
+        # Reduce iterations for fallback to avoid timeouts (10k is safer than 5k, but much faster than 100k)
+        algo.iterations = 10000
         algo.hash = "SHA-256"
 
         derived_bits = await js.crypto.subtle.deriveBits(
@@ -198,18 +212,44 @@ async def hash_password(password: str) -> str:
         hash_bytes = bytes(js.Uint8Array.new(derived_bits))
         hash_hex = hash_bytes.hex()
 
-        print(f"DEBUG: password hashed successfully", flush=True)
-        return f"{salt_hex}${hash_hex}"
+        print(f"DEBUG: password hashed with PBKDF2 (fallback)", flush=True)
+        # Use a prefix to distinguish from legacy 100k hashes
+        return f"pbkdf2${salt_hex}${hash_hex}"
     except Exception as e:
-        print(f"DEBUG: hash_password failed: {e}", flush=True)
+        print(f"DEBUG: hash_password failed completely: {e}", flush=True)
         raise e
 
 async def verify_password(stored_password: str, provided_password: str) -> bool:
     try:
-        if not stored_password or '$' not in stored_password:
+        if not stored_password:
             return False
-        salt_hex, stored_hash_hex = stored_password.split('$')
 
+        parts = stored_password.split('$')
+
+        # Scrypt Verification
+        if len(parts) == 3 and parts[0] == 'scrypt':
+            _, salt_hex, stored_hash_hex = parts
+            if hasattr(hashlib, 'scrypt'):
+                salt = bytes.fromhex(salt_hex)
+                dk = hashlib.scrypt(provided_password.encode(), salt=salt, n=16384, r=8, p=1)
+                return secrets.compare_digest(stored_hash_hex, dk.hex())
+            else:
+                print("DEBUG: Scrypt hash found but hashlib.scrypt unavailable.", flush=True)
+                return False
+
+        # PBKDF2 Verification (New Fallback - 10k)
+        elif len(parts) == 3 and parts[0] == 'pbkdf2':
+            _, salt_hex, stored_hash_hex = parts
+            iterations = 10000
+
+        # Legacy PBKDF2 Verification (100k)
+        elif len(parts) == 2:
+            salt_hex, stored_hash_hex = parts
+            iterations = 100000
+        else:
+            return False
+
+        # Perform PBKDF2 Verification
         salt_bytes = bytes.fromhex(salt_hex)
         salt_js = js.Uint8Array.new(salt_bytes)
 
@@ -225,7 +265,7 @@ async def verify_password(stored_password: str, provided_password: str) -> bool:
         algo = js.Object.new()
         algo.name = "PBKDF2"
         algo.salt = salt_js
-        algo.iterations = 100000
+        algo.iterations = iterations
         algo.hash = "SHA-256"
 
         derived_bits = await js.crypto.subtle.deriveBits(
@@ -237,7 +277,6 @@ async def verify_password(stored_password: str, provided_password: str) -> bool:
         hash_bytes = bytes(js.Uint8Array.new(derived_bits))
         hash_hex = hash_bytes.hex()
 
-        # Constant time compare (secrets module is good for this)
         return secrets.compare_digest(stored_hash_hex, hash_hex)
     except Exception as e:
         print(f"DEBUG: verify_password failed: {e}", flush=True)
