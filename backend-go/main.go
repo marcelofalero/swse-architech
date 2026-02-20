@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	_ "embed"
 	"log"
 	"net/http"
 
@@ -12,6 +13,12 @@ import (
 )
 
 var db *sql.DB
+
+//go:embed docs/openapi.yaml
+var openAPIContent []byte
+
+//go:embed docs/api.html
+var apiHTMLContent []byte
 
 func main() {
 	var err error
@@ -29,6 +36,16 @@ func main() {
 
 	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`{"status": "ok"}`))
+	})
+
+	// Docs
+	r.Get("/docs/openapi.yaml", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/yaml")
+		w.Write(openAPIContent)
+	})
+	r.Get("/docs", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+		w.Write(apiHTMLContent)
 	})
 
 	r.Post("/auth/register", registerHandler)
