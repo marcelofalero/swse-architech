@@ -38,10 +38,12 @@ RUN mkdir -p /app/backend-go && chown -R appuser:appuser /app/backend-go
 USER appuser
 WORKDIR /app/backend-go
 COPY --chown=appuser:appuser backend-go/ .
-RUN GOOS=js GOARCH=wasm go build -buildvcs=false -o build/app.wasm .
+RUN GOOS=js GOARCH=wasm go build -buildvcs=false -o /tmp/app.wasm .
 
 # Switch back to root for entrypoint execution (to fix volume permissions)
 USER root
+# Move built binary to a system path
+RUN mv /tmp/app.wasm /usr/local/bin/app.wasm
 
 EXPOSE 8787
 

@@ -28,10 +28,13 @@ if [ ! -f schema.sql ]; then
     chown appuser:appuser schema.sql
 fi
 
-echo "Building Go application..."
-# Run build as appuser
-if [ ! -f build/app.wasm ]; then
-    su-exec appuser env GOOS=js GOARCH=wasm go build -buildvcs=false -o build/app.wasm .
+echo "Copying pre-built Go application..."
+if [ -f /usr/local/bin/app.wasm ]; then
+    cp /usr/local/bin/app.wasm build/app.wasm
+    chown appuser:appuser build/app.wasm
+else
+    echo "Error: Pre-built application not found in /usr/local/bin/app.wasm"
+    exit 1
 fi
 
 echo "Initializing D1 database..."
