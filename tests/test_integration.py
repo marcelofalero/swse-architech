@@ -1,162 +1,184 @@
 import pytest
 import httpx
 import uuid
+import os
 
-BASE_URL = "http://backend:8787"
+BASE_URL = os.environ.get("BASE_URL", "http://backend:8787")
 
 @pytest.fixture
 def client():
-    with httpx.Client(base_url=BASE_URL) as client:
+    with httpx.Client(base_url=BASE_URL, timeout=10.0) as client:
         yield client
+
+def create_user(client, name="Test User"):
+    email = f"test_{uuid.uuid4()}@example.com"
+    password = "secretpassword"
+
+    resp = client.post("/auth/register", json={
+        "email": email,
+        "password": password,
+        "name": name
+    })
+    assert resp.status_code == 200, f"Register failed: {resp.text}"
+    user_id = resp.json().get("user_id")
+
+    resp = client.post("/auth/login", json={
+        "email": email,
+        "password": password
+    })
+    assert resp.status_code == 200, f"Login failed: {resp.text}"
+    token = resp.json().get("access_token")
+
+    return {
+        "id": user_id,
+        "email": email,
+        "password": password,
+        "headers": {"Authorization": f"Bearer {token}"}
+    }
 
 def test_health(client):
     resp = client.get("/health")
     assert resp.status_code == 200
     assert resp.json() == {"status": "ok"}
 
-def register_and_login(client):
-    email = f"test_{uuid.uuid4()}@example.com"
-    password = "secretpassword"
-    name = "Test User"
+# Auth Tests
 
-    # Register
+def test_auth_register_duplicate(client):
+    user = create_user(client)
+
     resp = client.post("/auth/register", json={
-        "email": email,
-        "password": password,
-        "name": name
+        "email": user["email"],
+        "password": "newpassword",
+        "name": "Duplicate User"
     })
-    assert resp.status_code == 200
-    assert "user_id" in resp.json()
+    assert resp.status_code == 400
 
-    # Login
+def test_auth_login_failure(client):
     resp = client.post("/auth/login", json={
-        "email": email,
-        "password": password
+        "email": "nonexistent@example.com",
+        "password": "wrongpassword"
     })
-    assert resp.status_code == 200
-    data = resp.json()
-    assert "access_token" in data
+    assert resp.status_code == 401
 
-    return {"Authorization": f"Bearer {data['access_token']}"}
+# Resource Tests
 
-def test_ships(client):
-    headers = register_and_login(client)
+RESOURCE_TYPES = [
+    ("ships", {"configuration": {"hull": "fighter", "speed": 100}, "manifest": []}),
+    ("libraries", {"components": [], "ships": []}),
+    ("hangars", {"ships": []}),
+    ("configurations", {"setting": "value"})
+]
 
-    # Create Ship with valid data (configuration object and manifest array)
-    ship_data = {
-        "configuration": {"hull": "fighter", "speed": 100},
-        "manifest": []
-    }
-    resp = client.post("/ships", json={
-        "name": "X-Wing",
-        "data": ship_data,
+@pytest.mark.parametrize("resource_type, initial_data", RESOURCE_TYPES)
+def test_resource_lifecycle(client, resource_type, initial_data):
+    user = create_user(client)
+    headers = user["headers"]
+
+    # Create
+    resp = client.post(f"/{resource_type}", json={
+        "name": f"My {resource_type}",
+        "data": initial_data,
         "visibility": "private"
     }, headers=headers)
+    assert resp.status_code == 200, f"Create failed: {resp.text}"
+    resource = resp.json()
+    resource_id = resource["id"]
+    assert resource["name"] == f"My {resource_type}"
 
-    assert resp.status_code == 200, f"Failed to create ship: {resp.text}"
-    ship = resp.json()
-    assert ship["name"] == "X-Wing"
-    ship_id = ship["id"]
-
-    # List Ships
-    resp = client.get("/ships", headers=headers)
+    # Get
+    resp = client.get(f"/{resource_type}/{resource_id}", headers=headers)
     assert resp.status_code == 200
-    ships = resp.json()
+    assert resp.json()["id"] == resource_id
 
-    found = False
-    for s in ships:
-        if s["id"] == ship_id:
-            found = True
-            break
-    assert found, "Created ship not found in list"
-
-def test_libraries(client):
-    headers = register_and_login(client)
-
-    # Create Library with valid data
-    library_data = {
-        "components": [],
-        "ships": []
-    }
-    resp = client.post("/libraries", json={
-        "name": "My Library",
-        "data": library_data,
+    # Update
+    new_name = f"Updated {resource_type}"
+    resp = client.put(f"/{resource_type}/{resource_id}", json={
+        "name": new_name,
+        "data": initial_data,
         "visibility": "private"
     }, headers=headers)
-
-    assert resp.status_code == 200, f"Failed to create library: {resp.text}"
-    library = resp.json()
-    assert library["name"] == "My Library"
-    library_id = library["id"]
-
-    # List Libraries
-    resp = client.get("/libraries", headers=headers)
     assert resp.status_code == 200
-    libraries = resp.json()
+    assert resp.json()["name"] == new_name
 
-    found = False
-    for l in libraries:
-        if l["id"] == library_id:
-            found = True
-            break
-    assert found, "Created library not found in list"
+    # Delete
+    resp = client.delete(f"/{resource_type}/{resource_id}", headers=headers)
+    assert resp.status_code == 204
 
-def test_hangars(client):
-    headers = register_and_login(client)
+    # Verify Gone
+    resp = client.get(f"/{resource_type}/{resource_id}", headers=headers)
+    assert resp.status_code == 404
 
-    # Create Hangar with valid data (must have ships array)
-    hangar_data = {
-        "ships": []
-    }
-    resp = client.post("/hangars", json={
-        "name": "My Hangar",
-        "data": hangar_data,
+@pytest.mark.parametrize("resource_type, initial_data", RESOURCE_TYPES)
+def test_resource_sharing(client, resource_type, initial_data):
+    owner = create_user(client, name="Owner")
+    grantee = create_user(client, name="Grantee")
+
+    # Owner creates private resource
+    resp = client.post(f"/{resource_type}", json={
+        "name": "Private Resource",
+        "data": initial_data,
         "visibility": "private"
-    }, headers=headers)
-
-    assert resp.status_code == 200, f"Failed to create hangar: {resp.text}"
-    hangar = resp.json()
-    assert hangar["name"] == "My Hangar"
-    hangar_id = hangar["id"]
-
-    # List Hangars
-    resp = client.get("/hangars", headers=headers)
+    }, headers=owner["headers"])
     assert resp.status_code == 200
-    hangars = resp.json()
+    resource_id = resp.json()["id"]
 
-    found = False
-    for h in hangars:
-        if h["id"] == hangar_id:
-            found = True
-            break
-    assert found, "Created hangar not found in list"
+    # Grantee tries to access (should fail)
+    resp = client.get(f"/{resource_type}/{resource_id}", headers=grantee["headers"])
+    assert resp.status_code == 404 # Backend returns 404 for not found or access denied
 
-def test_configurations(client):
-    headers = register_and_login(client)
+    # Share (Read)
+    resp = client.patch(f"/{resource_type}/{resource_id}/share", json={
+        "grantee_id": grantee["id"],
+        "grantee_type": "user",
+        "access_level": "read"
+    }, headers=owner["headers"])
+    assert resp.status_code == 200
 
-    # Create Configuration
-    config_data = {
-        "setting": "value"
-    }
-    resp = client.post("/configurations", json={
-        "name": "My Config",
-        "data": config_data,
+    # Grantee tries to access (should succeed)
+    resp = client.get(f"/{resource_type}/{resource_id}", headers=grantee["headers"])
+    assert resp.status_code == 200
+    assert resp.json()["id"] == resource_id
+
+    # Grantee tries to update (should fail)
+    resp = client.put(f"/{resource_type}/{resource_id}", json={
+        "name": "Hacked Resource",
+        "data": initial_data,
         "visibility": "private"
-    }, headers=headers)
+    }, headers=grantee["headers"])
+    assert resp.status_code == 403
 
-    assert resp.status_code == 200, f"Failed to create configuration: {resp.text}"
-    config = resp.json()
-    assert config["name"] == "My Config"
-    config_id = config["id"]
-
-    # List Configurations
-    resp = client.get("/configurations", headers=headers)
+    # Share (Write)
+    resp = client.patch(f"/{resource_type}/{resource_id}/share", json={
+        "grantee_id": grantee["id"],
+        "grantee_type": "user",
+        "access_level": "write"
+    }, headers=owner["headers"])
     assert resp.status_code == 200
-    configs = resp.json()
 
-    found = False
-    for c in configs:
-        if c["id"] == config_id:
-            found = True
-            break
-    assert found, "Created configuration not found in list"
+    # Grantee tries to update (should succeed)
+    resp = client.put(f"/{resource_type}/{resource_id}", json={
+        "name": "Collab Resource",
+        "data": initial_data,
+        "visibility": "private"
+    }, headers=grantee["headers"])
+    assert resp.status_code == 200
+
+    # Grantee tries to delete (should fail - need admin)
+    resp = client.delete(f"/{resource_type}/{resource_id}", headers=grantee["headers"])
+    assert resp.status_code == 403
+
+    # Share (Admin)
+    resp = client.patch(f"/{resource_type}/{resource_id}/share", json={
+        "grantee_id": grantee["id"],
+        "grantee_type": "user",
+        "access_level": "admin"
+    }, headers=owner["headers"])
+    assert resp.status_code == 200
+
+    # Grantee tries to delete (should succeed)
+    resp = client.delete(f"/{resource_type}/{resource_id}", headers=grantee["headers"])
+    assert resp.status_code == 204
+
+    # Verify Gone for Owner too
+    resp = client.get(f"/{resource_type}/{resource_id}", headers=owner["headers"])
+    assert resp.status_code == 404
