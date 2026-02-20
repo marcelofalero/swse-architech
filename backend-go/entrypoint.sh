@@ -7,7 +7,7 @@ if [ ! -f schema.sql ]; then
 fi
 
 echo "Building Go application..."
-GOOS=js GOARCH=wasm go build -o build/app.wasm .
+GOOS=js GOARCH=wasm go build -buildvcs=false -o build/app.wasm .
 
 echo "Initializing D1 database..."
 # Check if DB exists locally or just execute?
