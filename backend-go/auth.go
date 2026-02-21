@@ -22,6 +22,10 @@ import (
 	"golang.org/x/crypto/scrypt"
 )
 
+type contextKey string
+
+const userContextKey contextKey = "user"
+
 // --- Password Hashing ---
 
 func generateSalt() ([]byte, error) {
@@ -235,24 +239,35 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		claims, err := verifyHS256Token(tokenString, secret)
 
 		if err != nil {
+			fmt.Printf("Token verification failed: %v\n", err)
 			// Invalid token, proceed as anonymous
 			next.ServeHTTP(w, r)
 		} else {
-			ctx := context.WithValue(r.Context(), "user", claims)
+			ctx := context.WithValue(r.Context(), userContextKey, claims)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		}
 	})
 }
 
 func GetCurrentUser(r *http.Request) *User {
-	claims, ok := r.Context().Value("user").(jwt.MapClaims)
+	claims, ok := r.Context().Value(userContextKey).(jwt.MapClaims)
 	if !ok {
 		return nil
 	}
+
+	sub, _ := claims["sub"].(string)
+	email, _ := claims["email"].(string)
+	name, _ := claims["name"].(string)
+
+	if sub == "" {
+		fmt.Printf("Missing 'sub' claim in token\n")
+		return nil
+	}
+
 	return &User{
-		ID:    claims["sub"].(string),
-		Email: claims["email"].(string),
-		Name:  claims["name"].(string),
+		ID:    sub,
+		Email: email,
+		Name:  name,
 	}
 }
 
